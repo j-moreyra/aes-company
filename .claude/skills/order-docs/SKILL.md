@@ -94,6 +94,45 @@ governs *how many*. Copying the quote's quantity would have under-ordered by 3 u
 **Currency flips between the two documents.** The PO to Kukla is in EUR because Kukla's quote
 is in EUR. The client OA is in USD. A `$` on the Kukla PO is wrong and vice versa.
 
+## Step 0 — establish where the documents are coming from
+
+**Do this before anything else.** The skill runs in two very different places.
+
+Check whether the OneDrive library is reachable:
+
+```
+ls ~/Library/CloudStorage/OneDrive-SharedLibraries-AdvancedEngineeringSystems 2>/dev/null
+```
+
+**If it resolves** (Claude Code on William's Mac) — work directly from the project folder under
+`1. Kukla/01. Projects/…`. Locate the files yourself and tell him which ones you found. Don't
+ask him to upload anything.
+
+**If it does not** (Claude Cowork, claude.ai, any machine without the library) — **stop and ask
+for the documents before doing anything else.** Ask in one message, listing exactly what is
+needed for the step being run, and say why each is needed. Something like:
+
+> To raise the PO to Kukla I need three things:
+>
+> 1. **Kukla's quote** (`Quotation<number>.pdf`) — the part numbers, descriptions and cost
+>    prices. The PO must match it line for line.
+> 2. **The client's purchase order** — the quantities. These override Kukla's quoted quantities.
+> 3. **The project CS workbook** (`CS_<number>.xlsx`) — optional but strongly preferred. Its
+>    `PC-<number>` tab holds the bundling map and confirms the totals. Without it I have to
+>    infer which client line covers which Kukla components, and I'll ask you to confirm.
+>
+> For the Order Acknowledgement I also need **Kukla's order confirmation**, which carries the
+> delivery date, plus your next OA number.
+
+Adapt the list to the step. Never proceed on a partial set by guessing at the missing document —
+say what is missing and wait. The one exception is the CS workbook: you can proceed without it
+if William confirms the bundling verbally, but flag that the totals are then unverified against
+his own sheet.
+
+If the workbook isn't available, set `"workbook": null` and `"cellmap": null` in the spec. The
+script will render the PDF only, which is the right outcome in a hosted session — there is no
+workbook to update.
+
 ## Procedure
 
 1. **Read the source documents yourself.** Do not regex them — client PO layouts differ and are
@@ -237,8 +276,28 @@ exactly; OA **$232,270.00**. Eight client lines against eleven Kukla lines.
 Use the second case when testing changes — it exercises bundling, price overrides, Kukla line
 numbering, heading rows and the single-total OA layout.
 
-## Requirements
+## Requirements and portability
 
-Google Chrome (headless, for PDF rendering) and `openpyxl`. Excel automation is deliberately not
-used — it needs macOS Automation permission and hangs without it. Calibri is unavailable to
-headless Chrome so output falls back to Arial; embed the font if a pixel match is needed.
+**PDF rendering** tries, in order: headless Chrome → `weasyprint` → LibreOffice. Chrome gives
+the closest match to the reference documents and is what William's Mac has. If none is present
+the script writes the `.html` next to where the PDF would have gone and says so — open it in a
+browser and print to PDF. Install `weasyprint` (`pip install weasyprint`) in a hosted sandbox to
+get real PDFs.
+
+Excel automation is deliberately not used anywhere — it needs macOS Automation permission and
+hangs without it.
+
+**Writing the workbook tab** needs `openpyxl` and the actual `CS_<number>.xlsx`. In a hosted
+session you usually won't have it; render the PDF only and hand the values back so William can
+update the workbook himself.
+
+**Fonts:** Calibri is generally unavailable to headless renderers, so output falls back to a
+sans-serif. Cosmetic only — every figure and label is correct. Embed the font if a pixel match
+matters.
+
+**Packaging for Cowork / claude.ai:** a `.skill` file is a zip with `SKILL.md` at the root.
+Include `scripts/` and `assets/` alongside it:
+
+```
+cd .claude/skills/order-docs && zip -r ~/Desktop/order-docs.skill SKILL.md scripts assets
+```

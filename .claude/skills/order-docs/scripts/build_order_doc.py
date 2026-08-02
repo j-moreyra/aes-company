@@ -230,16 +230,63 @@ table.tot td.v {{ border:1px solid #000; text-align:right; min-width:92px; }}
 </body></html>"""
 
 
+def _chrome_binary():
+    """Chrome/Chromium under whatever name the host uses."""
+    for c in (CHROME,
+              "/Applications/Chromium.app/Contents/MacOS/Chromium",
+              "/usr/bin/google-chrome", "/usr/bin/chromium", "/usr/bin/chromium-browser"):
+        if os.path.exists(c):
+            return c
+    for n in ("google-chrome", "chromium", "chromium-browser", "chrome"):
+        p = shutil.which(n)
+        if p:
+            return p
+    return None
+
+
 def render_pdf(spec, out_pdf):
-    if not os.path.exists(CHROME):
-        raise SystemExit("Google Chrome not found; cannot render PDF")
-    with tempfile.TemporaryDirectory() as td:
-        html = os.path.join(td, "doc.html")
-        open(html, "w", encoding="utf-8").write(html_for(spec))
-        subprocess.run([CHROME, "--headless", "--disable-gpu", "--no-pdf-header-footer",
-                        f"--print-to-pdf={out_pdf}", html],
-                       check=True, capture_output=True, timeout=120)
-    return out_pdf
+    """Render via whichever backend the environment has.
+
+    Order matters: headless Chrome gives the closest match to the reference
+    documents. weasyprint is the usual fallback in a hosted sandbox. If neither
+    exists the HTML is written next to the intended PDF so the user can print it
+    — better than failing with nothing to show.
+    """
+    html_src = html_for(spec)
+    chrome = _chrome_binary()
+    if chrome:
+        with tempfile.TemporaryDirectory() as td:
+            html = os.path.join(td, "doc.html")
+            open(html, "w", encoding="utf-8").write(html_src)
+            subprocess.run([chrome, "--headless", "--disable-gpu", "--no-pdf-header-footer",
+                            f"--print-to-pdf={out_pdf}", html],
+                           check=True, capture_output=True, timeout=120)
+        return out_pdf, "chrome"
+
+    try:
+        from weasyprint import HTML  # type: ignore
+        HTML(string=html_src).write_pdf(out_pdf)
+        return out_pdf, "weasyprint"
+    except ImportError:
+        pass
+
+    for name in ("soffice", "libreoffice"):
+        exe = shutil.which(name)
+        if exe:
+            with tempfile.TemporaryDirectory() as td:
+                html = os.path.join(td, "doc.html")
+                open(html, "w", encoding="utf-8").write(html_src)
+                subprocess.run([exe, "--headless", "--convert-to", "pdf",
+                                "--outdir", td, html], check=True,
+                               capture_output=True, timeout=180)
+                made = os.path.join(td, "doc.pdf")
+                if os.path.exists(made):
+                    shutil.move(made, out_pdf)
+                    return out_pdf, name
+
+    fallback = os.path.splitext(out_pdf)[0] + ".html"
+    open(fallback, "w", encoding="utf-8").write(html_src)
+    return fallback, "html-only"
 
 
 # ---------------------------------------------------------------- main
@@ -277,8 +324,14 @@ def main():
 
     if not a.no_pdf:
         out = os.path.join(outdir, spec["pdf_name"])
-        render_pdf(spec, out)
-        print(f"  wrote PDF {spec['pdf_name']} ({os.path.getsize(out):,} bytes)")
+        made, backend = render_pdf(spec, out)
+        if backend == "html-only":
+            print(f"  NO PDF ENGINE FOUND — wrote {os.path.basename(made)} instead.")
+            print("  Open it in a browser and print to PDF, or install weasyprint "
+                  "(pip install weasyprint) and re-run.")
+        else:
+            print(f"  wrote PDF {os.path.basename(made)} "
+                  f"({os.path.getsize(made):,} bytes, via {backend})")
 
 
 if __name__ == "__main__":
