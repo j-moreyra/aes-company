@@ -20,6 +20,87 @@ Keep it terse. Future-you will thank present-you for capturing the *why*, not ju
 
 ---
 
+## 2026-08-02 — Library content refreshed: brochures and presentations
+
+**Decision:** Where a local copy was newer than the library copy, the library copy loses. Old
+versions go to Trash tagged `[superseded <date>]` rather than being unlinked.
+
+**Brochures.** All 36 PDFs in `~/Downloads/AES Brochures` existed in `1. Kukla/05. Brochures`
+by name. 26 were byte-identical; **10 differed, and in every case the local copy was newer** —
+by up to twelve months. The library was the stale side. Those 10 were promoted. Worth stating
+plainly: until this ran, anyone pulling the fiberglass or gypsum brochure off OneDrive was
+sending clients a version six months out of date, while GP and National Gypsum were actively
+buying fiberglass.
+
+**Presentations.** All 16 files in `~/Downloads/Process Maps_Presentations` were absent from
+`02. Presentations` or newer than what was there — nothing was redundant. 13 added, 3 replaced.
+Roughly 1.7 GB, eleven files over 200 MB. The English master decks
+(`Bulk Weighing Systems_Cement_AES`, `..._Gypsum_AES`, `Fiberglass Feeder_AES`) had no library
+equivalent at all — the library held Spanish and Portuguese cement decks but no English one.
+
+**Process maps.** `Cement/Gypsum/Insulation Process-AES.pdf` are process diagrams, not
+presentations, and now live in a new `16. Process Maps`.
+
+**Known-stale, deliberately not touched.** `Sistemas de Pesagem_Cimento_AES.pdf` and
+`Sistemas de Pesaje - Cemento - AES.pdf` (Aug 2025) are PDF exports of decks that were just
+replaced with Feb 2026 versions. Different filenames, so out of scope for "delete old ones" —
+but they are now stale exports of current decks. Same trap as the brochures. Re-export or
+retire them.
+
+**Also unresolved.** Probable predecessors of the new master decks remain in place:
+`Cement Presentation_Kukla.pptx` (Jul 2024), `Presentations - Norbert/Gypsum_Presentation.pptx`
+(Oct 2024, 173 MB), and the older fiberglass decks. Metadata cannot say whether these are
+superseded or complementary — that needs someone who knows the content. Retiring them would
+reclaim several hundred MB.
+
+**Lesson worth generalising.** Twice now the shared library has been the *older* copy while the
+current version sat in Downloads. The failure mode is not "files are scattered", it is "the
+authoritative copy is not the one people fetch". Any future filing pass should compare dates
+before assuming the library is right.
+
+**Owner:** William.
+
+---
+
+## 2026-08-02 — Downloads filed into OneDrive; Kukla folders renumbered
+
+**Decision:** Clear the Downloads scatter into the SharePoint library, and zero-pad the
+numbered folders inside `1. Kukla` so they sort correctly.
+
+**What was done.** 83 files moved into the library, 21 byte-identical duplicates deleted after
+MD5 verification, 9 new folders created (ROI tools, interactive viewers, application notes,
+rates, third-party equipment, material testing; plus Lead Lists, Outreach Templates and CRM
+Imports under Sales & Marketing). `AES-Kukla-Master-Reference.md` moved into this repo's
+`context/`. Downloads went from 155 files to 58.
+
+**Rules applied.** Nothing under 20 days old was touched. Deletions only where a hash matched a
+copy already in the library, and they went to Trash rather than being unlinked. No file was
+overwritten — a name collision at the destination caused a skip.
+
+**Renumbering.** `1.`–`9.` became `01.`–`09.` inside `1. Kukla`, so the folders added this week
+(`10.`–`16.`) sort after `09.` instead of after `01.`. Same treatment for the four category
+folders in `01. Projects`, for `Sample Drawings/01. Mass Flow`, and for the ten project folders
+under `01. Gypsum/08. Panel Rey/1. Monterrey MX` (triggered by `10. PR - Load cells 2026`
+sorting above `2. PR - Line 1 LIW`). The library-root folders (`1. Kukla`, `2. Kukla Videos`,
+`3. MultiExport`, `4. Conferences & Events`) were left alone.
+
+A sweep of the entire library on 2026-08-02 confirmed no remaining folder group mixes unpadded
+single digits with double digits. **Convention going forward:** pad any new numbered folder, and
+pad a group's existing members as soon as it reaches ten.
+
+**Cost:** renames propagate to SharePoint, so any direct links or bookmarks colleagues held to
+these folder paths will break. Accepted knowingly.
+
+**Two judgement calls worth remembering.** For `Calibration Report - Kettle Feeder.pdf`,
+William chose to keep the copy with a blank Customer field over the one naming Volcan Santiago
+de Chile, and the library copy was deleted to make room. For `11993_Commissioning Report`, the
+stated rule didn't discriminate — both copies contained the calibration table — so the more
+complete library copy was kept.
+
+**Owner:** William.
+
+---
+
 ## 2026-08-01 — Git remotes: origin is private, upstream is never written to
 
 **Decision:** `origin` is `j-moreyra/aes-company` (private, William's). `upstream` is

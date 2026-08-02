@@ -201,8 +201,9 @@ Confirmed sync roots on this machine:
 
   SharePoint document library:
   ~/Library/CloudStorage/OneDrive-SharedLibraries-AdvancedEngineeringSystems/Advanced Engineering Systems - General/
-    1. Kukla/ · 1. Kukla Videos/ · 3. MultiExport/ · 4. Conferences & Events/ · AES Legal/
+    1. Kukla/ · 2. Kukla Videos/ · 3. MultiExport/ · 4. Conferences & Events/ · AES Legal/
     AES Website/ · NDAs/ · Qubiqa/ · Sales & Marketing/
+    (folders inside 1. Kukla were renumbered 01-15 on 2026-08-02 — see connections.md)
 
   Personal work OneDrive:
   ~/Library/CloudStorage/OneDrive-AdvancedEngineeringSystems/

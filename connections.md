@@ -27,15 +27,53 @@ placeholders. Quote them — the paths contain spaces.
 ```
 # SharePoint document library
 ~/Library/CloudStorage/OneDrive-SharedLibraries-AdvancedEngineeringSystems/Advanced Engineering Systems - General/
-  ├── 1. Kukla/              ← supplier docs, quotes, technical
-  ├── 1. Kukla Videos/
+  ├── 1. Kukla/              ← supplier docs, quotes, technical (see tree below)
+  ├── 2. Kukla Videos/
   ├── 3. MultiExport/
   ├── 4. Conferences & Events/
   ├── AES Legal/
   ├── AES Website/           ← priority 3 working files
+  ├── CHRISTIAN WEDDING/
+  ├── Lisa's Folder/
   ├── NDAs/
-  ├── Qubiqa/
+  ├── Qubiqa/                ← the non-Kukla product line (dunnage, bag closing)
   └── Sales & Marketing/     ← priority 1 material
+        ├── Lead Lists/            (added 2026-08-02)
+        ├── Outreach Templates/    (added 2026-08-02)
+        ├── CRM Imports/           (added 2026-08-02)
+        ├── LinkedIn/
+        ├── MINExpo/
+        ├── Social Media/
+        ├── Consultants/
+        └── Cold Calling Guides-Giulio Segantini/
+
+# Inside 1. Kukla — renumbered 2026-08-02 so 01-16 sort correctly
+  ├── 01. Projects/          ← 01. Gypsum · 02. Cement · 03. Mining & Raw Materials
+  │                             04. Third-party Vendors
+  ├── 02. Presentations/     ├── 03. Quote Templates/   ├── 04. Product Pictures/
+  ├── 05. Brochures/         ├── 06. Data Sheets/       ├── 07. Logos/
+  ├── 08. Marketing Material/├── 09. MFG Diagrams/
+  ├── 10. ROI & Business Case Tools/     (added 2026-08-02)
+  ├── 11. Interactive Viewers & Demos/   (added 2026-08-02)
+  ├── 12. Application Notes/             (added 2026-08-02)
+  ├── 13. Rates & Commercial Terms/      (added 2026-08-02)
+  ├── 14. Third-Party Equipment/         (added 2026-08-02)
+  ├── 15. Material Testing/              (added 2026-08-02)
+  ├── 16. Process Maps/                  (added 2026-08-02)
+  ├── Instructions, Guides & Manuals/    ├── NDAs/        ├── Recordings/
+  ├── Reference Lists/       ├── Sales/  └── Sample Drawings/ (01. Mass Flow, D-DW-1,
+                                            D-DW-2, Stucco feeder, Train Loading, V-DG-1)
+```
+
+**Numbering convention.** Numbered folders are zero-padded (`01.`, `02.` … `16.`) so they sort
+correctly once a group passes nine. Applied 2026-08-02 to `1. Kukla`, to the category folders
+in `01. Projects`, to `Sample Drawings`, and to the ten project folders under
+`01. Gypsum/08. Panel Rey/1. Monterrey MX`. A sweep of the whole library on that date found no
+remaining group that mis-sorts. Pad any new folder you create, and pad a group's existing
+members the moment it reaches ten.
+
+```
+# (tree continues)
 
 # Personal work OneDrive
 ~/Library/CloudStorage/OneDrive-AdvancedEngineeringSystems/

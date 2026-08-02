@@ -82,6 +82,8 @@ on disk. Read them directly. Quote the paths — they contain spaces.
 
 - SharePoint library — `~/Library/CloudStorage/OneDrive-SharedLibraries-AdvancedEngineeringSystems/Advanced Engineering Systems - General/`
   (`1. Kukla/`, `Sales & Marketing/`, `AES Website/`, `NDAs/`, `Qubiqa/`, …)
+  Inside `1. Kukla/` the subfolders are numbered `01.`–`15.` — zero-padded so they sort
+  correctly. Full tree in `connections.md`.
 - Teams recordings — `~/Library/CloudStorage/OneDrive-AdvancedEngineeringSystems/Recordings/`
   Recordings are `.mp4`; a transcript must exist alongside before you can answer on call content.
 
