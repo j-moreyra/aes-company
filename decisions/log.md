@@ -20,6 +20,23 @@ Keep it terse. Future-you will thank present-you for capturing the *why*, not ju
 
 ---
 
+## 2026-08-01 — Git remotes: origin is private, upstream is never written to
+
+**Decision:** `origin` is `j-moreyra/aes-company` (private, William's). `upstream` is
+`nateherkai/AIS-OS`, the original starter kit.
+
+**Standing instruction: never push to, or otherwise write to, the nateherkai repo.** Its push
+URL is disabled (`git remote set-url --push upstream no_push`) so an accidental
+`git push upstream` fails immediately rather than prompting for credentials.
+
+**Why:** this repo now holds AES client names, deal status, contact details, and internal
+positioning. It must never reach a repo William doesn't control. `upstream` is retained for
+one purpose only — pulling future improvements to the kit — and even that is optional.
+
+**Owner:** William.
+
+---
+
 ## 2026-08-01 — Use the existing claude.ai connectors for HubSpot and Outlook
 
 **Decision:** Don't build or install anything for HubSpot or Outlook. Both are already

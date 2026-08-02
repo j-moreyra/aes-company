@@ -77,6 +77,22 @@ Do not add a second HubSpot MCP server manually. It was tried (`claude mcp add h
 --transport http https://mcp.hubspot.com`) and failed to connect — the working endpoint is the
 `/anthropic` path already used by the claude.ai connector. Duplicate entry was removed.
 
+**Verified live 2026-08-01.** Both connectors returned real data — HubSpot deals and Outlook
+mail. Domains 2-5 are working, not just registered.
+
+**Outlook search gotcha.** Do NOT text-search for "Kukla". The AES email signature reads
+"Exclusive representatives of Kukla Waagenfabrik GmbH for the Americas", so every message any
+AES person sends matches. A test search returned 23 false positives out of 25 hits. Filter on
+the sender domain `@kukla.co.at` instead.
+
+Known Kukla contacts: `lenzeder@` (Patrik), `zopf@` (Jakob), `humer@`, `gruber@` (Karin),
+`fuertbauer@` (Petra), `habring@` (Norbert) — all `@kukla.co.at`.
+
+**HubSpot data-quality gap.** As of 2026-08-01 there are 151 deals, but the five most recent
+all sit in stage `appointmentscheduled` with no `amount` and no `closedate` populated. The CRM
+currently cannot answer pipeline value or conversion rate. Worth fixing before the lead-gen
+workflow depends on those fields to prove it works.
+
 **Also connected, worth knowing about.** The claude.ai account carries other connectors,
 including **Apollo.io** — a B2B prospecting database directly relevant to the automated lead
 generation priority. Also Slack, Google Drive, Gmail, Google Calendar, Figma, Netlify,
