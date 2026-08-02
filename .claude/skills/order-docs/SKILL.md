@@ -53,7 +53,38 @@ client. Run here, the quantities are checked against each other.
 | Delivery / ship date | not stated | **Kukla's order confirmation** |
 | Freight | usually `TBD` at order time | AES quote figure, confirmed |
 
-Two traps, both real in the reference case:
+## Bundling — the hardest part
+
+**AES sells bundles; Kukla sells components.** One line on the AES quote and the client PO can
+be several lines on the Kukla quote and PO. The client never sees the split; Kukla must see it.
+
+From the NG Savannah case (`CS_260.19034_NG FGWF.xlsx`):
+
+| Client sees (OA) | Kukla sees (PO) |
+|---|---|
+| `Pre-Bin (stainless Steel)` — $20,685 | `110` Pre-bin €11,210 + `115` Level probe FTM20 €770 + `120` Access Door & Safety Interlock €770 |
+| `Small Weigh Feeder, Type E-K-DBW-H400` — $103,375 | `150` Weigh feeder €64,570 + `155` Compensator (flexible connection) €930 |
+| `Control Cabinet — includes DWC-7C, OP-G, Fieldbus interface and site manager` — $43,890 | `170` Control cabinet €27,320 + `175` Remote maintenance package (site manager) €1,420 |
+
+Eight client lines ↔ eleven Kukla lines. Get this wrong in either direction and you either order
+a machine without its flexible connection, or you order and pay for something the client was
+never charged for.
+
+**The mapping already exists — don't invent it.** The CS workbook's profit-comparison tab
+(`PC-<number>`) is the mapping layer: the upper block lists Kukla's cost lines, the lower block
+(`FINAL QUOTE TO CLIENT`) lists the bundled client lines, and the notes column spells the
+bundles out — *"with Access door with safety switch and extra level probe"*, *"Includes flexible
+connection"*. Read that tab first and reconcile against it. If a project has no such tab, build
+the mapping explicitly and show William before generating anything.
+
+**Sell prices are not cost × markup.** The comparison tab computes candidate prices at several
+commission rates, and William then overrides some by hand. In the NG case the flexible
+connection computed to $1,429.88 and was sold at $3,075; the site manager computed to $2,183.25
+and was sold at $1,450. **Never derive a client price from a Kukla price.** Take sell prices
+from the client PO or the final AES quote, and cost prices from the Kukla quote. They are
+independent.
+
+Two further traps, both real in the reference cases:
 
 **Quantities never come from the Kukla quote.** Kukla quoted 1 × DWC-7B; the client ordered 4;
 the PO to Kukla was raised for 4. The quote governs *what* and *at what price*, the client PO
@@ -121,7 +152,22 @@ folder.
 `source_totals.subtotal` is the guard: the script sums the lines you built and refuses to write
 if the result disagrees with the source document. Always populate it.
 
-### Cell maps for the standard CS workbook
+### Document shape varies by project — read the tab before writing it
+
+There is no single template. Confirmed differences between the two reference projects:
+
+| | Panel Rey (`CS_290.37322`) | NG Savannah (`CS_260.19034`) |
+|---|---|---|
+| PO tab columns | `C`=qty, `D`=item no | `C`=item no, `D`=qty |
+| PO line numbers | 1, 2, 3 … | Kukla's own: 110, 115, 130 … plus a `100` heading row |
+| OA meta labels | `ORDER NUMBER`, `TERMS`, `ESTIMATED SHIPPING DATE` | `SALES ORDER`, `PAYMENT TERMS` (two lines), `QUOTE` |
+| OA totals | SUBTOTAL + FREIGHT + TOTAL DUE US | single `TOTAL FOR PURCHASE ORDER`; freight is a numbered line item |
+
+So: **dump the target tab and derive the cell map from it** rather than assuming the map below.
+Spec fields `line_no`, `heading`, `show_subtotal` and `total_label` exist to absorb this
+variation.
+
+### Cell maps — Panel Rey shape (verify against the actual workbook)
 
 ```jsonc
 // PO TO KUKLA tab
@@ -174,12 +220,22 @@ to the stated subtotal, subtotal + freight ≠ stated total, or the lines disagr
 - **File Kukla's order confirmation in the project folder.** In the reference case it is absent,
   so the source of the 9-Apr commitment cannot be verified after the fact.
 
-## Reference case
+## Reference cases
 
-`1. Kukla/01. Projects/01. Gypsum/08. Panel Rey/1. Monterrey MX/07. PR - Load cells & sensors`
-— client PO `4500244223`, Kukla quote `Quotation260073_01222026`, AES quotes
-`AES-290.37322-a/b/c`, and both outputs. Both have been regenerated from source and match the
-originals to the cent: PO to Kukla € 28,899.00, OA $ 52,735.00.
+**Spare parts, simple 1:1** —
+`01. Gypsum/08. Panel Rey/1. Monterrey MX/07. PR - Load cells & sensors`.
+Client PO `4500244223`, Kukla quote `Quotation260073_01222026`, OC `940133`. Regenerated and
+matching to the cent: PO €28,899.00, OA $52,735.00.
+
+**Machine order, bundled lines and overridden prices** —
+`01. Gypsum/05. National Gypsum/2. Savannah GA`.
+Kukla quote `Quotation26029705` (260297/05, six pages), OC `940624`, AES quote
+`AES-260.19034-c`, client PO `2500040906`. Regenerated and matching to the cent:
+PO €144,600.00 + €9,730.00 freight = **€154,330.00**, which equals Kukla's own quote total
+exactly; OA **$232,270.00**. Eight client lines against eleven Kukla lines.
+
+Use the second case when testing changes — it exercises bundling, price overrides, Kukla line
+numbering, heading rows and the single-total OA layout.
 
 ## Requirements
 

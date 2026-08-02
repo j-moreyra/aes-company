@@ -61,6 +61,8 @@ def validate(spec):
         errs.append("no line items")
     sub = 0.0
     for i, it in enumerate(items, 1):
+        if it.get("heading"):          # a Kukla main-line title carries no price
+            continue
         q, p = it.get("qty"), it.get("unit_price")
         if q is None or p is None:
             errs.append(f"item {i}: missing qty or unit_price"); continue
@@ -84,7 +86,7 @@ def validate(spec):
     if "subtotal" in src and abs(src["subtotal"] - sub) > 0.01:
         errs.append(f"line items sum to {sub} but the source document subtotal is {src['subtotal']} "
                     f"— reconcile before sending")
-    if kind == "oa" and not isinstance(freight, (int, float)):
+    if kind == "oa" and spec.get("show_subtotal", True) and not isinstance(freight, (int, float)):
         warns.append("OA has no numeric freight; the client PO usually excludes freight so AES adds it")
     return errs, warns
 
@@ -137,9 +139,18 @@ def html_for(spec):
     meta = spec["meta"]
     rows = []
     for i, it in enumerate(spec["items"], 1):
+        # Kukla quotes use their own line numbering (110, 115, 130 …). Carry it
+        # through so their sales desk can match the PO to the offer; fall back to
+        # a simple 1..N sequence for client-facing documents.
+        line_no = it.get("line_no", i)
         item_cell = f"<td class=c>{esc(it.get('item_no',''))}</td>" if not oa else ""
+        if it.get("heading"):
+            span = 6 if not oa else 5
+            rows.append(f"<tr><td class=c>{esc(line_no)}</td>"
+                        f"<td colspan={span-1}><b>{esc(it['description'])}</b></td></tr>")
+            continue
         rows.append(
-            f"<tr><td class=c>{i}</td><td class=c>{esc(it['qty'])}</td>{item_cell}"
+            f"<tr><td class=c>{esc(line_no)}</td><td class=c>{esc(it['qty'])}</td>{item_cell}"
             f"<td>{esc(it['description'])}</td>"
             f"<td class=n>{cur}&nbsp;&nbsp;{money(it['unit_price'])}</td>"
             f"<td class=n>{cur}&nbsp;&nbsp;{money(it['total'])}</td></tr>")
@@ -152,9 +163,19 @@ def html_for(spec):
     freight_label = spec.get("freight_label") or "FREIGHT"
     freight_val = spec.get("freight_amount")
     freight_txt = money(freight_val) if isinstance(freight_val, (int, float)) else esc(freight_val or "TBD")
-    total_label = "TOTAL DUE US" if oa else "TOTAL PURCHASE ORDER"
+    total_label = spec.get("total_label") or ("TOTAL DUE US" if oa else "TOTAL PURCHASE ORDER")
     hdr_item = "" if oa else "<th>ITEM</th>"
     hdr_total = "TOTAL US$" if oa else "TOTAL"
+
+    # Some documents show subtotal + freight + total; others carry freight as a
+    # numbered line item and show a single total. show_subtotal drives which.
+    tr = []
+    if spec.get("show_subtotal", True):
+        tr.append(f"<tr><td>SUBTOTAL</td><td class=v>{cur}&nbsp;&nbsp;{money(spec['subtotal'])}</td></tr>")
+        tr.append(f"<tr><td>{esc(freight_label)}</td><td class=v>"
+                  f"{cur+'&nbsp;&nbsp;' if isinstance(freight_val,(int,float)) else ''}{freight_txt}</td></tr>")
+    tr.append(f"<tr><td>{total_label}</td><td class=v>{cur}&nbsp;&nbsp;{money(spec['total'])}</td></tr>")
+    totals_rows = "".join(tr)
     return f"""<!doctype html><html><head><meta charset=utf-8><style>
 @page {{ size: Letter; margin: 14mm 12mm; }}
 body {{ font-family: Calibri, Carlito, sans-serif; font-size: 10pt; color:#000; }}
@@ -204,9 +225,7 @@ table.tot td.v {{ border:1px solid #000; text-align:right; min-width:92px; }}
 {''.join(rows)}
 </table>
 <table class=tot>
-<tr><td>SUBTOTAL</td><td class=v>{cur}&nbsp;&nbsp;{money(spec['subtotal'])}</td></tr>
-<tr><td>{esc(freight_label)}</td><td class=v>{cur+'&nbsp;&nbsp;' if isinstance(freight_val,(int,float)) else ''}{freight_txt}</td></tr>
-<tr><td>{total_label}</td><td class=v>{cur}&nbsp;&nbsp;{money(spec['total'])}</td></tr>
+{totals_rows}
 </table>
 </body></html>"""
 

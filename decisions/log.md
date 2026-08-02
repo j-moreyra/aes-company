@@ -20,6 +20,47 @@ Keep it terse. Future-you will thank present-you for capturing the *why*, not ju
 
 ---
 
+## 2026-08-02 — /order-docs tested against NG Savannah: bundling and price overrides
+
+**Second test case**, chosen because it is structurally harder than Panel Rey:
+`01. Gypsum/05. National Gypsum/2. Savannah GA`. Both documents regenerated and match to the
+cent — PO €144,600 + €9,730 = €154,330 (equal to Kukla's own quote total), OA $232,270.
+
+**The rule this case established: AES sells bundles, Kukla sells components.** Eight client
+lines map to eleven Kukla lines. The pre-bin the client buys is pre-bin + level probe + access
+door; the weigh feeder is feeder + compensator; the control cabinet is cabinet + site manager.
+The client never sees the split and Kukla must. Getting it wrong means either ordering a machine
+without its flexible connection, or paying for something never charged to the client.
+
+**The mapping is not inferred — it already exists** in the CS workbook's `PC-<number>`
+profit-comparison tab, with William's own notes naming the bundles. The skill reads that tab.
+
+**Sell prices are not cost × markup.** The comparison tab computes candidates at several
+commission rates and William overrides some by hand — the flexible connection computed at
+$1,429.88 and sold at $3,075; the site manager computed at $2,183.25 and sold at $1,450. Client
+prices come from the client PO or final AES quote; Kukla prices from the Kukla quote. The two
+are independent and neither derives from the other.
+
+**Templates differ between projects.** NG's PO tab has item number in column C and quantity in
+D; Panel Rey has them reversed. NG uses Kukla's line numbers (110, 115, 130…) with a heading
+row; Panel Rey uses 1–5. NG's OA has no subtotal — one total, freight as a line item. A fixed
+cell map would have written quantities into the item-number column. The skill now derives the
+map from the actual tab each time.
+
+**A second ship-to typo, in a second project.** The PO to Kukla reads `2 Branmpton Road`; the OA
+reads `2 Brampton Road`. Kukla shipped a €154k machine against the misspelling. With Panel Rey's
+`102218` that is two address errors in two projects — the ship-to block is a systematic weak
+point, and the skill now says to take it from the client PO every time rather than copying a
+previous document.
+
+**Filing gap again.** The client PO (`2500040906`) is not in the project folder, though the OA
+cites it. In Panel Rey it was Kukla's order confirmation that was missing. Both times the
+document authorising the commitment was not stored beside it.
+
+**Owner:** William.
+
+---
+
 ## 2026-08-02 — Order document sequence corrected; /order-docs skill built
 
 **Decision:** One skill, `/order-docs`, covers both the PO to Kukla and the client Order
