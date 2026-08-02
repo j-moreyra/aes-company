@@ -17,6 +17,9 @@ think), Method (how to decide), Machine (how to build). Reference it when runnin
 - `/onboard` — already run if you're seeing this filled in. Re-run any time to refresh from an edited `aios-intake.md`.
 - `/audit` — Four-Cs gap report. Run on Day 7, then weekly. Watch your score climb.
 - `/level-up` — Weekly 3Ms interview. Find one automation, scope it, ship it. One per week.
+- `/order-docs` — Raises the PO to Kukla from a client PO, then the client Order
+  Acknowledgement once Kukla's order confirmation lands. Writes the workbook tab and renders
+  the PDF. Does **not** cover the client quote — William's own quote skill owns that step.
 
 ## Where things live
 

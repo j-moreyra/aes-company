@@ -20,6 +20,58 @@ Keep it terse. Future-you will thank present-you for capturing the *why*, not ju
 
 ---
 
+## 2026-08-02 — Order document sequence corrected; /order-docs skill built
+
+**Decision:** One skill, `/order-docs`, covers both the PO to Kukla and the client Order
+Acknowledgement. Not two.
+
+**Why one.** Both documents describe the same goods — priced at cost going to Kukla, at sell
+going to the client. Run as separate skills, nothing prevents ordering one unit from Kukla
+while acknowledging four to the client. Run together, the quantities are checked against each
+other. The item-matching across four documents is the hard part and would otherwise be
+duplicated and drift.
+
+**Sequence corrected by William mid-build.** The original assumption was OA first, then the PO
+to Kukla. Wrong. The real order is:
+
+    client PO → AES PO to Kukla → Kukla order confirmation → AES OA to client
+
+The client OA cannot be produced until Kukla confirms, because the delivery date AES commits to
+in writing is Kukla's confirmed date. The skill now refuses to produce an OA without it.
+
+**Two rules that were wrong in the first draft, both caught by building against the reference
+case rather than reasoning about it:**
+
+1. *Quantities never come from the Kukla quote.* Kukla quoted 1 × DWC-7B; the client ordered 4;
+   the PO was raised for 4 and Kukla confirmed 4. The quote governs part numbers, descriptions
+   and unit prices only. The first draft said "line for line" and would have under-ordered three
+   units on a €21,780 line.
+2. *Currency flips between the documents.* The PO to Kukla is EUR because Kukla quotes in euro;
+   the client OA is USD. The renderer had hardcoded `$`.
+
+**Verification.** Both documents were regenerated from source and match the originals to the
+cent — PO to Kukla €28,899.00, OA $52,735.00 — and Kukla's OC 940133 independently confirms the
+same €28,899.00 and the 09.04.2026 delivery date that became the OA's "9-Apr".
+
+**A real error found in a document already sent.** The OA to Panel Rey gives the delivery
+address as `102218 Crossroads Loop`. Three independent sources — the client PO, the Kukla quote
+thread, and William's own 2025-07-25 email — say `CROSSROADS LOOP 10218`. A transposed digit in
+the ship-to address for a $52k shipment. Unresolved; flagged to William.
+
+**Filing gap.** Kukla's order confirmation was never saved to the project folder; it was found
+in Outlook. Under the corrected sequence it is a required input, so it has to be filed as a
+matter of course.
+
+**Method notes.** PDF rendering goes through headless Chrome, not Excel — Excel automation
+needs macOS Automation permission and hangs without it. And free-text Outlook search failed to
+find the order confirmation (fifteen irrelevant hits on the quote reference); searching by
+sender across a date range found it immediately. Second time this mailbox's relevance search
+has misled — see the Kukla signature problem in `connections.md`.
+
+**Owner:** William.
+
+---
+
 ## 2026-08-02 — Correction: the library has 67 transcripts, and it was restructured
 
 **Correction to an earlier entry.** `connections.md` originally recorded Domain 6 as weak,
