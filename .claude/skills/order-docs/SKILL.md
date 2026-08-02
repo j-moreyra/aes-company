@@ -144,7 +144,41 @@ workbook to update.
    the step that catches errors; do not skip it to save a turn.
 3. **Build the spec JSON** and run:
    `python3 scripts/build_order_doc.py spec.json`
-4. **Show the rendered PDF and wait.** These go to a client or to Kukla. Nothing is sent here.
+4. **Export the PDF** — see the two paths below. Prefer the workbook export.
+5. **Read the finished PDF before showing it.** Actually open it and look. Check for `#NAME?`,
+   clipped descriptions, rows swallowed by stale merges, empty bordered rows below the total,
+   prices rendering as `400` instead of `$ 400.00`, and a total that disagrees with the source.
+   This step is not optional — a wrong document that looks right is worse than a failure.
+6. **Show it to William and wait.** These go to a client or to Kukla. Nothing is sent here.
+
+## Two ways to produce the PDF
+
+**Preferred — export the workbook tab (matches the existing documents exactly).** The real
+`OA *.pdf` and `PO * KUKLA.pdf` in the project folders *are* Excel exports, so exporting the tab
+reproduces them natively rather than approximating them:
+
+```
+python3 scripts/export_tab_pdf.py --workbook "CS_260.19034_NG FGWF.xlsx" \
+    --sheet "PO TO KUKLA" --out "PO 330_07282026 KUKLA.pdf" --print-area B1:H45
+```
+
+It copies the workbook, deletes every other sheet, sets the print area and fit, then converts
+with LibreOffice — the same approach as the spares-quote skill. Two rules follow from deleting
+the other sheets:
+
+- **Write literal values into the tab, never cross-sheet formulas.** A reference to
+  `PC-<number>` renders as `#NAME?` once that sheet is gone.
+- **For long documents pass `--fit-height 0`** so it fits width only and paginates naturally,
+  instead of crushing everything onto one page.
+
+Needs LibreOffice. Present in the Cowork sandbox; **not installed on William's Mac** —
+`brew install --cask libreoffice` if the native export is wanted there.
+
+**Fallback — the built-in renderer.** `build_order_doc.py` draws the document from the spec and
+renders via headless Chrome, weasyprint or LibreOffice, whichever exists. Use it when there is
+no workbook (a hosted session where only PDFs were uploaded) or no LibreOffice. Output is
+faithful in content and close in layout, but it is a reimplementation — the font falls back to a
+generic sans, so it will not be pixel-identical to previous documents.
 
 ## Numbering and naming
 
@@ -241,6 +275,35 @@ arithmetic. The script backs the workbook up to `.bak` before its first write re
 Refuses to write if any line's qty × price disagrees with its stated total, the lines don't sum
 to the stated subtotal, subtotal + freight ≠ stated total, or the lines disagree with
 `source_totals.subtotal`.
+
+## Workbook editing pitfalls
+
+Carried over from the spares-quote skill, where each of these has bitten a real run:
+
+- **Re-read the workbook fresh before every export.** William edits tabs by hand — prices,
+  terms, borders. Never work from a cached read, and never overwrite his manual changes. If he
+  says he changed prices, read the values he left and push those literals through; he may have
+  typed over a formula.
+- **Rewritten cells lose their number format.** Re-copy `_style` from an intact row or prices
+  print as `400` rather than `$ 400.00`.
+- **Inserting rows does not move merged ranges or fix SUM ranges.** openpyxl leaves formula
+  strings alone, so template totals go stale, and a full-width merge can end up sitting on an
+  item row and swallowing every cell but the first. After inserting: list
+  `ws.merged_cells.ranges`, unmerge anything full-width in the item area, re-merge the note rows
+  at their new position, and rewrite the totals explicitly.
+- **If `unmerge_cells` raises `KeyError`**, openpyxl's bookkeeping is out of sync: drop the range
+  from `ws.merged_cells.ranges` directly and delete orphaned `MergedCell` objects from
+  `ws._cells` before writing, or assignment fails read-only.
+- **Never restore cell contents from a LibreOffice recalc copy** — it drops values in cells
+  covered by a merge. Recompute from the source documents instead.
+
+## File the source documents with the output
+
+Every project folder should be self-contained: the Kukla quote, the client PO, Kukla's order
+confirmation, and everything derived from them. Copy uploaded sources in under their original
+filenames. If a document arrived in more than one revision, file the one actually built from and
+say which that was. Both reference projects are missing a source document — Panel Rey has no
+Kukla order confirmation, NG Savannah no client PO — which is exactly what this prevents.
 
 ## Checks you must do yourself
 
