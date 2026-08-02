@@ -201,9 +201,13 @@ Confirmed sync roots on this machine:
 
   SharePoint document library:
   ~/Library/CloudStorage/OneDrive-SharedLibraries-AdvancedEngineeringSystems/Advanced Engineering Systems - General/
-    1. Kukla/ · 2. Kukla Videos/ · 3. MultiExport/ · 4. Conferences & Events/ · AES Legal/
-    AES Website/ · NDAs/ · Qubiqa/ · Sales & Marketing/
-    (folders inside 1. Kukla were renumbered 01-15 on 2026-08-02 — see connections.md)
+    1. Kukla/ · 2. Kukla Videos/ · 3. Kukla Images/ · 4. Kukla Presentations/ ·
+    5. MultiExport/ · 6. Conferences & Events/ · AES Legal/ · AES Website/ · NDAs/ ·
+    Qubiqa/ · Sales & Marketing/
+    (restructured 2026-08-02; folders inside 1. Kukla renumbered 01-16 — see connections.md)
+
+The library also holds 67 meeting transcripts, filed inside project folders rather than beside
+the recordings. Domain 6 is well covered — see connections.md.
 
   Personal work OneDrive:
   ~/Library/CloudStorage/OneDrive-AdvancedEngineeringSystems/

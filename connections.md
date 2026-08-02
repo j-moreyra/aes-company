@@ -29,8 +29,10 @@ placeholders. Quote them — the paths contain spaces.
 ~/Library/CloudStorage/OneDrive-SharedLibraries-AdvancedEngineeringSystems/Advanced Engineering Systems - General/
   ├── 1. Kukla/              ← supplier docs, quotes, technical (see tree below)
   ├── 2. Kukla Videos/
-  ├── 3. MultiExport/
-  ├── 4. Conferences & Events/
+  ├── 3. Kukla Images/
+  ├── 4. Kukla Presentations/ ← decks; promoted out of 1. Kukla 2026-08-02
+  ├── 5. MultiExport/        ← the other represented lines (MAC, Finna, LIMAB, Vibra Screw…)
+  ├── 6. Conferences & Events/
   ├── AES Legal/
   ├── AES Website/           ← priority 3 working files
   ├── CHRISTIAN WEDDING/
@@ -50,7 +52,9 @@ placeholders. Quote them — the paths contain spaces.
 # Inside 1. Kukla — renumbered 2026-08-02 so 01-16 sort correctly
   ├── 01. Projects/          ← 01. Gypsum · 02. Cement · 03. Mining & Raw Materials
   │                             04. Third-party Vendors
-  ├── 02. Presentations/     ├── 03. Quote Templates/   ├── 04. Product Pictures/
+  │                          (02. Presentations was moved out to the library root as
+  │                           "4. Kukla Presentations" — no 02. inside 1. Kukla now)
+  ├── 03. Quote Templates/   ├── 04. Product Pictures/
   ├── 05. Brochures/         ├── 06. Data Sheets/       ├── 07. Logos/
   ├── 08. Marketing Material/├── 09. MFG Diagrams/
   ├── 10. ROI & Business Case Tools/     (added 2026-08-02)
@@ -142,6 +146,26 @@ my attention today" capability must read flagged mail plus open HubSpot deals.
 **Domains 6 and 7 are live now.** OneDrive with always-keep-local means the AIOS reads these
 files directly — no connector needed. The only remaining gap is stray folders that haven't been
 moved into OneDrive yet; anything outside it is invisible.
+
+**Domain 6 is much stronger than first recorded.** An earlier version of this file warned that
+recordings are `.mp4` and unusable without a transcript sitting alongside. That was wrong. As of
+2026-08-02 the library holds **67 transcripts** — 57+ under `1. Kukla`, 5 under `5. MultiExport`,
+3 under `Qubiqa` — almost all `.docx`, named `Transcript_<topic>_<client>_<date>`. They live in
+**project folders, not next to the recordings**, which is why a search of `Recordings/` finds
+nothing. Every Teams recording in the personal OneDrive has a same-date transcript filed under
+its client.
+
+Coverage is deepest on cement: ~20 Brazilian plants (Votorantim, CSN, Intercement, Cimento
+Nacional, Supremo, Tupi, Apodi), Holcim across five countries, plus Cemex, Ash Grove, Titan,
+Loma Negra, Pacasmayo and GCC. That is 67 recorded conversations with plant engineers about
+clinker and gypsum weighing — readable text on disk, and the best available evidence of what
+prospects actually say. Directly relevant to priority #1.
+
+Caveats when using them: a few are duplicated across folders (CEMEX clinker scale, COBOCE), one
+is prefixed `NOTTA ` from a different transcription tool, Panel Rey has both original and
+`Transcript-English_` versions of the same call, and filenames are inconsistent — the same
+meeting may appear as `Transcript_Holcim_Veracruz_10142025` or
+`Transcript_Holcim Veracruz_Clinker-20251014`. Match on content, not filename.
 
 **Timezone constraint.** Kukla is CET. Live calls only work in the early-morning US window.
 Any scheduling logic must respect it.

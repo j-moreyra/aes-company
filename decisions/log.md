@@ -20,6 +20,40 @@ Keep it terse. Future-you will thank present-you for capturing the *why*, not ju
 
 ---
 
+## 2026-08-02 — Correction: the library has 67 transcripts, and it was restructured
+
+**Correction to an earlier entry.** `connections.md` originally recorded Domain 6 as weak,
+on the reasoning that recordings are `.mp4` and no transcripts sat alongside them. Wrong. The
+library holds **67 transcripts**, filed inside project folders rather than next to the
+recordings — which is why looking in `Recordings/` found nothing. Every Teams recording has a
+same-date transcript under its client folder. Both `connections.md` and `CLAUDE.md` now say so.
+
+**Why it matters.** 67 recorded conversations with plant engineers about clinker and gypsum
+weighing is the strongest evidence available of what prospects actually say — better than any
+inference from email. That is priority-#1 material and it was sitting unrecognised.
+
+**Two transcripts were genuinely missing** from `~/Downloads/Transcripts` and are now filed:
+`Transcript_Clinker_Cementos Sur_04012025.txt` beside its recording in
+`02. Cement/08. Cementos Sur`, and `Transcript_Gyplac_Multiex preso_20250513.docx` under
+`01. Gypsum/03. ETEX/2. Colombia (Gyplac)`. The Gyplac one is a MultiExport presentation to an
+ETEX client, so it could equally live under `5. MultiExport`; it was filed by client because
+that is where the rest of the Gyplac material is. Move it if the product line matters more.
+
+Of the other 35 local transcripts, all were already present. **Byte comparison was misleading:**
+33 same-name pairs looked different by hash, but 31 had identical text — `.docx` files change
+bytes on every re-save. Only two differ in text, by 1-2%, which reads as a re-run of the
+transcription rather than a different meeting. **Compare extracted text, not hashes, for Office
+files.**
+
+**Library restructured (by William, mid-session).** `02. Presentations` was promoted out of
+`1. Kukla` to the root as `4. Kukla Presentations`; `3. Kukla Images` was added; MultiExport and
+Conferences shifted to `5.` and `6.`. Docs updated. Note this means the presentations filed
+earlier today and `16. Process Maps` now sit in different top-level trees.
+
+**Owner:** William.
+
+---
+
 ## 2026-08-02 — Library content refreshed: brochures and presentations
 
 **Decision:** Where a local copy was newer than the library copy, the library copy loses. Old

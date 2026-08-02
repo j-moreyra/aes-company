@@ -85,7 +85,9 @@ on disk. Read them directly. Quote the paths — they contain spaces.
   Inside `1. Kukla/` the subfolders are numbered `01.`–`15.` — zero-padded so they sort
   correctly. Full tree in `connections.md`.
 - Teams recordings — `~/Library/CloudStorage/OneDrive-AdvancedEngineeringSystems/Recordings/`
-  Recordings are `.mp4`; a transcript must exist alongside before you can answer on call content.
+  These are `.mp4` and not readable, but **67 transcripts exist in the shared library**, filed in
+  project folders rather than beside the recordings. Search the library for `Transcript_*`
+  before saying you can't answer on a call. Filenames are inconsistent — match on content.
 
 **Connected via claude.ai MCP connectors** (OAuth, no local tokens):
 
