@@ -139,6 +139,20 @@ workbook to update.
    often bilingual, and Kukla quotes group lines under `FN` main-line headings with their own
    item numbers. Extract line items with quantity, unit price, line total, part/item number,
    plus addresses, incoterms, payment terms and dates.
+
+   **Watch for quantity-as-dollars.** Some procurement systems (Gold Bond / National Gypsum's
+   does) put the **line amount in the QTY column** with a unit price of $1.00:
+
+   ```
+   1  Pre-Bin (Stainless…)      QTY 20,685 each   UNIT PRICE $1.00   AMOUNT $20,685.00
+   5  Screened Special Cables   QTY 440 each      UNIT PRICE $1.00   AMOUNT $440.00
+   ```
+
+   Line 5 is really **50 metres at $8.80**; the true quantity appears only in the description
+   (`per Quote (Qty 50 m)`). Taken literally you would acknowledge "20,685 pre-bins at $1.00".
+   The tell is a unit price of exactly 1.00 across every line. When you see it, take the money
+   from AMOUNT and the real quantity from the AES quote or the description, and say in the
+   reconciliation table that you did.
 2. **Show William a reconciliation table before generating anything.** Each source line beside
    the line you intend to output, with every quantity or price difference called out. This is
    the step that catches errors; do not skip it to save a turn.

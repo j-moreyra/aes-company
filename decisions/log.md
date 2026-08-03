@@ -20,6 +20,39 @@ Keep it terse. Future-you will thank present-you for capturing the *why*, not ju
 
 ---
 
+## 2026-08-02 — Missing source documents filed; NG delivery date does not match the client's
+
+William filed the two documents that were missing: Kukla OC `940133` into the Panel Rey folder
+and the Gold Bond PO `2500040906` into NG Savannah. Both verified.
+
+**NG Savannah reconciles exactly.** Client PO total $232,270.00 equals the OA, all eight lines
+matching. Kukla OC 940624 confirms quotation 260297/05 and assigns **FN 12527**.
+
+**The €14,500 difference between AES's PO (€154,330) and Kukla's OC (€139,830) is not an
+error.** Kukla bills commissioning separately — "guiding price - separate invoice", explicitly
+excluded from their lump sum — while the AES PO includes it. Their 30% down payment of €41,949
+is computed on 139,830. Expect this gap on any order carrying commissioning.
+
+**Open issue — delivery date.** Gold Bond's PO needs the equipment by **30 November 2026**.
+Kukla's OC confirms **30 December 2026**, sending 11 November. A 30-day slip against the order.
+The NG OA template has no delivery-date field, so nothing AES sent Gold Bond states a date and
+their November requirement stands unanswered. Flagged to William.
+
+**Open issue — the address typo reached Kukla.** Kukla's OC lists the delivery address as
+"2 Branmpton Road", propagated from the AES PO. The client PO says "2 BRAMPTON RD". Kukla's
+shipping paperwork is therefore wrong for a €139,830 machine. Third confirmation of the same
+class of error; see the Panel Rey `102218` case.
+
+**New extraction hazard, written into the skill.** Gold Bond's procurement system puts the line
+*amount* in the QTY column with a unit price of $1.00 — line 1 reads "QTY 20,685 each @ $1.00".
+The real quantity for the cable line (50 m) appears only in the description text. Read
+literally, an OA would acknowledge 20,685 pre-bins. The tell is a unit price of exactly 1.00 on
+every line.
+
+**Owner:** William.
+
+---
+
 ## 2026-08-02 — /order-docs tested against NG Savannah: bundling and price overrides
 
 **Second test case**, chosen because it is structurally harder than Panel Rey:
