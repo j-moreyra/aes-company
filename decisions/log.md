@@ -20,6 +20,40 @@ Keep it terse. Future-you will thank present-you for capturing the *why*, not ju
 
 ---
 
+## 2026-08-02 — NG Savannah PO reissued with corrected address; LibreOffice installed
+
+**Decision:** Correct the NG Savannah PO to Kukla and replace the filed PDF, keeping the same
+PO number and date.
+
+**What changed.** `PO TO KUKLA!B14` in `CS_260.19034_NG FGWF.xlsx` went from `2 Branmpton Road`
+to `2 Brampton Road` — the only occurrence; the OA and invoice tabs were already correct.
+The PDF was re-exported and now also carries quote reference **260297/05** instead of the
+**/04** on the version sent 28 July. That second change was pre-existing drift in the workbook,
+not part of the fix; William chose /05 deliberately because Kukla's OC 940624 is booked against
+/05.
+
+**PO number and date kept as `330.07282026` / 28-Jul-26** — Kukla has already booked OC 940624
+against that number, and a new number would open a second order in their system. It is a
+corrected reissue, and must be described that way when sent.
+
+**The previous PDF was replaced, not archived in the folder.** It is recoverable from Trash as
+`PO 330_07282026 KUKLA [as-sent 2026-07-28, Branmpton, ref 260297-04].pdf`. Consequence
+accepted knowingly: the project folder no longer shows what Kukla actually received on 28 July.
+Sent mail still holds the original attachment. Workbook backup:
+`CS_260.19034_NG FGWF [pre-address-fix 2026-08-02].xlsx`.
+
+**Still outstanding:** the corrected PO has not been sent to Kukla and no revised OC requested.
+
+**LibreOffice 26.2.5.2 installed** (`brew install --cask libreoffice`) so `/order-docs` can
+export workbook tabs natively. This matters beyond convenience: comparing the native export
+against the sent PDF showed the fallback HTML renderer had invented an `ITEM` column header and
+put QTY before the item number. **Native export is the source of truth for layout; the HTML
+renderer approximates.**
+
+**Owner:** William.
+
+---
+
 ## 2026-08-02 — Missing source documents filed; NG delivery date does not match the client's
 
 William filed the two documents that were missing: Kukla OC `940133` into the Panel Rey folder

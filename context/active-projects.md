@@ -26,12 +26,17 @@ generated, and an empty reply to Petra Fürtbauer on the El Volcán order confir
 | "Not suitable for the weighing process" | Nico Humer, Kukla | Jul 31 | One-line rejection on Cumberland City, no alternative given. Read the thread — unclear what was rejected |
 | GPROMAX / Panel Rey load cell pricing | Giuliana Garcia | Jul 31 | Quoted under the $1,050 charged in April. William decided Aug 2 to revert the price and verify inbound cost with Patrik — the draft to Patrik is unsent |
 | Cemex sourcing event MX ID 9919 | Cemex Coupa | Jul 31 | William forwarded it to the team Aug 1 asking whether to bid and suggesting a call to the contact. Window has since closed |
+| **Send corrected PO to Kukla, NG Savannah** | Armin Avdibegovic | Aug 2 | Corrected `PO 330_07282026 KUKLA.pdf` is filed but **not sent**. Ask for a revised OC — Kukla's current one has the wrong delivery address |
+| **Tell Gold Bond the delivery date** | Shari Saxon-Black / Eric Li | Aug 2 | They ordered against 2026-11-30; Kukla confirms 2026-12-30. Nothing AES sent states a date |
 
 ## Closed since the last snapshot
 
 - **Clear exterior panels + lighting, GP Savannah** — quote sent to Kyle and Lee Jul 30.
 - **B&R PLC components question** — answered to Lee Hunt Jul 31, after Lenzeder confirmed.
 - **SOBOCE invoice 330154** — paid. Confirmed by William 2026-08-01.
+- **Missing source documents** — both filed 2026-08-02: Kukla OC `940133` into
+  `08. Panel Rey/…/07. PR - Load cells & sensors`, and Gold Bond PO `2500040906` into
+  `05. National Gypsum/2. Savannah GA`. Both verified and reconciled against their outputs.
 
 ## Projects
 
@@ -44,6 +49,21 @@ AES sent Order Acknowledgement + invoice 330235 for the 30% deposit. Kukla order
 Jul 30 — AES wires after client payment lands.
 **Ship 2026-11-11, delivery 2026-12-30.**
 Contacts: ericli@nationalgypsum.com, ShariS@NationalGypsum.com, jwmahnke@goldbondbuilding.com
+
+**⚠ Delivery date is 30 days later than the client ordered.** Gold Bond PO 2500040906 states a
+need-by of **2026-11-30**; Kukla OC 940624 confirms **2026-12-30**. The NG OA template carries no
+delivery-date field, so nothing AES has sent Gold Bond states a date — their November
+requirement is unanswered. **Open. Not yet raised with the client.**
+
+**⚠ Kukla holds the wrong ship-to address.** OC 940624 reads `2 Branmpton Road`; the correct
+address on the client PO is `2 BRAMPTON RD`. The typo originated in AES's PO and propagated to
+Kukla's paperwork. On 2026-08-02 the workbook and `PO 330_07282026 KUKLA.pdf` were corrected
+(and the quote reference moved 260297/04 → /05 to match OC 940624), but **the corrected PO has
+not been sent to Kukla and no revised OC has been requested.** Until that happens the machine
+ships in November against the misspelling.
+
+Reconciliation note: AES PO €154,330 vs Kukla OC €139,830. Not an error — Kukla invoices the
+€14,500 commissioning separately and excludes it from their lump sum.
 
 ### GP Cumberland City, TN — fiberglass feeder upgrade — 90-day priority #2
 Georgia-Pacific, engineering phase. Cole Hunt sent equipment layout revisions, .NWD model and

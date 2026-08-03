@@ -20,6 +20,8 @@ think), Method (how to decide), Machine (how to build). Reference it when runnin
 - `/order-docs` — Raises the PO to Kukla from a client PO, then the client Order
   Acknowledgement once Kukla's order confirmation lands. Writes the workbook tab and renders
   the PDF. Does **not** cover the client quote — William's own quote skill owns that step.
+  LibreOffice is installed, so export workbook tabs natively (`scripts/export_tab_pdf.py`);
+  the built-in HTML renderer is a fallback and does not match the existing documents exactly.
 
 ## Where things live
 
@@ -82,6 +84,16 @@ Seven domains, tracked in `connections.md`. Files are already reachable; the res
 
 **Reachable today.** OneDrive runs with "always keep on this device," so these are real files
 on disk. Read them directly. Quote the paths — they contain spaces.
+
+Two traps when working with these files:
+
+- **A file can be full-size and still unreadable** because OneDrive hasn't hydrated it yet. It
+  reads as zero bytes and looks exactly like corruption. Re-read before concluding a file is
+  damaged — a template once diagnosed as corrupt turned out to be a placeholder that later
+  downloaded fine.
+- **Never compare Office files by hash.** `.docx`/`.xlsx` change bytes on every re-save with
+  identical content. 31 of 33 transcript pairs that differed by hash had identical text. Extract
+  and compare the text.
 
 - SharePoint library — `~/Library/CloudStorage/OneDrive-SharedLibraries-AdvancedEngineeringSystems/Advanced Engineering Systems - General/`
   (`1. Kukla/`, `Sales & Marketing/`, `AES Website/`, `NDAs/`, `Qubiqa/`, …)
