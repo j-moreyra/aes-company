@@ -15,8 +15,8 @@ Aug-01 version of this table had four rows, three of which are no longer in Draf
 
 | Draft | To | Last touched | Content |
 |---|---|---|---|
-| **Re: Solicitud de cotización \| SOBOCE** | rafuentes@soboce.com | Aug 5 | **Loaded and ready.** Carries `AES-390.31369-b.pdf` and explains the capacity increase needs only a weighing-parameter change, no mechanical work. Nothing blocks sending it — see the SOBOCE section |
 | Re: Kukla Feeder spare parts \| GP Ft. Dodge | heidi.hansen@, matthew.arinez@gapac.com | Aug 4 | Has attachments. Likely the reply Matthew Arinez has been waiting on since Jul 27 |
+| Re: Quotation 260844 — add DWC-7B | lenzeder@ | Aug 8 | "The client asked to add one more item to this quote: DWC-7B, Qty = 1" |
 | Re: Solicitud de cotización \| Panel Rey | jfloresa@gpromax.com | Aug 4 | To the client, not Kukla |
 | Re: Quotation 260846 / FN: 10850 | AES@ | Aug 4 | "I included a late payment clause in quote. What do you think?" Internal |
 | Re: Savannah Kuka Feeder Question / F.N. 11857 | zopf@ | Aug 2 | Kukla-side thread on the Savannah spares |
@@ -105,13 +105,16 @@ and asked AES to review feasibility.
 
 **Aug 5 — asked back to Kukla, sent 01:04.** Reply to avdibegovic@, cc sales@ and a.leitner@,
 with the layout attached. Asks whether the feeder is feasible in that footprint and what
-arrangement would allow a pre-bin. **Ball is with Armin.**
+arrangement would allow a pre-bin. **Ball is with Armin — and as of 2026-08-08 he has not
+replied.** Three days silent. Worth a nudge, especially since the incoterms point below should
+travel with it.
 
 **⚠ Three points from the Aug-01 draft look unraised.** That draft flagged the 260824 incoterms
 reading **Argentina** when it should be **Chile**, asked for freight to Santiago to be
 confirmed, and asked for a control box to be added. It is no longer in Drafts, and no sent mail
-on that thread raises any of it — the Aug 5 reply covers only space and the pre-bin. Confirm
-before Kukla revises the quote, or the wrong incoterms carry into the revision.
+on that thread raises any of it — the Aug 5 reply covers only space and the pre-bin. Rechecked
+2026-08-08: still unraised, nothing sent to avdibegovic@ since Aug 5. Confirm before Kukla
+revises the quote, or the wrong incoterms carry into the revision.
 
 **Terminology:** Kukla says **pre-bin**. Not "refill hopper", not a literal rendering of the
 client's "tolva de recarga".
@@ -142,8 +145,9 @@ basis in Profit Calc thinking it is stale — it is deliberate. Logged in `decis
 only at `~/aes-quotes/Outputs/SOB - DWC-6AF electronics/`. A mailbox search finds no message
 carrying it, so SOBOCE never saw it and the $5,980 in -b is not a visible increase.
 
-**Next action:** the draft to rafuentes@soboce.com with `AES-390.31369-b.pdf` is loaded and
-unsent.
+**Sent 2026-08-05.** `AES-390.31369-b.pdf` went to Raul Fuentes at SOBOCE, together with the
+note that the capacity increase needs only a weighing-parameter change and nothing mechanical.
+Ball is with the client. Verified against Sent Items 2026-08-08.
 
 **How this lead arrived, and why it matters.** Four European trading companies — Eurolatina,
 Industrial Electronic (indel.de), Euroglobal Parts, IWW Trading — each approached Kukla for the
