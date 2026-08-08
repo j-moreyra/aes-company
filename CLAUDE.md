@@ -74,9 +74,20 @@ email to clients) without showing me a draft first.
 clients. Greeting is `Hi {First}!` to Kukla, `Hi {First},` to clients. Getting this backwards
 is the most visible possible error.
 
-Emails run two to four short paragraphs, one idea each, and close on "Let me know!" or "Let me
-know if any questions!". Job numbers (`FN: 11857`) travel with the thread. Shipping terms and
-addresses are always spelled out in full.
+Emails run two to four short paragraphs, one idea each. Closings differ by audience: **"Cheers,"
+to Kukla**, "Let me know!" or "Let me know if any questions!" to clients in English,
+"Cordialmente," or "Saludos," in Spanish. Job numbers (`FN: 11857`) travel with the thread.
+Shipping terms and addresses are always spelled out in full.
+
+Writing to Kukla, translate the client's vocabulary into Kukla's before sending — they say
+**pre-bin**, not "refill hopper" or a literal rendering of "tolva". Name the equipment ("the
+feeder"), not "the Kukla equipment". Mark a client's claim as theirs and hedge it: "they said it
+*may be* difficult", not "it *is* difficult". Skip the thanks-for-your-quote opener; the subject
+line already carries the number. Ask them to "advise whether", not "tell me whether".
+
+The reason all of that matters: Kukla is a 90-year manufacturer and the relationship is
+peer-to-peer engineering, not vendor management. Borrowed client vocabulary and soft filler read
+as imprecise to them.
 
 ## Connections
 
