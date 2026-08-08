@@ -4,20 +4,30 @@
 2026-07-20 → 2026-08-02.** This goes stale fast — treat it as orientation, not truth.
 Re-derive from Outlook before acting on any status.
 
+**Partial refresh 2026-08-05.** The *Unsent drafts* table, *Romeral / Etex* and *SOBOCE Bolivia*
+sections were re-derived directly from Outlook on that date. Everything else is still the
+Aug-02 sweep.
+
 ## Unsent drafts — written, not delivered
 
-The highest-leverage list here. All four were composed 2026-08-01 and are still sitting in
-Drafts, blocking other people.
+The highest-leverage list here. **Re-derived from the Drafts folder 2026-08-05** — the earlier
+Aug-01 version of this table had four rows, three of which are no longer in Drafts (see below).
 
-| Draft | To | Content |
-|---|---|---|
-| Re: Quotation 260731 / FN: 11857 | lenzeder@, zopf@ | Asks Kukla which spares are identical between Savannah (FN 11857) and Ft. Dodge (FN 12298). **This is the answer Matthew Arinez asked for on Jul 27.** Attachments included |
-| Re: Our quotation 260824 — Romeral/Chile | avdibegovic@ | Flags the incoterms say **Argentina** when it should be **Chile**; asks for freight to Santiago to be confirmed and a control box added |
-| Re: Quotation 260844 / FN: 10769 — Panel Rey | lenzeder@, zopf@ | Confirms the shipping estimate is inbound DAP Laredo, TX — quote 260632 was much higher |
-| Re: Quotation 260846 / FN: 10850 | AES@ | "I included a late payment clause in quote. What do you think?" (drafted Jul 31) |
+| Draft | To | Last touched | Content |
+|---|---|---|---|
+| **Re: Solicitud de cotización \| SOBOCE** | rafuentes@soboce.com | Aug 5 | **Loaded and ready.** Carries `AES-390.31369-b.pdf` and explains the capacity increase needs only a weighing-parameter change, no mechanical work. Nothing blocks sending it — see the SOBOCE section |
+| Re: Kukla Feeder spare parts \| GP Ft. Dodge | heidi.hansen@, matthew.arinez@gapac.com | Aug 4 | Has attachments. Likely the reply Matthew Arinez has been waiting on since Jul 27 |
+| Re: Solicitud de cotización \| Panel Rey | jfloresa@gpromax.com | Aug 4 | To the client, not Kukla |
+| Re: Quotation 260846 / FN: 10850 | AES@ | Aug 4 | "I included a late payment clause in quote. What do you think?" Internal |
+| Re: Savannah Kuka Feeder Question / F.N. 11857 | zopf@ | Aug 2 | Kukla-side thread on the Savannah spares |
+| Re: Order confirmation 940129 — El Volcán | fuertbauer@ | Aug 2 | Still empty |
 
-Also stale in Drafts: a Jul 26 nudge to Jakob asking whether the electrical-spares quote was
-generated, and an empty reply to Petra Fürtbauer on the El Volcán order confirmation.
+No longer in Drafts, and worth confirming they landed rather than got discarded: the
+`Quotation 260731 / FN: 11857` reply to lenzeder@/zopf@, the `Quotation 260844 / FN: 10769`
+Panel Rey reply, and the `Our quotation 260824 — Romeral/Chile` reply to avdibegovic@. The last
+of these matters most — see the ⚠ under Romeral.
+
+The pre-2026 LinkedIn outreach templates also sit in Drafts. They are boilerplate, not pending work.
 
 ## Open items needing William
 
@@ -85,8 +95,26 @@ Open: which spares interchange with Savannah.
 
 ### Romeral / Etex Chile — gravimetric LIW feeder (BMA)
 Raul Gallegos sent current installation layout Jul 24. Kukla quotation 260824 issued Jul 29.
-Etex still evaluating and awaiting the Kukla budget as of Jul 29.
 HubSpot deal "ROM - LIW BMA feeder" created Aug 1.
+
+**Aug 4 — the objection is space, not price.** William sent the quote Aug 4. Gallegos came back
+the same day: hard to fit the equipment given available space, and the application does need a
+**pre-bin**. He had considered one of the units in Kukla's diagram to feed the LIW feeder but
+could not make it work without a hopper close by. He attached `SR-BMA26 - A_V3 Layout Gral.dwg`
+and asked AES to review feasibility.
+
+**Aug 5 — asked back to Kukla, sent 01:04.** Reply to avdibegovic@, cc sales@ and a.leitner@,
+with the layout attached. Asks whether the feeder is feasible in that footprint and what
+arrangement would allow a pre-bin. **Ball is with Armin.**
+
+**⚠ Three points from the Aug-01 draft look unraised.** That draft flagged the 260824 incoterms
+reading **Argentina** when it should be **Chile**, asked for freight to Santiago to be
+confirmed, and asked for a control box to be added. It is no longer in Drafts, and no sent mail
+on that thread raises any of it — the Aug 5 reply covers only space and the pre-bin. Confirm
+before Kukla revises the quote, or the wrong incoterms carry into the revision.
+
+**Terminology:** Kukla says **pre-bin**. Not "refill hopper", not a literal rendering of the
+client's "tolva de recarga".
 
 ### SOBOCE Bolivia — spares and electronics
 Kukla quotation 260846 / FN 10850 for electronics originally delivered via AES. The live
@@ -94,6 +122,28 @@ request is an **impact flow meter capacity upgrade from 150 TPH to 300 TPH**; Zo
 Jul 30 that this needs only weighing-parameter adjustment — nothing mechanical replaced.
 
 Invoice 330154 against OC 4500005230 is **paid** as of 2026-08-01.
+
+**DWC-6AF/411E spare — quote revised to -b, 2026-08-04.** Kukla issued **260846/01** on Aug 3
+adding freight that the original 260846 lacked: **€490** flat DAP Soboce Bolivia for one unit,
+€525 for two, unit still €2,800. AES reissued as **AES-390.31369-b**: $5,980 unit + **$645**
+freight = **$6,625**, DAP Santa Cruz. Supersedes -a, which was $5,980 + $415 = $6,395 on €304
+freight from the old quote 260489. Freight rose 61%, so -b is $230 *more* than -a.
+
+Working file: `1. Kukla/01. Projects/02. Cement/01. SOBOCE/8. SOB - DWC6 spare/CS_390.31369_SOBOCE DWC6 spare.xlsx`.
+Two quote tabs now — `390.31369-b` live, `390.31369-a` archived (grey) holding the pre-revision
+state. Rendered PDFs for both revisions sit beside it.
+
+**The margin call, William's own note in the -b tab.** Quote the client off the **260489** unit
+price (€3,740) but **issue the PO to Kukla at the 260846/01 price (€2,800)**. Kukla dropped the
+same part 25% between May and August and AES keeps the spread. Do not "correct" the €3,740 cost
+basis in Profit Calc thinking it is stale — it is deliberate. Logged in `decisions/log.md`.
+
+**Not a collision.** A third quote, `AES-390.56592-a` at $5,740, was generated 30-Jul and lives
+only at `~/aes-quotes/Outputs/SOB - DWC-6AF electronics/`. A mailbox search finds no message
+carrying it, so SOBOCE never saw it and the $5,980 in -b is not a visible increase.
+
+**Next action:** the draft to rafuentes@soboce.com with `AES-390.31369-b.pdf` is loaded and
+unsent.
 
 **How this lead arrived, and why it matters.** Four European trading companies — Eurolatina,
 Industrial Electronic (indel.de), Euroglobal Parts, IWW Trading — each approached Kukla for the

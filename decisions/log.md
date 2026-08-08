@@ -392,3 +392,50 @@ building.
 **Owner:** William.
 
 ---
+
+## 2026-08-04 — Quote SOBOCE off the May cost, buy off the August one
+
+**Decision:** On the DWC-6AF/411E spare (FN 10850), hold the client unit price at $5,980 —
+derived from Kukla quote **260489**'s €3,740 — while issuing the PO to Kukla at quote
+**260846/01**'s €2,800. Take the freight from 260846/01 (€490 for one unit) since 260489's
+€304 is superseded. Result: `AES-390.31369-b` at $6,625.
+
+**Why:** Kukla requoted the identical part 25% cheaper between May and August, from a different
+rep, with no change in scope. Nothing obliges AES to pass that through on a spare the client
+has not yet seen priced. Margin on the line goes from roughly 22% of revenue to 40%.
+
+**Alternatives considered:** Repricing the client down in step with Kukla (rejected — gives away
+margin on a part where AES carries the relationship, the requoting effort, and the currency
+risk). Updating the €3,740 cost basis in Profit Calc to €2,800 (rejected — the sheet would then
+read as if AES were quoting a 66% markup, which is harder to explain internally than the split
+the note describes).
+
+**How it is recorded:** William annotated the `390.31369-b` tab in the CS workbook — price
+source for the unit, price source for the shipping, and `*When issuing PO to Kukla, use DWC-6
+price from Quote 26084601`. The margin is therefore captured at PO time, not quote time.
+
+**Watch:** the profit figures printed on that tab understate reality, because they compute
+against the €3,740 cost. That is intentional. Do not "fix" it.
+
+**Owner:** William.
+
+---
+
+## 2026-08-04 — Superseded quote revisions get an archived tab, not an overwrite
+
+**Decision:** When a CS workbook quote is revised, keep the prior revision as its own tab named
+for the quote number and revision (`390.31369-a`), greyed, alongside the live one
+(`390.31369-b`). Do not overwrite the working tab and rely on the exported PDF as the only
+record.
+
+**Why:** The PDF captures what the client saw but not the cost basis, the FX rate, the freight
+bump, or the commission tier behind it. When a revision is questioned weeks later, the
+reasoning is what is needed, and it lives in Profit Calc, not the PDF.
+
+**Note on mechanics:** the archived tab's formulas stay live rather than frozen. They are all
+intra-sheet, so it will not drift when the current tab changes, but editing a cost cell on the
+archive tab will silently recompute it. Sheet-protect it if that becomes a problem.
+
+**Owner:** William.
+
+---
