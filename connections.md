@@ -7,7 +7,7 @@ freshness.
 | # | Domain | Tool | Mechanism | Auth | Last checked |
 |---|---|---|---|---|---|
 | 1 | Revenue / Financials | CFO/CEO-owned accounting system (unnamed) | out of scope | — | — |
-| 2 | Customer interactions | Outlook, via claude.ai Microsoft 365 connector | `mcp` | OAuth | 2026-08-01 |
+| 2 | Customer interactions | Outlook — **read** via claude.ai Microsoft 365 connector, **write** via Composio | `mcp` | OAuth | 2026-08-04 |
 | 3 | Calendar | Outlook Calendar, via claude.ai Microsoft 365 connector | `mcp` | OAuth | 2026-08-01 |
 | 4 | Communication | Microsoft Teams, via claude.ai Microsoft 365 connector | `mcp` | OAuth | 2026-08-01 |
 | 5 | Project / task tracking | HubSpot, via claude.ai HubSpot connector | `mcp` | OAuth | 2026-08-01 |
@@ -122,6 +122,28 @@ Do not add a second HubSpot MCP server manually. It was tried (`claude mcp add h
 **Verified live 2026-08-01.** Both connectors returned real data — HubSpot deals and Outlook
 mail. Domains 2-5 are working, not just registered.
 
+**Outlook writes go through Composio, not the Microsoft 365 connector.** Discovered 2026-08-04.
+The claude.ai Microsoft 365 connector reads the mailbox fine but cannot write to it —
+`outlook_create_draft` and `outlook_create_reply_draft` both return HTTP 403 `ErrorAccessDenied`
+because `Mail.ReadWrite` is not admin-consented on the app registration (tenant
+`bdf7a321-8a7d-4f62-b598-243fbd126b30`). Fixing that needs a tenant admin. Until then, use
+**Composio** for any draft, reply, or send.
+
+Composio's Outlook connection has write scope and is verified working. Notes for using it:
+
+- Two accounts are connected and `account_selection` is required, so always pass one explicitly.
+  Use `outlook_carper-jat` (alias `advengsys-william`, William@advengsys.com). The other is
+  `outlook_clunk-quirl` (Joaquin@digitaldawnconsulting.com) and is not the AES mailbox.
+- Reply drafts take two steps. `OUTLOOK_CREATE_DRAFT_REPLY` first, which builds the quoted
+  thread and reply headers correctly, then `OUTLOOK_UPDATE_EMAIL` to splice the reply body in
+  after the opening `<body>` tag. Writing the body wholesale destroys the quoted original.
+- Attachments: `OUTLOOK_ADD_MAIL_ATTACHMENT` under 3 MB (accepts a local file path directly),
+  `OUTLOOK_CREATE_ATTACHMENT_UPLOAD_SESSION` with chunked PUTs above it.
+- Draft ids appear to rotate once the draft is opened and edited in the Outlook UI. An
+  attachment call returned `ErrorItemNotFound` on an id that had fetched the message
+  successfully a minute earlier. Re-resolve the id before operating on a draft William has
+  touched, and prefer attaching files while building the draft rather than afterward.
+
 **Outlook search gotcha.** Do NOT text-search for "Kukla". The AES email signature reads
 "Exclusive representatives of Kukla Waagenfabrik GmbH for the Americas", so every message any
 AES person sends matches. A test search returned 23 false positives out of 25 hits. Filter on
@@ -137,8 +159,9 @@ workflow depends on those fields to prove it works.
 
 **Also connected, worth knowing about.** The claude.ai account carries other connectors,
 including **Apollo.io** — a B2B prospecting database directly relevant to the automated lead
-generation priority. Also Slack, Google Drive, Gmail, Google Calendar, Figma, Netlify,
-Supabase, Asana, monday.com. Most are irrelevant to AES; Apollo.io is not.
+generation priority. Also **Composio**, which is what makes Outlook writable (see above) and
+which fronts 500+ other apps. Also Slack, Google Drive, Gmail, Google Calendar, Figma, Netlify,
+Supabase, Asana, monday.com. Most are irrelevant to AES; Apollo.io and Composio are not.
 
 **Domain 5 has no real task tool.** Outlook flags are the de-facto task list. Any "what needs
 my attention today" capability must read flagged mail plus open HubSpot deals.

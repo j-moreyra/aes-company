@@ -107,7 +107,9 @@ Two traps when working with these files:
 **Connected via claude.ai MCP connectors** (OAuth, no local tokens):
 
 - **Microsoft 365** — Outlook mail, Outlook Calendar, Teams. The mailbox is the business.
-  Kukla is CET, so live calls only work in the early-morning US window.
+  Kukla is CET, so live calls only work in the early-morning US window. **Read-only for mail** —
+  drafting or sending goes through **Composio**, see `connections.md`.
+- **Composio** — fronts Outlook with write scope. The only way to create a draft.
 - **HubSpot** — CRM. A deal per project, all contacts. Relevant to priority 1.
 - **Apollo.io** — B2B prospecting database. Also relevant to priority 1.
 
