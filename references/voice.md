@@ -36,6 +36,26 @@ verbs with Kukla (`kindly create a quote`). No em dashes; an en dash `–` shows
 know…", "I mentioned this to the client, and yes, they are aware…". Never blurs who asked for
 what — that's the relay job showing.
 
+## Writing to Kukla — vocabulary and relay rules
+
+Added 2026-08-08 after William rewrote a drafted reply to Armin Avdibegovic. These sit on top of
+the rules above; none of them change the closings, which do not vary by audience.
+
+- **Use Kukla's word, not the client's.** They say **pre-bin**. Not "refill hopper", not a
+  literal rendering of the Spanish "tolva de recarga". Translating the client's term produces
+  vocabulary Kukla does not use.
+- **Name the equipment, not the vendor.** "The feeder", "the unit". Not "the Kukla equipment" —
+  they know whose equipment it is.
+- **Hedge what you are relaying.** "They said it *may be* difficult", not "it *is* difficult".
+  This is the same explicit-attribution habit as above, applied to certainty as well as source.
+- **Open on the substance.** He cut "Thanks for quotation 260824" from a draft — the subject
+  line already carries the number.
+- **Ask them to "advise whether"**, not "tell me whether", when the question is technical.
+
+Why it matters: Kukla is a 90-year manufacturer and the relationship is peer-to-peer
+engineering, not vendor management. Borrowed client vocabulary and soft filler read as
+imprecise to them.
+
 ## Samples — verbatim, do not edit
 
 **1. To Kukla — Patrik Lenzeder (cc Jakob Zopf) · "New inquiry: GP – FGWF parts" · Jul 8, 2026**
