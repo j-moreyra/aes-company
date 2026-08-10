@@ -46,7 +46,19 @@ The audit looks for **patterns and intent**, not exact paths. File names vary. U
 **Decisions:** `decisions/log.md`, `decisions.md`, or any append-only decisions file.
 **References / SOPs:** `references/`, `docs/`, `sops/` folders.
 **Templates:** `templates/`, `.claude/templates/`.
-**Hooks / scheduled jobs:** `.claude/settings.json` hooks key, or skill names matching `morning-*`, `weekly-*`, `daily-*`, `monthly-*`, `standup`.
+**Hooks / scheduled jobs:** check all three, in this order. A trigger found by any one of them counts.
+
+1. **Cloud Routines** — call `mcp__Claude_Code_Remote__list_triggers`. This is the authoritative check and the only one that finds a schedule living outside the repo. Skip silently if the tool isn't in the registry; note in the report that Routines couldn't be checked rather than scoring 0 as if none existed.
+2. `.claude/settings.json` hooks key.
+3. Skill names matching `morning-*`, `weekly-*`, `daily-*`, `monthly-*`, `standup`.
+
+Reading `list_triggers` results, in order of how often it goes wrong:
+
+- **Routines are account-wide, not project-scoped.** A Routine for a different project is not this project's cadence. Attribute one to this project only if its `name` or `prompt` references a skill, file, or subject that exists here. If you can't tell, say so rather than claiming the point.
+- **Check the state fields, don't just count rows.** `enabled: false` means it never fires. A non-empty `ended_reason` means permanently disabled. A non-empty `suspension_reason` means temporarily held (this one lifts on its own, so it still counts). Both fields empty plus `enabled: false` means the user paused it deliberately.
+- **Ignore spent one-shots.** `send_later` reminders appear here as rows named `send_later <timestamp>` with `run_once_at` set and `ended_reason: run_once_fired`. They already fired and will never fire again. They are not cadence, and a list can be mostly these. Count only rows with a `cron_expression`.
+- **Read `mcp_connections`.** Each Routine returns the connectors its fired sessions will hold. This is what tells you whether a schedule can actually reach the data its prompt asks for.
+- **Read `last_fired_at`.** A Routine that has fired recently is proven cadence, not just configured cadence. It also doubles as a usage signal for the criterion below, and it is more reliable than file mtimes.
 
 Don't penalize for non-canonical names if equivalent intent is captured elsewhere.
 
@@ -84,7 +96,7 @@ A "reachable" connection counts via ANY mechanism: MCP, script, export pipeline,
 |---|---|---|
 | Tier-1 domain coverage | 10 | 1.4 pts per tier-1 domain reachable. Round to nearest 0.5. Cap 10. |
 | Reference guide presence | 5 | -1 per connected tool with no `references/{tool}-api.md`. Floor 0. |
-| Auth / pipeline freshness | 5 | -1 per connection in `needs-auth`/`expired` state, or script with no run within 30 days. Floor 0. |
+| Auth / pipeline freshness | 5 | -1 per connection in `needs-auth`/`expired` state, or pipeline with no run within 30 days. Floor 0. Judge a run by a dated record (a `Last checked` column, a log line, a timestamped export), never by a script file's mtime — see the activity criterion for why. If nothing records runs, that is the finding: say the pipeline has no freshness signal rather than guessing at one. |
 | Documentation in `connections.md` | 3 | 0 if missing; 1 sparse; 2 most; 3 covers all reachable. |
 | Read-AND-write balance | 2 | At least one connection can WRITE (send email, post update, etc.). 0 if all read-only — the AIOS is a viewer not an OS. |
 
@@ -100,9 +112,38 @@ A "reachable" connection counts via ANY mechanism: MCP, script, export pipeline,
 
 | Criterion | Points | How to detect |
 |---|---|---|
-| 1+ recurring/scheduled trigger | 10 | `.claude/settings.json` hooks, OR skill name matches `morning-*` / `daily-*` / `weekly-*` / `monthly-*` / `standup` |
-| Recent activity / usage signal | 10 | Files in `.claude/skills/` modified within 30 days, OR `decisions/log.md` has entry within 30 days |
+| 1+ recurring/scheduled trigger | 10 | A cloud Routine, a `.claude/settings.json` hook, or a `morning-*` / `daily-*` / `weekly-*` / `monthly-*` / `standup` skill. Graded — see below. |
+| Recent activity / usage signal | 10 | Dates carried *inside* the data: git history, Routine `last_fired_at`, decisions-log headings. Never file mtimes. Graded — see below. |
 | Templates folder populated | 5 | `templates/` or `.claude/templates/` has ≥1 file |
+
+**Grading the trigger criterion.** A schedule that fires but can't reach anything is not cadence. Score it honestly:
+
+- **10** — a trigger exists, is enabled, and can actually do its job.
+- **5** — a trigger exists but is degraded. It is `enabled: false`, carries an `ended_reason`, or its prompt depends on tools its fired sessions won't have. Check the last one against the `mcp_connections` array `list_triggers` returns per Routine: read what the prompt says it needs, then confirm each one appears there. A Routine with an empty `mcp_connections` whose prompt calls for a connector will render empty every time it fires, and nothing will report the failure.
+- **0** — nothing fires on its own.
+
+A skill matched only by name (`morning-*`, `daily-*`, and so on) caps at **5**. The ritual exists, but a skill you have to remember to type is not autonomy. Award the full 10 only when something fires without the user.
+
+**Routines are invisible to the repo.** A cloud Routine leaves no trace in the files, so a reader of this project cannot see it and a future audit run without MCP access will miss it. When you find one, check whether it is written down in `decisions/log.md` or `connections.md`. If it isn't, say so in the report — an undocumented schedule is a thing that breaks silently and nobody knows why.
+
+**Grading the activity criterion. Never use file mtimes.** `git clone` stamps every file with the moment of the clone, so in a fresh checkout "modified in the last 30 days" is true of the entire repo no matter how long it has sat untouched. That is a guaranteed false 10/10, and it is worse than no signal because it reads as evidence. The same applies to any container, CI runner, or restored backup. Only trust dates carried inside the data:
+
+```bash
+git log -1 --format=%cd --date=short          # last commit
+git log --since='30 days ago' --oneline | wc -l   # commits in window
+```
+
+Gather the freshest date from all three sources that exist, then score on that date:
+
+1. **Git history** — the repo is being edited. Authoritative, and it survives cloning.
+2. **Routine `last_fired_at`** — the automation is running unattended. The strongest signal, because it needs nobody at the keyboard.
+3. **Decisions log** — parse the `## YYYY-MM-DD` headings for the newest date. Read the heading text, not the file's mtime.
+
+- **10** — freshest signal within 30 days.
+- **5** — within 90 days. The setup works but has gone quiet.
+- **0** — nothing inside 90 days, or the project is not a git repo and has no Routines and no dated decisions. Say which, rather than implying neglect when the truth is you had nothing to read.
+
+Name the signal and its date in the report ("last commit 4 days ago", "Weekly Follow-ups last fired yesterday"). A bare score invites exactly the false confidence this rule exists to prevent.
 
 ### Step 3: Identify top 3 gaps by leverage
 
@@ -124,7 +165,9 @@ Sort gaps by leverage descending. Take top 3. For each, write a one-line concret
 - **Need to log a decision?** "Append to `decisions/log.md`."
 - **Need to reach a tier-1 domain?** Prefer API+script (write `scripts/{tool}_api.py` + save `references/{tool}-api.md`). Recommend `claude mcp add` only if no API path exists.
 - **Connected tool missing a reference guide?** "Research the API once, save endpoints + auth + common queries to `references/{tool}-api.md`."
-- **Need a recurring trigger?** "Add a hook to `.claude/settings.json`, or write a skill named `daily-*` you run each morning."
+- **Need a recurring trigger?** "Schedule it as a cloud Routine with `mcp__Claude_Code_Remote__create_trigger` (durable, fires whether or not your laptop is open), or add a hook to `.claude/settings.json`." Prefer the Routine for anything on a wall clock. Do not recommend `CronCreate` for a standing ritual: it is session-only, held in memory, and auto-expires after seven days.
+- **Trigger exists but is degraded?** "Attach the connectors it needs from the claude.ai Routines UI, or re-enable it," and add: "then record it in `decisions/log.md`, because a cloud Routine leaves no trace in the repo."
+- **Activity gone quiet?** Name the freshest date you found and how old it is, then point at the cheapest way back in: "last commit was 74 days ago — run `/level-up` and ship one thing." Don't recommend this at all when the only evidence was missing rather than stale; an unused AIOS and an unreadable one need different fixes.
 
 ### Step 4: Output the report
 
@@ -177,4 +220,5 @@ After printing, ask: "Save this audit to `audits/audit-{date}.md` so you can tra
 - **Be honest, not generous.** A 95/100 is a flex. Most setups land 40-70.
 - **Don't suggest skills that don't exist.** Point at what's actually available.
 - **Speed matters.** Report in under 60 seconds wall-clock. Read targeted files, count skill folders without reading each fully (frontmatter only).
-- **Cadence detection is fuzzy.** Infer from skill names if hooks/cron data isn't cleanly available.
+- **Cadence detection is fuzzy.** Check cloud Routines first via `mcp__Claude_Code_Remote__list_triggers`, then hooks, then infer from skill names. Name-matching is the weakest signal and caps at half credit.
+- **Never score Cadence 0 without having checked Routines.** The schedule most likely to exist is the one that lives outside the repo, and a report that calls it missing when it is running is worse than no report. If the tool isn't available in this session, say "Routines not checked in this session" in the report and score on what you could see.

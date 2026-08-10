@@ -439,3 +439,49 @@ archive tab will silently recompute it. Sheet-protect it if that becomes a probl
 **Owner:** William.
 
 ---
+## 2026-08-10 — Morning brief scheduled 6:00 AM Eastern weekdays; connectors still to attach
+
+**Decision:** Ship the recurring trigger the audit called the top gap. `morning` now runs as a
+Claude Routine, `trig_01NiWkDRJesPrR7y2a1wyrSU`, cron `0 10 * * 1-5`, fresh session per fire,
+push notification on.
+
+**Why 6:00 Eastern.** Kukla is CEST, six hours ahead. Their day ends around 11:00 Eastern, so
+the window to reach them closes late morning. A brief landing at 9:00 has already burned most
+of it. The brief exists to protect that window, not just to list the day.
+
+**What the brief adds** beyond the skill's defaults: threads waiting on a reply, aged in days
+and split Kukla from client; flagged mail, which is the real task list; and open HubSpot deals
+ranked by staleness. Staleness rather than value because `amount` and `closedate` are empty on
+most deals, so any pipeline figure would be invented.
+
+**Connectors: a false alarm, corrected same day.** `create_trigger` rejected the `connectors`
+parameter for this organization and returned a warning that the Routine stored none, which would
+have meant an empty brief every morning. That warning was wrong. Reading the Routine back with
+`list_triggers` shows `mcp_connections` holding Composio, HubSpot and Microsoft-365, attached
+about two minutes after creation. No manual step is needed. The lesson generalizes: verify a
+Routine by reading it back, not by trusting the creation response.
+
+**Cron is UTC and does not follow daylight saving.** `0 10` is 6:00 Eastern only while EDT is in
+effect. When clocks fall back on 1 November 2026 it becomes 5:00 AM. Change to `0 11 * * 1-5`
+that week.
+
+**Alternatives considered:** `CronCreate` is session-only, in memory, and auto-expires after
+seven days. Wrong tool for a standing ritual. A `.claude/settings.json` hook fires on session
+events, not wall-clock time, so it cannot do 6:00 AM either.
+
+**`/audit` fixed, and its Cadence score was wrong.** The check only looked at
+`.claude/settings.json` and skill names, both repo-local, so it could not see a cloud Routine. It
+now calls `list_triggers` first. Running that revealed **Weekly HubSpot Follow-ups**
+(`trig_01K9Bsr6PfekZRNSaJmi1QRV`, `0 13 * * 0`, enabled, last fired 2026-08-09) had been running
+against this business since April. The 2026-08-10 audit scored Cadence 15/25 and called "no
+recurring trigger" the top gap. Both were wrong: the correct score was 20/25 and 87/100 overall.
+The gap was never open.
+
+That routine is worth knowing about on its own. It drafts five follow-ups as Bill from overdue
+HubSpot tasks, completes them, creates six-month replacements, and posts to Slack. It reads a
+style guide from a **separate repo**, `j-moreyra/email-style-guide`, so the voice rules in this
+repo are not the ones it follows.
+
+**Owner:** William.
+
+---
