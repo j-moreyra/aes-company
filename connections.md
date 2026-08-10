@@ -11,8 +11,8 @@ freshness.
 | 3 | Calendar | Outlook Calendar, via claude.ai Microsoft 365 connector | `mcp` | OAuth | 2026-08-01 |
 | 4 | Communication | Microsoft Teams, via claude.ai Microsoft 365 connector | `mcp` | OAuth | 2026-08-01 |
 | 5 | Project / task tracking | HubSpot, via claude.ai HubSpot connector | `mcp` | OAuth | 2026-08-01 |
-| 6 | Meeting intelligence | Teams recordings + transcripts, via OneDrive | `local` | OS-level | 2026-08-01 |
-| 7 | Knowledge / files | SharePoint library, via OneDrive sync | `local` | OS-level | 2026-08-01 |
+| 6 | Meeting intelligence | Teams recordings + transcripts. OneDrive on the Mac, or `sharepoint_search` from anywhere | `local` + `mcp` | OS-level / OAuth | 2026-08-10 |
+| 7 | Knowledge / files | SharePoint library. OneDrive sync on the Mac, or `sharepoint_search` from anywhere | `local` + `mcp` | OS-level / OAuth | 2026-08-10 |
 
 **Mechanism options:** `mcp` (MCP server), `script` (Python/Bash hitting an API, in
 `scripts/`), `export` (CSV/JSON dump pipeline), `key+ref` (`.env` key +
@@ -21,7 +21,12 @@ freshness.
 
 ## Local paths (Domains 6 + 7)
 
-OneDrive runs with "Always keep on this device," so these are real files on disk, not
+**These paths only exist on William's Mac.** A session running anywhere else, Claude Code on the
+web, a cloud container, another machine, sees none of them. Verified 2026-08-10: `$HOME` was
+`/root` and `~/Library/CloudStorage/` did not exist. Domains 6 and 7 dropped out with no error,
+which is the dangerous part. Use the SharePoint MCP fallback below whenever the paths are absent.
+
+On the Mac, OneDrive runs with "Always keep on this device," so these are real files on disk, not
 placeholders. Quote them — the paths contain spaces.
 
 ```
@@ -90,6 +95,47 @@ members the moment it reaches ten.
 Caveat: recordings are `.mp4`. Video isn't readable as text — a transcript file has to exist
 alongside it, or the audio needs transcribing, before the AIOS can answer questions about what
 was said in a call.
+
+## Reaching domains 6 and 7 off the Mac
+
+The same library is reachable from any session through the claude.ai Microsoft 365 connector, with
+no local sync at all. Verified working 2026-08-10 from a Linux container that had no OneDrive.
+
+**The chain is two steps.** `sharepoint_search` returns metadata plus a `uri`. Feed that `uri` to
+`read_resource` for the full text.
+
+- `sharepoint_search` — full text across content, filename and metadata. Filters: `folderName`,
+  `fileType`, `author`, `afterDateTime`, `beforeDateTime`. Max 50 per page. Paginate by passing
+  the `nextOffset` from the last result back in as `offset`.
+- `sharepoint_folder_search` — finds folders by name, returns a `uri` you can list.
+- `read_resource` — takes `file:///{driveId}/{itemId}`, returns the document text.
+
+**Path mapping.** The local folder and the SharePoint URL are the same place:
+
+```
+~/…/Advanced Engineering Systems - General/1. Kukla/01. Projects/
+https://advengsys.sharepoint.com/sites/AdvancedEngineeringSystems/Shared Documents/General/1. Kukla/01. Projects/
+```
+
+**Two drives, not one.** The shared library and William's personal OneDrive are separate
+`driveId`s. The `.mp4` recordings live on the personal one, at `advengsys-my.sharepoint.com`.
+
+- Shared library: `b!R54LztMBcEyiZM0ttse0oj-yj2nRhS9Dsp1rgpdJ69tyZsbVfpYRRZGA_DUEmzEO`
+- Personal OneDrive: `b!CdR1frezz02KNg1pBRdzTnWb3WmoNd5Ak5JAuYyCsDWdllM8qASbSLPEEevvtkAW`
+
+**Gotchas, all verified 2026-08-10.**
+
+- **A transcript is too big for one read.** One 43-minute call came back at 81,379 characters and
+  blew the token limit. `read_resource` writes the overflow to a file and returns the path. Read
+  it in chunks, or hand it to a subagent, rather than pulling it into the main thread.
+- **Result totals are hits, not files.** Searching `Transcript` reported
+  `totalResultCount: 106`, not the 67 transcripts on record. Teams transcripts contain the phrase
+  "started transcription", so content matches inflate the number. Never quote the total as a file
+  count.
+- **`sharepoint_folder_search` matches ancestor paths too.** Searching `Kukla` returned `Finna`,
+  `OMNIR` and `Smart III RF`, which only match because they sit under `3. Kukla Images/`. It
+  claimed 4,336 results. Filter on `webUrl` yourself.
+- The `Transcript_*` filename inconsistency described below still applies. Match on content.
 
 When you wire a new tool, also save `references/{tool}-api.md` capturing endpoints, auth flow,
 and common queries — researched-once-saved-forever.
@@ -166,9 +212,11 @@ Supabase, Asana, monday.com. Most are irrelevant to AES; Apollo.io and Composio 
 **Domain 5 has no real task tool.** Outlook flags are the de-facto task list. Any "what needs
 my attention today" capability must read flagged mail plus open HubSpot deals.
 
-**Domains 6 and 7 are live now.** OneDrive with always-keep-local means the AIOS reads these
-files directly — no connector needed. The only remaining gap is stray folders that haven't been
-moved into OneDrive yet; anything outside it is invisible.
+**Domains 6 and 7 are live now.** On the Mac, OneDrive with always-keep-local means the AIOS reads
+these files directly. Everywhere else, go through `sharepoint_search` (see above). "No connector
+needed" was only ever true of the Mac, and reading it as a general statement is exactly what made
+the AIOS go half-blind in a remote session. The only remaining gap is stray folders that haven't
+been moved into OneDrive yet; anything outside it is invisible either way.
 
 **Domain 6 is much stronger than first recorded.** An earlier version of this file warned that
 recordings are `.mp4` and unusable without a transcript sitting alongside. That was wrong. As of
