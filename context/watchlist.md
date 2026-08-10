@@ -42,47 +42,78 @@ Two homes for the same item is how the style-guide drift happened.
 
 ## Entries
 
-The three below were seeded from `active-projects.md` on 2026-08-10 because they are pre-deal and
-were sitting in a file that gets re-derived. **Fields marked `TODO` need William.** Everything
-else is carried over verbatim and is only as current as the 2026-08-02 sweep it came from.
+Seeded from `active-projects.md` on 2026-08-10, then filled from the Outlook mailbox the same day.
+**Every fact below is from a real message, cited by date.** The `Next step` and `Nudge after`
+lines are proposals, not observations. Change them freely; they are the only judgment calls here.
 
 ### John Mahnke — Gold Bond Building Products
 
-- **Who:** John Mahnke, Gold Bond Building Products. Decision maker: TODO, confirm whether Mahnke
-  holds the capital budget or is gathering for someone who does.
-- **Stage:** inbound and self-qualified. Asked 2026-07-20 for high budgetary numbers for **2027
-  capital planning**. Design starts Q1 to Q2 2027.
-- **Why it matters:** a stated budget cycle with a named year is the exact shape 90-day priority
-  #1 is meant to produce. It is also the only inbound lead on file that arrived pre-qualified.
-- **Waiting on:** TODO. Whether budgetary numbers were ever sent back to him.
-- **Next step:** TODO.
-- **Nudge after:** TODO. A 2027 capital cycle means the real window is roughly Q4 2026, so a
-  check-in well before then is worth scheduling.
-- **Thread markers:** `Mahnke`, `Gold Bond`, `budgetary`, `2027`, `capital`
+- **Who:** John Mahnke, `jwmahnke@goldbondbuilding.com`, **Plant Engineer**, 224.572.4068.
+  **Not the budget holder.** He is the requester. Whoever signs the 2027 capital plan has not
+  appeared in any thread yet, and finding out who that is matters more than another nudge to John.
+- **Stage:** budgetary number already delivered, awaiting response. Not a deal, but further along
+  than the other two entries.
+- **Why it matters:** inbound and self-qualified, with a named budget year. The exact shape 90-day
+  priority #1 is meant to produce. It is also **not new**: the thread "Fiberglass feeder + AES"
+  runs back to 2024, including a "you're probably still swamped with the outage" nudge, and it has
+  stalled and restarted more than once. Treat a silence here as normal for this relationship
+  rather than as a lost lead.
+- **Waiting on:** John, since **2026-07-21**. Sequence: William opened it 2026-07-18 off an Eric
+  Li referral, John replied 2026-07-20 asking for high budgetary numbers for 2027 capital
+  planning with design in Q1 or Q2, and William sent **$200,000.00** on 2026-07-21. Nothing back
+  since. Twenty days as of 2026-08-10.
+- **Next step:** *(proposed)* short nudge on the number, and use it to ask who owns the 2027
+  capital plan. The second question is the one that unblocks this.
+- **Nudge after:** **2026-08-22.** *(proposed)* About a month after the number went out. Design
+  starting Q1 to Q2 2027 means the decision lands in Q4 2026, so a second, harder re-engage
+  belongs in October regardless of what happens in August.
+- **Thread markers:** `Mahnke`, `jwmahnke@goldbondbuilding.com`, `Gold Bond`, `budgetary`, `2027`,
+  `capital`, `Fiberglass feeder + AES`, `Savannah fiberglass feeder project`
 
 ### Alejandro Funes — Holcim
 
-- **Who:** Alejandro Funes, Coordinador de Proyectos de Inversión, Holcim. Referred by Martin Diaz.
-- **Stage:** referral, warm. Came out of the LatAm outreach campaign.
-- **Why it matters:** an investment-projects coordinator is closer to budget than a plant
-  engineer. Holcim already spans five countries in the transcript corpus, so there is a lot of
-  recorded conversation to draw on.
-- **Waiting on:** TODO. Whether Funes has been contacted since the referral.
-- **Next step:** TODO.
-- **Nudge after:** TODO.
-- **Thread markers:** `Funes`, `Holcim`, `Diaz`, `@holcim.com`, `proyectos de inversión`
+- **Who:** Alejandro Funes, `alejandro.funes@holcim.com`, Coordinador de Proyectos de Inversión.
+  Referred by Martin Diaz, `martin.diaz@holcim.com`, on 2026-07-29.
+- **Stage:** contacted once, no reply.
+- **Why it matters:** an investment-projects coordinator sits closer to budget than a plant
+  engineer, which is why Diaz handing him over is worth more than a normal referral. Holcim also
+  spans five countries in the transcript corpus, so there is a lot of recorded conversation to
+  draw on before any call.
+- **Waiting on:** Funes, since **2026-07-30**. **Joaquin** wrote to him that day, in Spanish, with
+  attachments, positioning William as "nuestro ingeniero de campo" and citing the meetings with
+  Martin Diaz. Nothing back. Eleven days as of 2026-08-10.
+- **Next step:** *(proposed)* this is Joaquin's thread, not William's. Coordinate rather than
+  writing in parallel, or the referral gets two uncoordinated approaches.
+- **Nudge after:** **2026-08-20.** *(proposed)* Three weeks after first contact, which matches the
+  cadence of the rest of the LatAm campaign.
+- **Thread markers:** `Funes`, `alejandro.funes@holcim.com`, `martin.diaz@holcim.com`,
+  `Para dosificar clinker caliente al molino`, `Proyectos de Inversión`
 
 ### Rafael Daal — Polpaico Chile
 
-- **Who:** Rafael Daal, Polpaico. Took over from Francisco Aguilera, who has left the company.
-- **Stage:** relationship handover, unconfirmed. The prior contact is gone.
-- **Why it matters:** a contact change silently resets a warm thread to cold. Anything Aguilera
-  agreed to is not something Daal knows about, and nothing in the mailbox will say so.
-- **Waiting on:** TODO. Whether Daal has been introduced to at all.
-- **Next step:** TODO. A reintroduction that re-states the history rather than assuming it
-  carried over.
-- **Nudge after:** TODO.
-- **Thread markers:** `Daal`, `Polpaico`, `Aguilera`
+- **Who:** Rafael Daal, Polpaico, domain `polpaicosoluciones.cl`. Took over the role from a
+  departed Aguilera. Also in the thread: José Godoy Ahumada,
+  `jose.godoyahumada@polpaicosoluciones.cl`, Jefe de operaciones molienda de cemento, who is the
+  one who flagged the handover and is the practical route to Daal.
+- **Stage:** contacted once, no reply, and a phone route is already being opened.
+- **Why it matters:** a contact change silently resets a warm thread to cold. Anything the
+  predecessor agreed to is not something Daal knows about, and nothing in the mailbox says so.
+  Godoy is the useful relationship here, since he volunteered the handover unprompted.
+- **Waiting on:** Daal, since **2026-07-30**. Sequence: Joaquin wrote to the predecessor
+  2026-07-22; Godoy replied the same day that the person no longer belongs to Cemento Polpaico
+  and that Daal has taken the role, CC'ing him; Joaquin then wrote to Daal directly on 2026-07-30.
+  Nothing back. On **2026-08-09**, William asked Godoy for Daal's phone number, so a call is
+  already the intended next move.
+- **Next step:** *(proposed)* nothing until Godoy sends the number. Chasing by email again while
+  a phone route is open just adds noise.
+- **Nudge after:** **2026-08-18.** *(proposed)* If Godoy has not produced a number by then, the
+  thing to chase is Godoy, not Daal.
+- **Name discrepancy, unresolved.** `active-projects.md` records the departed contact as
+  **Francisco** Aguilera. The mail thread addresses him as **Ronald Moya** Aguilera. Surname
+  matches, first name does not. One of the two is wrong and the mailbox is the better source, but
+  it is not worth correcting until someone confirms which.
+- **Thread markers:** `Daal`, `Polpaico`, `polpaicosoluciones.cl`, `Godoy`, `Aguilera`,
+  `Balanza para clínker`
 
 ---
 
