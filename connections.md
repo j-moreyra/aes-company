@@ -219,24 +219,45 @@ the AIOS go half-blind in a remote session. The only remaining gap is stray fold
 been moved into OneDrive yet; anything outside it is invisible either way.
 
 **Domain 6 is much stronger than first recorded.** An earlier version of this file warned that
-recordings are `.mp4` and unusable without a transcript sitting alongside. That was wrong. As of
-2026-08-02 the library holds **67 transcripts** — 57+ under `1. Kukla`, 5 under `5. MultiExport`,
-3 under `Qubiqa` — almost all `.docx`, named `Transcript_<topic>_<client>_<date>`. They live in
-**project folders, not next to the recordings**, which is why a search of `Recordings/` finds
-nothing. Every Teams recording in the personal OneDrive has a same-date transcript filed under
-its client.
+recordings are `.mp4` and unusable without a transcript sitting alongside. That was wrong. The
+library is full of transcripts, almost all `.docx`, filed in **project folders, not next to the
+recordings**, which is why a search of `Recordings/` finds nothing. Every Teams recording in the
+personal OneDrive has a same-date transcript filed under its client.
 
-Coverage is deepest on cement: ~20 Brazilian plants (Votorantim, CSN, Intercement, Cimento
-Nacional, Supremo, Tupi, Apodi), Holcim across five countries, plus Cemex, Ash Grove, Titan,
-Loma Negra, Pacasmayo and GCC. That is 67 recorded conversations with plant engineers about
-clinker and gypsum weighing — readable text on disk, and the best available evidence of what
-prospects actually say. Directly relevant to priority #1.
+**Full map: `references/transcript-index.md`.** Every transcript by client, plant and date, plus
+the commands to regenerate it. Go there before any exercise that needs the whole corpus.
+
+Coverage is deepest on cement: Brazil, Holcim across five countries, plus Cemex, Ash Grove,
+Titan, Loma Negra, Pacasmayo, GCC, Argos, UNACEM and Amrize. Readable text on disk, and the best
+available evidence of what prospects actually say. Directly relevant to priority #1.
+
+**Corrections made 2026-08-10, after this file's own numbers were checked:**
+
+- **The "67 transcripts" figure was a filename-based count and was low.** So was the
+  "57+ / 5 / 3" split by area. Do not quote either.
+- **There is a `00. Brazil` country folder** at
+  `1. Kukla/01. Projects/02. Cement/00. Brazil/`, holding roughly **30 transcripts**, the single
+  largest block. It has its own numbered client folders, 1 to 8, and runs one level deeper than
+  the rest of the library: country → client → plant → contact → project. The earlier survey
+  missed it entirely, so about a third of the corpus was invisible.
+- **Search totals are estimates and contradict each other.** The same content query reported 91,
+  then 53, then 41 as pagination went deeper. Graph trims on deep pages. Enumerate and count what
+  you get; never quote a total.
 
 Caveats when using them: a few are duplicated across folders (CEMEX clinker scale, COBOCE), one
-is prefixed `NOTTA ` from a different transcription tool, Panel Rey has both original and
-`Transcript-English_` versions of the same call, and filenames are inconsistent — the same
-meeting may appear as `Transcript_Holcim_Veracruz_10142025` or
-`Transcript_Holcim Veracruz_Clinker-20251014`. Match on content, not filename.
+is prefixed `NOTTA ` from a different transcription tool, and Panel Rey has both an original and
+a `Transcript-English_` version of the same call.
+
+**Filenames are worse than "inconsistent", and a `Transcript` name search silently misses files.**
+Four confirmed failure modes: the typo `Transript_` (CEMEX Knoxville, Holcim Argentina), hyphens
+instead of underscores (`Transcript-Holcim-ARG-…`), the same meeting named two ways
+(`Transcript_Holcim_Veracruz_10142025` vs `Transcript_Holcim Veracruz_Clinker-20251014`), and
+files with no transcript-like word at all (`Equipo Kukla - Reunión de planificación.docx` under
+SOBOCE, `USG_Dunnage overview_04112025.docx` under Qubiqa).
+
+**So search by content, not by name.** Teams transcripts all contain the phrase
+`started transcription`. That one query finds them regardless of what the file is called, and it
+is what surfaced Brazil. Match on content, not filename.
 
 **Timezone constraint.** Kukla is CET. Live calls only work in the early-morning US window.
 Any scheduling logic must respect it.
