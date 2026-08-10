@@ -14,10 +14,19 @@ existing data-quality gap worse, since most deals already carry no `amount` and 
 and nothing downstream could then tell a real deal from a placeholder.
 
 **How the morning brief uses it.** The Routine clones this repo on every run, so it reads this
-file before it reads the mailbox. When an email matches an entry's **Thread markers**, the brief
-attaches that entry's context instead of treating the message as a bare inbox item. When an entry
-is past its **Nudge after** date with nothing back, the brief raises it even if no email arrived,
-which is the case email alone can never surface.
+file before it reads the mailbox. Two behaviours, and they are gated differently:
+
+- **Context attach, for every entry regardless of owner.** When an email matches an entry's
+  **Thread markers**, the brief attaches that entry's context instead of treating the message as a
+  bare inbox item.
+- **Nudge, only for entries William owns.** When a William-owned entry is past its **Nudge after**
+  date with nothing back, the brief raises it even though no email arrived. This is the case email
+  alone can never surface.
+
+**The `Owner` field is what separates them.** Joaquin runs the LatAm outreach campaign, so several
+entries here are his threads. William still wants their context when a reply lands in his mailbox,
+and does not want a reminder to chase something that is not his to chase. An entry owned by anyone
+other than William is never nudged, whatever its date says.
 
 ## Format
 
@@ -26,12 +35,13 @@ One `###` heading per entry. Keep every field, write `—` if it does not apply 
 ```
 ### Name — Company / plant
 
+- **Owner:** William, or whoever actually runs the thread. Only William's entries get nudged.
 - **Who:** name, email, role. Mark the decision maker.
 - **Stage:** where it actually is, in your words. Not a CRM stage.
 - **Why it matters:** the context that is not in any email.
 - **Waiting on:** what, from whom, since when.
 - **Next step:** what you do next.
-- **Nudge after:** a date. The brief raises it after this even with no new mail.
+- **Nudge after:** a date, or `none`. Write `none` on anything William does not own.
 - **Thread markers:** subject keywords, job numbers, domains. How the brief links mail to this.
 ```
 
@@ -48,6 +58,7 @@ lines are proposals, not observations. Change them freely; they are the only jud
 
 ### John Mahnke — Gold Bond Building Products
 
+- **Owner:** William.
 - **Who:** John Mahnke, `jwmahnke@goldbondbuilding.com`, **Plant Engineer**, 224.572.4068.
   **Not the budget holder.** He is the requester. Whoever signs the 2027 capital plan has not
   appeared in any thread yet, and finding out who that is matters more than another nudge to John.
@@ -72,6 +83,8 @@ lines are proposals, not observations. Change them freely; they are the only jud
 
 ### Alejandro Funes — Holcim
 
+- **Owner:** **Joaquin.** Part of the LatAm outreach campaign he runs. Context still attaches
+  if Funes replies into William's mailbox; no nudge.
 - **Who:** Alejandro Funes, `alejandro.funes@holcim.com`, Coordinador de Proyectos de Inversión.
   Referred by Martin Diaz, `martin.diaz@holcim.com`, on 2026-07-29.
 - **Stage:** contacted once, no reply.
@@ -84,13 +97,16 @@ lines are proposals, not observations. Change them freely; they are the only jud
   Martin Diaz. Nothing back. Eleven days as of 2026-08-10.
 - **Next step:** *(proposed)* this is Joaquin's thread, not William's. Coordinate rather than
   writing in parallel, or the referral gets two uncoordinated approaches.
-- **Nudge after:** **2026-08-20.** *(proposed)* Three weeks after first contact, which matches the
-  cadence of the rest of the LatAm campaign.
+- **Nudge after:** **none.** Joaquin's thread. Was proposed as 2026-08-20, three weeks after first
+  contact, if it is ever reassigned to William.
 - **Thread markers:** `Funes`, `alejandro.funes@holcim.com`, `martin.diaz@holcim.com`,
   `Para dosificar clinker caliente al molino`, `Proyectos de Inversión`
 
 ### Rafael Daal — Polpaico Chile
 
+- **Owner:** **Joaquin.** Confirmed by William 2026-08-10. William asked Godoy for Daal's phone
+  number on 2026-08-09, so he does touch the thread, but chasing it is not his. Context still
+  attaches if Daal or Godoy replies; no nudge.
 - **Who:** Rafael Daal, Polpaico, domain `polpaicosoluciones.cl`. Took over the role from a
   departed Aguilera. Also in the thread: José Godoy Ahumada,
   `jose.godoyahumada@polpaicosoluciones.cl`, Jefe de operaciones molienda de cemento, who is the
@@ -106,8 +122,8 @@ lines are proposals, not observations. Change them freely; they are the only jud
   already the intended next move.
 - **Next step:** *(proposed)* nothing until Godoy sends the number. Chasing by email again while
   a phone route is open just adds noise.
-- **Nudge after:** **2026-08-18.** *(proposed)* If Godoy has not produced a number by then, the
-  thing to chase is Godoy, not Daal.
+- **Nudge after:** **none.** Joaquin's thread. Was proposed as 2026-08-18, on the reasoning that
+  if Godoy had not produced a number by then the thing to chase is Godoy rather than Daal.
 - **Name discrepancy, unresolved.** `active-projects.md` records the departed contact as
   **Francisco** Aguilera. The mail thread addresses him as **Ronald Moya** Aguilera. Surname
   matches, first name does not. One of the two is wrong and the mailbox is the better source, but
