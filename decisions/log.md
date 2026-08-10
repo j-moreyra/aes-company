@@ -454,11 +454,12 @@ and split Kukla from client; flagged mail, which is the real task list; and open
 ranked by staleness. Staleness rather than value because `amount` and `closedate` are empty on
 most deals, so any pipeline figure would be invented.
 
-**Open item, and the brief does not work without it.** The Routine stored **no MCP connectors**.
-`create_trigger` rejected the `connectors` parameter outright for this organization, so the
-fired sessions get no Microsoft 365 and no HubSpot. Until connectors are attached to the Routine
-from the claude.ai Routines UI, the brief renders empty. The prompt is written to say so at the
-top rather than fail quietly.
+**Connectors: a false alarm, corrected same day.** `create_trigger` rejected the `connectors`
+parameter for this organization and returned a warning that the Routine stored none, which would
+have meant an empty brief every morning. That warning was wrong. Reading the Routine back with
+`list_triggers` shows `mcp_connections` holding Composio, HubSpot and Microsoft-365, attached
+about two minutes after creation. No manual step is needed. The lesson generalizes: verify a
+Routine by reading it back, not by trusting the creation response.
 
 **Cron is UTC and does not follow daylight saving.** `0 10` is 6:00 Eastern only while EDT is in
 effect. When clocks fall back on 1 November 2026 it becomes 5:00 AM. Change to `0 11 * * 1-5`
@@ -468,9 +469,18 @@ that week.
 seven days. Wrong tool for a standing ritual. A `.claude/settings.json` hook fires on session
 events, not wall-clock time, so it cannot do 6:00 AM either.
 
-**Note for `/audit`:** the trigger lives in the cloud, not the repo, so the Cadence check will
-keep scoring 0 for "no recurring trigger" unless it learns to look here. The gap is closed; the
-detector cannot see it.
+**`/audit` fixed, and its Cadence score was wrong.** The check only looked at
+`.claude/settings.json` and skill names, both repo-local, so it could not see a cloud Routine. It
+now calls `list_triggers` first. Running that revealed **Weekly HubSpot Follow-ups**
+(`trig_01K9Bsr6PfekZRNSaJmi1QRV`, `0 13 * * 0`, enabled, last fired 2026-08-09) had been running
+against this business since April. The 2026-08-10 audit scored Cadence 15/25 and called "no
+recurring trigger" the top gap. Both were wrong: the correct score was 20/25 and 87/100 overall.
+The gap was never open.
+
+That routine is worth knowing about on its own. It drafts five follow-ups as Bill from overdue
+HubSpot tasks, completes them, creates six-month replacements, and posts to Slack. It reads a
+style guide from a **separate repo**, `j-moreyra/email-style-guide`, so the voice rules in this
+repo are not the ones it follows.
 
 **Owner:** William.
 
