@@ -485,3 +485,26 @@ repo are not the ones it follows.
 **Owner:** William.
 
 ---
+## 2026-08-10 — The `morning` skill is committed to the repo, and now exists twice
+
+**Decision:** Copy `~/.claude/skills/morning/` into `.claude/skills/morning/`, verbatim.
+
+**Why:** a cloud Routine can only use skills committed to the repository it clones. The morning
+brief Routine needs this skill, and the skill lived only in the personal skills directory, which
+a Routine never sees. Attaching `j-moreyra/aes-company` to the Routine now also gives each run
+`references/voice.md`, `connections.md` and `references/transcript-index.md`.
+
+**The cost, stated plainly: there are now two copies and they will drift.** A Routine cloning
+this repo sees only the committed copy. An interactive session on this machine has both. Edit the
+one in this repo and let the personal copy go stale, or delete the personal copy outright. What
+does not work is editing whichever one you happen to open.
+
+**This is the third instance of the same pattern.** `order-docs` already exists both here and in
+`~/.claude/skills/`, and `Bill_Email_Style_Guide.md` lived in a separate repo until it was merged
+into `references/voice.md` on 2026-08-10 after the two versions contradicted each other on the
+sign-off name. Duplicated instruction files do not stay identical. If a fourth appears, that is
+the signal to pick one home for skills rather than keep reconciling.
+
+**Owner:** William.
+
+---
