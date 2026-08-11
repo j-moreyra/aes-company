@@ -7,7 +7,7 @@ routine form. See `references/routines/README.md` for live state across all Rout
 
 | Field | Value |
 |---|---|
-| Cron | **Deployed: `30 9 * * *`** (05:30 Eastern, daily). **Wanted: `0 10 * * 1-5`** (06:00 Eastern, weekdays). The prompt update on 2026-08-11 landed; the cron change did not. Still to apply. |
+| Cron | Set by William in the UI. Not tracked here, see the README. |
 | Repositories | `j-moreyra/aes-company` |
 | Connectors | Composio, Microsoft-365, and HubSpot. **HubSpot is no longer used** since the deals section was removed, and can be dropped |
 | Notifications | push off, email off (the Routine emails the brief itself) |
@@ -24,8 +24,7 @@ separate OAuth grant with write scope. Verified 2026-08-10.
 
 ## Revision 2026-08-11 (second): William's feedback on the first real run
 
-**Applied to the live Routine on 2026-08-11.** The prompt below matches what is deployed. Only the
-cron is still outstanding, see the config table above.
+**Applied to the live Routine on 2026-08-11.** The prompt below matches what is deployed.
 
 Six changes, all from reading an actual delivered brief:
 

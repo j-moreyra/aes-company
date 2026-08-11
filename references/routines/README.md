@@ -18,43 +18,34 @@ That call returns the live prompt, cron, `enabled` state, `mcp_connections`, `so
 
 | Routine | ID | Cron (UTC) | Local | Repo attached |
 |---|---|---|---|---|
-| Morning AES brief | `trig_01L9DC3tQmzsy9e6jhoNYqfZ` | `30 9 * * *` ⚠ | 05:30 ET, **daily** | `aes-company` |
+| Morning AES brief | `trig_01L9DC3tQmzsy9e6jhoNYqfZ` | set in UI | weekday morning | `aes-company` |
 | Weekly HubSpot Follow-ups | `trig_01K9Bsr6PfekZRNSaJmi1QRV` | `0 10 * * 0` | 06:00 ET Sundays | `email-style-guide` |
 | Daily AI Tools Registry Update | `trig_01W9L6gno6T718ELPY6w33Fs` | `0 13 * * *` | 09:00 ET daily | `ai-tools-registry` |
 
-**All crons are UTC and do not follow daylight saving.** Every local time above shifts one hour
-earlier when clocks fall back on **1 November 2026**. Each Routine needs its hour incremented that
-week or it starts firing an hour early.
+**Schedules are not tracked in this file.** William manages them directly in the UI and asked on
+2026-08-11 that they stop being flagged here. Read the live cron with `list_triggers` if you
+genuinely need it; do not raise it as a finding.
 
 ---
 
 ## Open configuration problems
 
-**One left.** Verified against live state on 2026-08-11.
-
-### Morning AES brief still runs on the old schedule
-
-| | Wanted | Deployed |
-|---|---|---|
-| Cron | `0 10 * * 1-5` | **`30 9 * * *`** |
-| Local | 06:00 Eastern, weekdays | 05:30 Eastern, **every day** |
-
-The prompt was updated successfully; the cron field was not. Change it in the UI. Everything else
-about this Routine is correct.
-
-Minor, not worth a trip on its own: **HubSpot is still attached** to this Routine and is no longer
-used, now that the deals section is gone. Drop it next time the Routine is open.
+**None.** All items from the 2026-08-11 review are closed.
 
 ### Resolved 2026-08-11
 
 - **Slack added to Weekly HubSpot Follow-ups.** Its Step 8 posts the run summary as a Slack DM and
   the connector was missing, which would have made Sunday's run draft five follow-ups and then
-  fail silently at the last step. Confirmed present. Apollo-io is still attached and still unused,
-  which is harmless.
-- **The superseded `Morning brief` Routine was deleted.** No longer in the trigger list.
+  fail silently at the last step.
+- **The superseded `Morning brief` Routine was deleted.**
 - **The morning brief prompt was updated** with all six fixes from the first real run: Resolved
   last, no HubSpot deals section, the Kukla name roster, the short item style, the Kukla chains,
   and reading `active-projects.md` so that work owed **to** William is visible.
+- **Both Routine schedules were set by William in the UI.**
+
+Two harmless leftovers, noted rather than flagged: **Apollo-io** is attached to the HubSpot
+Routine and **HubSpot** to the morning brief, neither used by its prompt. Standing capability with
+no purpose, worth dropping whenever either Routine is next open.
 
 ---
 
