@@ -30,7 +30,15 @@ genuinely need it; do not raise it as a finding.
 
 ## Open configuration problems
 
-**None.** All items from the 2026-08-11 review are closed.
+**One, and it needs a human.** The morning brief prompt has a third revision sitting in
+`morning-brief.md` that has not been pasted into the live Routine. See the notes on that Routine
+below. Nothing else from the 2026-08-11 review is open.
+
+**Also unresolved, outside the Routines.** The remote branch
+`claude/review-open-branches-67paph` could not be deleted from this environment: the git proxy
+returns HTTP 403 on a delete-ref push, and no MCP tool exposes GitHub's delete-branch endpoint.
+Pushes and merges work fine, so this is specific to deleting refs. It has to be done from the
+GitHub UI. Second time it has happened; assume it will happen again.
 
 ### Resolved 2026-08-11
 
@@ -60,22 +68,13 @@ It reads `context/watchlist.md` from this repo before reading the mailbox, which
 repo is attached and the reason the `morning` skill was committed to `.claude/skills/`. A Routine
 can only use skills committed to the repository it clones.
 
-**The mirror is ahead of the deployed prompt.** A revision written on 2026-08-11 is sitting in
-`morning-brief.md` waiting to be pasted into the Routine by hand. Until that happens the live
-Routine still emails an artifact link. Two changes:
-
-1. **The brief moves into the email body.** Tested on 2026-08-11: the emailed artifact link does
-   not open from a phone, so the brief never arrives. The revision composes the brief as inline
-   email HTML instead, with no artifact and no link. It overrides the `morning` skill's Build and
-   Design sections, which assume a browser — embedded woff2, inline SVG, flex columns, Playwright
-   screenshot — none of which a mail client renders. The terrain drawing is dropped rather than
-   worked around: Outlook on Windows drops SVG, Gmail strips data-URI images, and a hosted image
-   would be blocked by default.
-2. **The STEP 1b owner clause is folded in.** The deployed text reads *"Raise any entry whose
-   Nudge after date has passed"* and lacks the clause added on 2026-08-10. Harmless so far,
-   because entries William does not own carry `Nudge after: none` rather than a date, so nothing
-   matches. It would bite the first time the file gains an owned entry with a date that should
-   not nudge.
+**The mirror is ahead of the deployed prompt again.** A third revision was written on 2026-08-11
+and is waiting to be pasted into the Routine by hand. It carries five changes from a second round
+of feedback: the headline is dropped, the three time-block acts are replaced by the real calendar
+entries for today and the next two days, multiple items on one project merge into a single entry,
+no item may appear in two sections, and Resolved keeps only the last five days. Until it is
+pasted, the live Routine keeps producing the headline and the acts, and will keep duplicating
+items across sections.
 
 **Editing it takes a human.** Created via `http_api`, so `update_trigger` refuses agent edits, the
 same as the HubSpot Routine. Every change goes through the UI.

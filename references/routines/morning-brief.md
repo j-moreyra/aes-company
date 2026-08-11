@@ -22,9 +22,40 @@ separate OAuth grant with write scope. Verified 2026-08-10.
 
 ---
 
+## Revision 2026-08-11 (third): second round of feedback
+
+**Not deployed yet.** The prompt at the bottom of this file is ahead of the live Routine. Paste it
+in by hand at [claude.ai/code/routines](https://claude.ai/code/routines); the Routine was created
+via `http_api`, so `update_trigger` refuses agent edits to it.
+
+Five changes, again from reading a delivered brief:
+
+1. **The headline is gone.** The skill opens with a serif editorial line summarising the day. The
+   brief now opens on the day-date line and goes straight into the first section.
+2. **The three acts are replaced by the actual meetings.** Time blocks with a sentence each told
+   him nothing he did not already know. The Meetings section now lists real calendar entries:
+   today's, with start times, plus anything in the following two days. **It is the one section
+   that disappears when empty** rather than printing "nothing today", which is why it needed an
+   explicit carve-out from the empty-list rule that governs every other section.
+3. **One project, one entry.** The last brief carried items 1 and 3 in Needs attention on the same
+   project. The prompt now merges by project, deal, job number or plant, and asks for a read-back
+   check on the titles before sending.
+4. **No item appears in two sections.** Items were showing up under Needs attention and again
+   further down. The prompt now sets an explicit precedence — Needs attention, then Kukla, then
+   clients, then flagged — and each item lands in the first section it qualifies for and nowhere
+   else. Resolved is exclusive of all four.
+5. **Resolved has a five-day window.** Anything older simply stops appearing. It does not move to
+   another section.
+
+Points 3 and 4 are both the same underlying failure: the sections were being built independently,
+each scanning the whole mailbox, with nothing reconciling the results. Merging by project and
+fixing a precedence order are the two halves of that fix.
+
+---
+
 ## Revision 2026-08-11 (second): William's feedback on the first real run
 
-**Applied to the live Routine on 2026-08-11.** The prompt below matches what is deployed.
+**Applied to the live Routine on 2026-08-11**, but since superseded by the third revision above.
 
 Six changes, all from reading an actual delivered brief:
 
@@ -68,8 +99,8 @@ page, and no link. Two consequences worth knowing:
   Write and Voice sections, which are the parts that decide what the brief actually says.
 - **The terrain drawing is gone.** Outlook on Windows renders through Word and drops SVG entirely;
   Gmail strips `src="data:..."` so a PNG fallback cannot be embedded either, and an externally
-  hosted image would be blocked by default. The three acts carry the shape of the day as text
-  instead.
+  hosted image would be blocked by default. The Meetings section carries the shape of the day as
+  text instead.
 
 **Also folded in.** The STEP 1b owner clause that the previously deployed text was missing (see
 the README). It is included in full below.
@@ -85,12 +116,21 @@ the body of the email. Do not publish an artifact, do not create a page, do
 not send a link. A link was tried and it does not open from a phone.
 
 Use the `morning` skill for what goes in the brief and how it is worded:
-follow its Gather, Sort, Write and Voice sections. IGNORE its Build and
-Design sections entirely. Those describe a standalone HTML page with an
-embedded woff2 font, an inline SVG drawing and a browser screenshot check.
-None of that renders in a mail client. STEP 4 below replaces them. Do not
-run the Playwright screenshot step: it costs minutes and tells you nothing
-about how Outlook will render.
+follow its Gather, Sort and Voice sections, and its item shape. IGNORE its
+Build and Design sections entirely. Those describe a standalone HTML page
+with an embedded woff2 font, an inline SVG drawing and a browser screenshot
+check. None of that renders in a mail client. STEP 5 below replaces them. Do
+not run the Playwright screenshot step: it costs minutes and tells you
+nothing about how Outlook will render.
+
+Two more things in the skill do not apply. IGNORE both:
+
+  - THE HEADLINE. The skill opens the brief with a serif editorial line
+    summarising the day. Do not write one. The brief opens on the day-date
+    line and goes straight into the sections.
+  - THE THREE ACTS. The skill divides the day into three time blocks with a
+    sentence each. Do not do that. STEP 4 section 1 replaces it with the
+    actual meetings.
 
 Write it in English. This is an unattended scheduled run: nobody is at the
 keyboard, so skip the connector suggestion cards.
@@ -141,12 +181,25 @@ the brief even if no email arrived about it this week.
 STEP 4. Build these sections, in this order. There is no HubSpot deals
 section; do not add one.
 
-  1. NEEDS ATTENTION.
+  1. MEETINGS. The actual calendar entries, not time blocks. Two groups:
+       - TODAY: each meeting, with its start time and its title. Nothing
+         else.
+       - NEXT TWO DAYS: each meeting on the following two calendar days,
+         with the weekday, the start time and the title.
 
-  2. WAITING ON KUKLA. Threads where I sent the last message to an
+     THIS SECTION IS THE ONE EXCEPTION TO THE EMPTY-LIST RULE BELOW. If
+     there is nothing today AND nothing in the next two days, omit the
+     heading and the section completely. Do not write "no meetings today".
+     If today is empty but the next two days are not, show only the second
+     group. If today has meetings and the next two days do not, show only
+     the first group. Never print an empty group heading.
+
+  2. NEEDS ATTENTION.
+
+  3. WAITING ON KUKLA. Threads where I sent the last message to an
      @kukla.co.at address and nothing came back. Age in days.
 
-  3. WAITING ON CLIENTS AND THIRD PARTIES. Two kinds, both count:
+  4. WAITING ON CLIENTS AND THIRD PARTIES. Two kinds, both count:
        - threads where I sent the last message and nothing came back
        - anything a client, supplier or engineering firm OWES ME, even when
          they sent the last message
@@ -155,10 +208,33 @@ section; do not add one.
      open item whether or not the last email in the thread is mine. Check
      `active-projects.md` for these, not just the mailbox.
 
-  4. FLAGGED MAIL. My Outlook flags are my task list. There is no separate
+  5. FLAGGED MAIL. My Outlook flags are my task list. There is no separate
      task database.
 
-  5. RESOLVED. Last, always. Nothing after it.
+  6. RESOLVED. Last, always. Nothing after it. Only include something that
+     was resolved WITHIN THE LAST FIVE DAYS. Anything older drops off the
+     brief entirely: it is not moved to another section, it just stops
+     appearing. If nothing resolved in that window, say so in one line.
+
+ONE PROJECT, ONE ENTRY. Do not write two items about the same project,
+deal, job number or plant. Merge them into a single entry and carry both
+facts in the one sentence. Two items on the same project in the same
+section is the most common thing wrong with this brief. Before sending,
+read back the item titles and check no project appears twice.
+
+    GOOD: "Savannah FN 11857, Patrik - 9d. William asked Patrik to add the
+           DWC-7B and confirm the shipping date. Neither answered."
+    BAD:  a "DWC-7B addition" item and a separate "shipping date" item.
+
+NO ITEM APPEARS TWICE. Each open item belongs to exactly ONE section in
+the whole brief. When something qualifies for more than one, use the first
+section it qualifies for in this order, and leave it out of the others:
+
+    Needs attention  >  Waiting on Kukla  >  Waiting on clients  >  Flagged
+
+An item in Needs attention is not repeated under Waiting on Kukla further
+down, even though it is also a Kukla wait. Resolved is exclusive of all of
+them: if it is resolved it is not open, so it appears only in Resolved.
 
 CHAINS. Most client replies I owe are blocked on a Kukla answer. When a
 client item cannot move until Kukla responds, do NOT list it as a client
@@ -187,7 +263,14 @@ fewer with the age appended, then ONE sentence:
 Cut anything I already know. No timezone reminders, no "their workday ends
 at", no explaining who a contact is, no urgency editorializing. State the
 fact and who owes the next move. If a list is empty, say so in one line
-rather than dropping the heading.
+rather than dropping the heading. Meetings is the sole exception: an empty
+Meetings section is dropped entirely, heading and all.
+
+Meeting lines are the exception to the item shape too. A meeting is one
+line, time and title, no sentence under it:
+
+    9:00 AM   Kukla weekly, Patrik and Nico
+    Thu 2:00 PM   NG Savannah design review
 
 NAMES. Never infer a first name from an email address. Use this roster, and
 if an address is not on it, write the surname alone or the address itself:
@@ -210,15 +293,17 @@ STEP 5. Build the brief as email HTML. I read this on my phone, in Outlook.
 Content and order, top to bottom, all in one document:
 
   1. Day-date line, small and grey: Tuesday · August 12 2026
-  2. The headline, one serif line, per the skill's Write section
-  3. The three acts, one under the other, each: bold time range, then one
-     sentence earned from the calendar
-  4. The five sections from STEP 4, in that order, ending on Resolved
+  2. The six sections from STEP 4, in that order, starting on Meetings and
+     ending on Resolved
+
+There is NOTHING between the day-date line and the first section. No
+headline, no serif summary line, no title, no acts. The date line, then
+straight into the sections.
 
 Keep the skill's item shape in the lists: a bold title of ten words or
 fewer, then one sentence carrying the source in prose and the substance.
 Keep its voice rules. If a list is empty, say so in one calm line rather
-than dropping the heading.
+than dropping the heading, except Meetings, which is dropped whole.
 
 These are the rules that replace the skill's Build and Design sections.
 Follow every one of them: mail clients are not browsers and each of these
@@ -230,19 +315,20 @@ is a thing that visibly breaks.
   - NO IMAGES OF ANY KIND. No SVG, no `<img>`, no `data:` URIs, no external
     image URLs. Outlook on Windows renders through Word and drops SVG
     outright; Gmail strips data-URI images; remote images are blocked by
-    default. This is why there is no terrain drawing. The acts carry the
-    shape of the day in words.
+    default. This is why there is no terrain drawing. The Meetings section
+    carries the shape of the day instead.
   - NO WEB FONTS. No `@font-face`, no base64 font, no Google Fonts link.
-    Headline: `font-family:Georgia,'Times New Roman',serif`. Everything
+    Section headings: `font-family:Georgia,'Times New Roman',serif`. Everything
     else: `font-family:-apple-system,'Segoe UI',Arial,sans-serif`.
   - TABLES FOR LAYOUT, not flexbox and not grid. Outlook supports neither.
     One outer `<table width="100%">`, and inside it one
     `<table width="600" style="max-width:600px">` centred with
     `align="center"`. Everything sits in that inner table.
-  - THE THREE ACTS STACK VERTICALLY, one table row each. Three side-by-side
-    columns are unreadable on a phone and Outlook will not reflow them.
-  - COLOURS AS LITERAL HEX, inline, no CSS variables. ink `#2E2C27` for the
-    headline, section headings and item titles; ink-soft `#6B6A63` for body
+  - EVERYTHING STACKS VERTICALLY, one table row per item or meeting. No
+    side-by-side columns anywhere: they are unreadable on a phone and
+    Outlook will not reflow them.
+  - COLOURS AS LITERAL HEX, inline, no CSS variables. ink `#2E2C27` for
+    section headings and item titles; ink-soft `#6B6A63` for body
     and sentences; ink-grey `#B4B3A8` for the numerals and the day-date;
     hairline `#E4E3DC`; clay `#C6613F` for the single oldest unanswered Kukla item, and
     nothing else.
@@ -252,7 +338,9 @@ is a thing that visibly breaks.
     `height:1px;line-height:1px;background-color:#E4E3DC` and a `&nbsp;`.
     Not `border-top`, not `<hr>`.
   - SIZES IN PX, including `line-height`. Unitless line-height breaks in
-    Outlook. Headline 28px on a 34px line. Body 15px on a 22px line.
+    Outlook. Section headings 17px on a 24px line, in
+    `font-family:Georgia,'Times New Roman',serif`. Body and meeting lines
+    15px on a 22px line.
   - LINKS get an explicit colour and underline on the `<a>` itself:
     `style="color:#6B6A63;text-decoration:underline"`. Unstyled links get
     recoloured blue or purple by the client. Every href must be a full
