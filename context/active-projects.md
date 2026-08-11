@@ -8,41 +8,73 @@ Re-derive from Outlook before acting on any status.
 sections were re-derived directly from Outlook on that date. Everything else is still the
 Aug-02 sweep.
 
+**Partial refresh 2026-08-10.** The *Unsent drafts* table and *Open items needing William* were
+re-derived from Outlook. Two open items were closed against real sent mail and moved down, and the
+drafts table had changed by half. Everything below *Projects* is still the Aug-02 sweep and should
+be treated as the least current part of this file.
+
 ## Unsent drafts — written, not delivered
 
-The highest-leverage list here. **Re-derived from the Drafts folder 2026-08-05** — the earlier
-Aug-01 version of this table had four rows, three of which are no longer in Drafts (see below).
+The highest-leverage list here. **Re-derived from the Drafts folder 2026-08-10.** Half the Aug-05
+table had moved: three rows left Drafts, four new drafts appeared.
 
 | Draft | To | Last touched | Content |
 |---|---|---|---|
-| Re: Kukla Feeder spare parts \| GP Ft. Dodge | heidi.hansen@, matthew.arinez@gapac.com | Aug 4 | Has attachments. Likely the reply Matthew Arinez has been waiting on since Jul 27 |
-| Re: Quotation 260844 — add DWC-7B | lenzeder@ | Aug 8 | "The client asked to add one more item to this quote: DWC-7B, Qty = 1" |
-| Re: Solicitud de cotización \| Panel Rey | jfloresa@gpromax.com | Aug 4 | To the client, not Kukla |
-| Re: Quotation 260846 / FN: 10850 | AES@ | Aug 4 | "I included a late payment clause in quote. What do you think?" Internal |
-| Re: Savannah Kuka Feeder Question / F.N. 11857 | zopf@ | Aug 2 | Kukla-side thread on the Savannah spares |
-| Re: Order confirmation 940129 — El Volcán | fuertbauer@ | Aug 2 | Still empty |
+| RE: pesaje y dosificacion clinker caliente | antonio.valdes@holcim.com | Aug 9 | Spanish follow-up, apron feeder and other Kukla options. Newest draft in the folder |
+| RE: pesaje y dosificacion clinker caliente | erasmocarlos.rodriguezmedrano@holcim.com | Aug 2 | Spanish follow-up, same campaign |
+| RE: Medicion de Clinker | martin.figueroa@holcim.com | Aug 2 | Spanish follow-up, apron doser and hot-clinker scale |
+| RE: Sistemas de pesagem \| CSN | emmanuel.pires@csn.com.br | Aug 2 | Portuguese follow-up |
+| Re: Quotation 260846 / FN: 10850 | AES@ | Jul 31 | "I included a late payment clause in quote. What do you think?" Internal. Carried over |
+| Re: Savannah Kuka Feeder Question / F.N. 11857 | zopf@, lenzeder@ | Jul 26 | "Were you able to generate quote for the electrical spares". Carried over, now two weeks old |
+| Re: Order confirmation 940129 — El Volcán | fuertbauer@ | Jul 26 | Still empty. Carried over |
 
-No longer in Drafts, and worth confirming they landed rather than got discarded: the
-`Quotation 260731 / FN: 11857` reply to lenzeder@/zopf@, the `Quotation 260844 / FN: 10769`
-Panel Rey reply, and the `Our quotation 260824 — Romeral/Chile` reply to avdibegovic@. The last
-of these matters most — see the ⚠ under Romeral.
+The four Spanish and Portuguese rows are outreach follow-ups, not project work. They are the
+oldest kind of draft on this list to leave sitting, since a follow-up that never sends is
+indistinguishable from never having followed up.
+
+**Left Drafts since Aug 5, and what became of them:**
+
+- **Re: Quotation 260844 — add DWC-7B** to lenzeder@ — **sent 2026-08-08**, confirmed. "One more
+  thing, the client asked to add one more item to this quote: DWC-7B, Qty = 1, FN: 10769."
+- **Re: Kukla Feeder spare parts | GP Ft. Dodge** to heidi.hansen@ and matthew.arinez@gapac.com —
+  no longer in Drafts, and no matching sent item was found. Sent or discarded, unconfirmed.
+- **Re: Solicitud de cotización | Panel Rey** to jfloresa@gpromax.com — same, unconfirmed.
+
+The two unconfirmed ones are worth a look. The Ft. Dodge reply is the one Matthew Arinez has been
+waiting on since Jul 27, so it disappearing without a trace is the bad case.
 
 The pre-2026 LinkedIn outreach templates also sit in Drafts. They are boilerplate, not pending work.
 
 ## Open items needing William
+
+**Re-derived 2026-08-10.** Two items were closed against real sent mail and moved to *Closed*
+below. The first two rows below could not be confirmed either way from the mailbox and are carried
+forward unverified, not re-checked.
 
 | Item | Who | Since | Note |
 |---|---|---|---|
 | "Not suitable for the weighing process" | Nico Humer, Kukla | Jul 31 | One-line rejection on Cumberland City, no alternative given. Read the thread — unclear what was rejected |
 | GPROMAX / Panel Rey load cell pricing | Giuliana Garcia | Jul 31 | Quoted under the $1,050 charged in April. William decided Aug 2 to revert the price and verify inbound cost with Patrik — the draft to Patrik is unsent |
 | Cemex sourcing event MX ID 9919 | Cemex Coupa | Jul 31 | William forwarded it to the team Aug 1 asking whether to bid and suggesting a call to the contact. Window has since closed |
-| **Send corrected PO to Kukla, NG Savannah** | Armin Avdibegovic | Aug 2 | Corrected `PO 330_07282026 KUKLA.pdf` is filed but **not sent**. Ask for a revised OC — Kukla's current one has the wrong delivery address |
-| **Tell Gold Bond the delivery date** | Shari Saxon-Black / Eric Li | Aug 2 | They ordered against 2026-11-30; Kukla confirms 2026-12-30. Nothing AES sent states a date |
+| **Book the NG Savannah design review session** | Eric Li | Aug 6 | Referenced in two emails and never scheduled. William offered a call Aug 5; on Aug 6 said pre-bin volume should be confirmed "after we have that design review session". Nothing on the calendar, last meeting with Eric was Jun 18. **This is the gating item and it is William's to book.** |
+| Eric Li said he would come back "Friday or Monday" | Eric Li | Aug 5 | On the feeder drawing. Friday Aug 7 passed. Monday is Aug 10. Ball is in his court, William wrote last on Aug 6. Nudge Aug 11 if nothing lands |
 
 ## Closed since the last snapshot
 
 - **Clear exterior panels + lighting, GP Savannah** — quote sent to Kyle and Lee Jul 30.
 - **B&R PLC components question** — answered to Lee Hunt Jul 31, after Lenzeder confirmed.
+- **Send corrected PO to Kukla, NG Savannah** — **done, and the OC came back the same day.** William
+  sent the corrected PO to Armin on **2026-08-03**: "I noticed the shipping address for NG had a
+  typo. See updated PO with correct address. Please update system on your end." Michael Leitner
+  returned the order confirmation with the updated shipping address later that morning. Both halves
+  of this item are closed, which also closes the "still outstanding" line in the 2026-08-02
+  decisions-log entry.
+- **Tell Gold Bond the delivery date** — **sent to Eric Li 2026-07-31**, two days before the sweep
+  that recorded it as outstanding: "Payment for the deposit has been processed. These are the
+  tentative dates Kukla provided: Ship date: 11/11/2026, Delivery date: 12/30/2026."
+  **One gap remains.** That message went to Eric. The original item named Shari Saxon-Black too,
+  and she is the one who sent the PO on Jul 24. Whether purchasing knows the date moved from the
+  11/30 they ordered against is not visible in the mailbox and was not checked.
 - **SOBOCE invoice 330154** — paid. Confirmed by William 2026-08-01.
 - **Missing source documents** — both filed 2026-08-02: Kukla OC `940133` into
   `08. Panel Rey/…/07. PR - Load cells & sensors`, and Gold Bond PO `2500040906` into
@@ -60,17 +92,29 @@ Jul 30 — AES wires after client payment lands.
 **Ship 2026-11-11, delivery 2026-12-30.**
 Contacts: ericli@nationalgypsum.com, ShariS@NationalGypsum.com, jwmahnke@goldbondbuilding.com
 
-**⚠ Delivery date is 30 days later than the client ordered.** Gold Bond PO 2500040906 states a
-need-by of **2026-11-30**; Kukla OC 940624 confirms **2026-12-30**. The NG OA template carries no
-delivery-date field, so nothing AES has sent Gold Bond states a date — their November
-requirement is unanswered. **Open. Not yet raised with the client.**
+**⚠ Delivery date is 30 days later than the client ordered. Raised with Eric, not with purchasing.**
+Gold Bond PO 2500040906 states a need-by of **2026-11-30**; Kukla OC 940624 confirms
+**2026-12-30**. The NG OA template carries no delivery-date field, so the OA itself still states
+no date.
+
+**Corrected 2026-08-10.** This block previously read "nothing AES has sent Gold Bond states a
+date. Open. Not yet raised with the client." That was wrong by the time it was written. William
+sent both dates to Eric Li on **2026-07-31**: "These are the tentative dates Kukla provided: Ship
+date: 11/11/2026, Delivery date: 12/30/2026."
+
+**What is genuinely still open:** that went to Eric. **Shari Saxon-Black**, who issued the PO on
+Jul 24, is not on it. If purchasing is still planning against 11/30, the thirty-day gap is
+unacknowledged on the side that matters commercially. Not checked.
 
 **⚠ Kukla holds the wrong ship-to address.** OC 940624 reads `2 Branmpton Road`; the correct
 address on the client PO is `2 BRAMPTON RD`. The typo originated in AES's PO and propagated to
 Kukla's paperwork. On 2026-08-02 the workbook and `PO 330_07282026 KUKLA.pdf` were corrected
-(and the quote reference moved 260297/04 → /05 to match OC 940624), but **the corrected PO has
-not been sent to Kukla and no revised OC has been requested.** Until that happens the machine
-ships in November against the misspelling.
+(and the quote reference moved 260297/04 → /05 to match OC 940624).
+
+**Closed 2026-08-10.** This block previously read "the corrected PO has not been sent to Kukla and
+no revised OC has been requested." Both are done. William sent the corrected PO to Armin on
+**2026-08-03**, and **Michael Leitner returned the order confirmation with the updated shipping
+address the same morning.** The machine no longer ships against the misspelling.
 
 Reconciliation note: AES PO €154,330 vs Kukla OC €139,830. Not an error — Kukla invoices the
 €14,500 commissioning separately and excludes it from their lump sum.
