@@ -175,7 +175,14 @@ because `Mail.ReadWrite` is not admin-consented on the app registration (tenant
 `bdf7a321-8a7d-4f62-b598-243fbd126b30`). Fixing that needs a tenant admin. Until then, use
 **Composio** for any draft, reply, or send.
 
-Composio's Outlook connection has write scope and is verified working. Notes for using it:
+**`Mail.Send` is unconsented too, not just `Mail.ReadWrite`.** Confirmed 2026-08-10 by a test send
+through `outlook_send_mail`, which returned the same 403. So the Microsoft 365 connector cannot
+draft **and** cannot send. Getting a tenant admin to consent both scopes is still worth doing, but
+it is **not a blocker for anything**, because Composio already sends. Do not report Outlook mail as
+un-writable on the strength of an M365 403 alone; check Composio first.
+
+Composio's Outlook connection has write scope and is verified working. Connection state confirmed
+2026-08-10: `outlook` toolkit **ACTIVE**, `OUTLOOK_SEND_EMAIL` available. Notes for using it:
 
 - Two accounts are connected and `account_selection` is required, so always pass one explicitly.
   Use `outlook_carper-jat` (alias `advengsys-william`, William@advengsys.com). The other is
