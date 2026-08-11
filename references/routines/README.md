@@ -68,17 +68,25 @@ It reads `context/watchlist.md` from this repo before reading the mailbox, which
 repo is attached and the reason the `morning` skill was committed to `.claude/skills/`. A Routine
 can only use skills committed to the repository it clones.
 
-**One deployed-prompt gap.** Its STEP 1b reads *"Raise any entry whose Nudge after date has
-passed"* and lacks the owner clause added on 2026-08-10. Harmless in practice, because entries
-William does not own carry `Nudge after: none` rather than a date, so nothing matches. Worth
-adding if the file ever gains an owned entry with a date that should not nudge:
+**The mirror is ahead of the deployed prompt.** A revision written on 2026-08-11 is sitting in
+`morning-brief.md` waiting to be pasted into the Routine by hand. Until that happens the live
+Routine still emails an artifact link. Two changes:
 
-```
-  b) Raise any entry that WILLIAM OWNS whose "Nudge after" date has passed
-     with nothing back, even if no email arrived. Never nudge an entry whose
-     Owner is anyone other than William, whatever its date says. Their
-     context still attaches on a Thread-marker match.
-```
+1. **The brief moves into the email body.** Tested on 2026-08-11: the emailed artifact link does
+   not open from a phone, so the brief never arrives. The revision composes the brief as inline
+   email HTML instead, with no artifact and no link. It overrides the `morning` skill's Build and
+   Design sections, which assume a browser — embedded woff2, inline SVG, flex columns, Playwright
+   screenshot — none of which a mail client renders. The terrain drawing is dropped rather than
+   worked around: Outlook on Windows drops SVG, Gmail strips data-URI images, and a hosted image
+   would be blocked by default.
+2. **The STEP 1b owner clause is folded in.** The deployed text reads *"Raise any entry whose
+   Nudge after date has passed"* and lacks the clause added on 2026-08-10. Harmless so far,
+   because entries William does not own carry `Nudge after: none` rather than a date, so nothing
+   matches. It would bite the first time the file gains an owned entry with a date that should
+   not nudge.
+
+**Editing it takes a human.** Created via `http_api`, so `update_trigger` refuses agent edits, the
+same as the HubSpot Routine. Every change goes through the UI.
 
 ### Weekly HubSpot Follow-ups
 
