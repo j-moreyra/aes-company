@@ -1,6 +1,6 @@
 # Cloud Routines — inventory and live state
 
-Every scheduled Routine on William's claude.ai account, as of **2026-08-11**.
+Every scheduled Routine on William's claude.ai account. **Live state re-derived 2026-08-11 after William applied the UI changes.**
 
 **Why this file exists.** A cloud Routine leaves no trace in the repository. Nothing in the file
 tree tells you one exists, what it does, when it fires, or that its config has drifted from what
@@ -18,47 +18,34 @@ That call returns the live prompt, cron, `enabled` state, `mcp_connections`, `so
 
 | Routine | ID | Cron (UTC) | Local | Repo attached |
 |---|---|---|---|---|
-| Morning AES brief | `trig_01L9DC3tQmzsy9e6jhoNYqfZ` | `0 10 * * 1-5` | 06:00 ET, weekdays | `aes-company` |
+| Morning AES brief | `trig_01L9DC3tQmzsy9e6jhoNYqfZ` | set in UI | weekday morning | `aes-company` |
 | Weekly HubSpot Follow-ups | `trig_01K9Bsr6PfekZRNSaJmi1QRV` | `0 10 * * 0` | 06:00 ET Sundays | `email-style-guide` |
 | Daily AI Tools Registry Update | `trig_01W9L6gno6T718ELPY6w33Fs` | `0 13 * * *` | 09:00 ET daily | `ai-tools-registry` |
-| Morning brief *(superseded)* | `trig_01NiWkDRJesPrR7y2a1wyrSU` | `0 10 * * 1-5` | — | none |
 
-**All crons are UTC and do not follow daylight saving.** Every local time above shifts one hour
-earlier when clocks fall back on **1 November 2026**. Each Routine needs its hour incremented that
-week or it starts firing an hour early.
+**Schedules are not tracked in this file.** William manages them directly in the UI and asked on
+2026-08-11 that they stop being flagged here. Read the live cron with `list_triggers` if you
+genuinely need it; do not raise it as a finding.
 
 ---
 
 ## Open configuration problems
 
-Both were found by reading live state on 2026-08-11 and neither is visible from the prompt text.
+**None.** All items from the 2026-08-11 review are closed.
 
-### 1. Weekly HubSpot Follow-ups cannot post its summary
+### Resolved 2026-08-11
 
-Its connectors are **Apollo-io, Composio, HubSpot, Microsoft-365**. There is **no Slack**.
+- **Slack added to Weekly HubSpot Follow-ups.** Its Step 8 posts the run summary as a Slack DM and
+  the connector was missing, which would have made Sunday's run draft five follow-ups and then
+  fail silently at the last step.
+- **The superseded `Morning brief` Routine was deleted.**
+- **The morning brief prompt was updated** with all six fixes from the first real run: Resolved
+  last, no HubSpot deals section, the Kukla name roster, the short item style, the Kukla chains,
+  and reading `active-projects.md` so that work owed **to** William is visible.
+- **Both Routine schedules were set by William in the UI.**
 
-Step 8 of that Routine posts the run summary as a Slack DM to `william@advengsys.com`. Without
-the connector the run will draft all five follow-ups correctly and then fail at the last step,
-leaving five drafts in Outlook with nothing announcing they exist.
-
-**Fix:** add **Slack** to the Routine's connector list. **Apollo-io can be removed**, the prompt
-never uses it.
-
-### 2. Morning AES brief, pending prompt and cron paste
-
-Both are written and waiting to be applied by hand in the UI:
-
-- **Cron** to `0 10 * * 1-5`, which is 06:00 Eastern on weekdays. Deployed is `30 9 * * *`,
-  05:30 daily. William asked for the change on 2026-08-11.
-- **Prompt** to the current `references/routines/morning-brief.md`, which carries the six fixes
-  from his feedback on the first real run.
-
-Until pasted, the live Routine still runs 05:30 every day, still emails an artifact link that does
-not open on a phone, still shows an open HubSpot deals section, and can still invent a contact's
-first name.
-
-**HubSpot can be removed from this Routine's connectors** once the new prompt is in. The deals
-section is gone and nothing else uses it.
+Two harmless leftovers, noted rather than flagged: **Apollo-io** is attached to the HubSpot
+Routine and **HubSpot** to the morning brief, neither used by its prompt. Standing capability with
+no purpose, worth dropping whenever either Routine is next open.
 
 ---
 
@@ -111,12 +98,6 @@ goes through the UI.
 
 Belongs to `j-moreyra/ai-tools-registry`, unrelated to AES. Listed here only so a future audit
 does not mistake it for an AES Routine and count it toward this project's cadence.
-
-### Morning brief (superseded)
-
-The original, created through the MCP API rather than the routine form. It prompted for permission
-on every connector call, which a properly registered Routine never does. Replaced by **Morning AES
-brief** and disabled on 2026-08-11 rather than deleted. Harmless; delete when convenient.
 
 ---
 
