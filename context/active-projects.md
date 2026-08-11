@@ -36,20 +36,26 @@ indistinguishable from never having followed up.
 
 - **Re: Quotation 260844 — add DWC-7B** to lenzeder@ — **sent 2026-08-08**, confirmed. "One more
   thing, the client asked to add one more item to this quote: DWC-7B, Qty = 1, FN: 10769."
-- **Re: Kukla Feeder spare parts | GP Ft. Dodge** to heidi.hansen@ and matthew.arinez@gapac.com —
-  no longer in Drafts, and no matching sent item was found. Sent or discarded, unconfirmed.
-- **Re: Solicitud de cotización | Panel Rey** to jfloresa@gpromax.com — same, unconfirmed.
+- **Re: Kukla Feeder spare parts | GP Ft. Dodge** to heidi.hansen@ — **sent 2026-08-04**,
+  confirmed by William and located in the mailbox. It has attachments. My earlier "unconfirmed"
+  note was a search failure, not a missing email: I looked in Drafts and under `kukla.co.at` and
+  never searched for Heidi directly.
+- **Re: Solicitud de cotización | Panel Rey** to jfloresa@gpromax.com — left Drafts, no matching
+  sent item found. Still unconfirmed.
 
-The two unconfirmed ones are worth a look. The Ft. Dodge reply is the one Matthew Arinez has been
-waiting on since Jul 27, so it disappearing without a trace is the bad case.
+**The Ft. Dodge reply was a holding message, and its clock has now run out.** It reads:
+"Apologies for the delay. It's peak holiday season in Austria and our partners are OOO until next
+week. Attached is a preliminary analysis we did, however, I am waiting for…" Sent 4 August,
+"next week" is the week of 11 August. Kukla is back, so the real answer Heidi was promised is now
+due and nothing has gone out.
 
 The pre-2026 LinkedIn outreach templates also sit in Drafts. They are boilerplate, not pending work.
 
 ## Open items needing William
 
-**Re-derived 2026-08-10.** Two items were closed against real sent mail and moved to *Closed*
-below. The first two rows below could not be confirmed either way from the mailbox and are carried
-forward unverified, not re-checked.
+**Re-derived 2026-08-10, updated 2026-08-11.** Items closed against real sent mail were moved to
+*Closed* below. The Humer rejection and the GPROMAX load-cell pricing could not be confirmed
+either way from the mailbox and are carried forward unverified, not re-checked.
 
 | Item | Who | Since | Note |
 |---|---|---|---|
@@ -57,7 +63,8 @@ forward unverified, not re-checked.
 | GPROMAX / Panel Rey load cell pricing | Giuliana Garcia | Jul 31 | Quoted under the $1,050 charged in April. William decided Aug 2 to revert the price and verify inbound cost with Patrik — the draft to Patrik is unsent |
 | Cemex sourcing event MX ID 9919 | Cemex Coupa | Jul 31 | William forwarded it to the team Aug 1 asking whether to bid and suggesting a call to the contact. Window has since closed |
 | **Book the NG Savannah design review session** | Eric Li | Aug 6 | Referenced in two emails and never scheduled. William offered a call Aug 5; on Aug 6 said pre-bin volume should be confirmed "after we have that design review session". Nothing on the calendar, last meeting with Eric was Jun 18. **This is the gating item and it is William's to book.** |
-| Eric Li said he would come back "Friday or Monday" | Eric Li | Aug 5 | On the feeder drawing. Friday Aug 7 passed. Monday is Aug 10. Ball is in his court, William wrote last on Aug 6. Nudge Aug 11 if nothing lands |
+| Eric Li said he would come back "Friday or Monday" | Eric Li | Aug 5 | On the feeder drawing. Both dates have now passed. Ball is in his court, William wrote last on Aug 6. Nudge is due |
+| **The real answer owed to Heidi, GP Ft. Dodge** | Heidi Hansen | Aug 4 | The Aug 4 reply was a holding message: preliminary analysis attached, "our partners are OOO until next week… I am waiting for". That week is now. Kukla is back, so the answer is due and nothing has gone out |
 
 ## Closed since the last snapshot
 
@@ -72,9 +79,8 @@ forward unverified, not re-checked.
 - **Tell Gold Bond the delivery date** — **sent to Eric Li 2026-07-31**, two days before the sweep
   that recorded it as outstanding: "Payment for the deposit has been processed. These are the
   tentative dates Kukla provided: Ship date: 11/11/2026, Delivery date: 12/30/2026."
-  **One gap remains.** That message went to Eric. The original item named Shari Saxon-Black too,
-  and she is the one who sent the PO on Jul 24. Whether purchasing knows the date moved from the
-  11/30 they ordered against is not visible in the mailbox and was not checked.
+  **Fully closed 2026-08-11.** The open question was whether Shari Saxon-Black needed the dates as
+  well. William confirmed she does not, so Eric was the right and only recipient.
 - **SOBOCE invoice 330154** — paid. Confirmed by William 2026-08-01.
 - **Missing source documents** — both filed 2026-08-02: Kukla OC `940133` into
   `08. Panel Rey/…/07. PR - Load cells & sensors`, and Gold Bond PO `2500040906` into
@@ -92,7 +98,7 @@ Jul 30 — AES wires after client payment lands.
 **Ship 2026-11-11, delivery 2026-12-30.**
 Contacts: ericli@nationalgypsum.com, ShariS@NationalGypsum.com, jwmahnke@goldbondbuilding.com
 
-**⚠ Delivery date is 30 days later than the client ordered. Raised with Eric, not with purchasing.**
+**Delivery date is 30 days later than the client ordered. Raised, and closed.**
 Gold Bond PO 2500040906 states a need-by of **2026-11-30**; Kukla OC 940624 confirms
 **2026-12-30**. The NG OA template carries no delivery-date field, so the OA itself still states
 no date.
@@ -102,9 +108,9 @@ date. Open. Not yet raised with the client." That was wrong by the time it was w
 sent both dates to Eric Li on **2026-07-31**: "These are the tentative dates Kukla provided: Ship
 date: 11/11/2026, Delivery date: 12/30/2026."
 
-**What is genuinely still open:** that went to Eric. **Shari Saxon-Black**, who issued the PO on
-Jul 24, is not on it. If purchasing is still planning against 11/30, the thirty-day gap is
-unacknowledged on the side that matters commercially. Not checked.
+**Closed 2026-08-11.** The remaining question was whether **Shari Saxon-Black**, who issued the PO
+on Jul 24, needed the dates too. William confirmed she does not. Eric is the right recipient and
+the item is fully closed. Nothing further is owed to Gold Bond on the delivery date.
 
 **⚠ Kukla holds the wrong ship-to address.** OC 940624 reads `2 Branmpton Road`; the correct
 address on the client PO is `2 BRAMPTON RD`. The typo originated in AES's PO and propagated to
