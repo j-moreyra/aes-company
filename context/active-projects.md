@@ -65,6 +65,7 @@ either way from the mailbox and are carried forward unverified, not re-checked.
 | **Book the NG Savannah design review session** | Eric Li | Aug 6 | Referenced in two emails and never scheduled. William offered a call Aug 5; on Aug 6 said pre-bin volume should be confirmed "after we have that design review session". Nothing on the calendar, last meeting with Eric was Jun 18. **This is the gating item and it is William's to book.** |
 | Eric Li said he would come back "Friday or Monday" | Eric Li | Aug 5 | On the feeder drawing. Both dates have now passed. Ball is in his court, William wrote last on Aug 6. Nudge is due |
 | **The real answer owed to Heidi, GP Ft. Dodge** | Heidi Hansen | Aug 4 | The Aug 4 reply was a holding message: preliminary analysis attached, "our partners are OOO until next week… I am waiting for". That week is now. Kukla is back, so the answer is due and nothing has gone out |
+| **Trevo drawings, still not received** | Filipe Sá, Trevo Brasil | Jul 31 | `COTAÇÃO ALIMENTADOR TREVO`. William told Filipe on Jul 31 "ainda não recebemos os desenhos"; Filipe replied Aug 3. Trevo is reviewing the 3D model and WTW cannot supply the rest until it is approved, so **AES is blocked on the client**. Missed by the morning brief because the last message in the thread is Filipe's, not William's |
 
 ## Closed since the last snapshot
 

@@ -18,7 +18,7 @@ That call returns the live prompt, cron, `enabled` state, `mcp_connections`, `so
 
 | Routine | ID | Cron (UTC) | Local | Repo attached |
 |---|---|---|---|---|
-| Morning AES brief | `trig_01L9DC3tQmzsy9e6jhoNYqfZ` | `30 9 * * *` | 05:30 ET, **daily** | `aes-company` |
+| Morning AES brief | `trig_01L9DC3tQmzsy9e6jhoNYqfZ` | `0 10 * * 1-5` | 06:00 ET, weekdays | `aes-company` |
 | Weekly HubSpot Follow-ups | `trig_01K9Bsr6PfekZRNSaJmi1QRV` | `0 10 * * 0` | 06:00 ET Sundays | `email-style-guide` |
 | Daily AI Tools Registry Update | `trig_01W9L6gno6T718ELPY6w33Fs` | `0 13 * * *` | 09:00 ET daily | `ai-tools-registry` |
 | Morning brief *(superseded)* | `trig_01NiWkDRJesPrR7y2a1wyrSU` | `0 10 * * 1-5` | — | none |
@@ -44,16 +44,21 @@ leaving five drafts in Outlook with nothing announcing they exist.
 **Fix:** add **Slack** to the Routine's connector list. **Apollo-io can be removed**, the prompt
 never uses it.
 
-### 2. Morning AES brief fires more often and earlier than intended
+### 2. Morning AES brief, pending prompt and cron paste
 
-| | Intended | Deployed |
-|---|---|---|
-| Time | 06:00 Eastern | **05:30 Eastern** |
-| Days | Weekdays | **Every day, weekends included** |
+Both are written and waiting to be applied by hand in the UI:
 
-Weekdays at 06:00 Eastern is `0 10 * * 1-5`. Deployed is `30 9 * * *`.
+- **Cron** to `0 10 * * 1-5`, which is 06:00 Eastern on weekdays. Deployed is `30 9 * * *`,
+  05:30 daily. William asked for the change on 2026-08-11.
+- **Prompt** to the current `references/routines/morning-brief.md`, which carries the six fixes
+  from his feedback on the first real run.
 
-Not broken, just wider than asked for. Left as-is pending William's call.
+Until pasted, the live Routine still runs 05:30 every day, still emails an artifact link that does
+not open on a phone, still shows an open HubSpot deals section, and can still invent a contact's
+first name.
+
+**HubSpot can be removed from this Routine's connectors** once the new prompt is in. The deals
+section is gone and nothing else uses it.
 
 ---
 
