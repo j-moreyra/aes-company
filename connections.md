@@ -175,7 +175,14 @@ because `Mail.ReadWrite` is not admin-consented on the app registration (tenant
 `bdf7a321-8a7d-4f62-b598-243fbd126b30`). Fixing that needs a tenant admin. Until then, use
 **Composio** for any draft, reply, or send.
 
-Composio's Outlook connection has write scope and is verified working. Notes for using it:
+**`Mail.Send` is unconsented too, not just `Mail.ReadWrite`.** Confirmed 2026-08-10 by a test send
+through `outlook_send_mail`, which returned the same 403. So the Microsoft 365 connector cannot
+draft **and** cannot send. Getting a tenant admin to consent both scopes is still worth doing, but
+it is **not a blocker for anything**, because Composio already sends. Do not report Outlook mail as
+un-writable on the strength of an M365 403 alone; check Composio first.
+
+Composio's Outlook connection has write scope and is verified working. Connection state confirmed
+2026-08-10: `outlook` toolkit **ACTIVE**, `OUTLOOK_SEND_EMAIL` available. Notes for using it:
 
 - Two accounts are connected and `account_selection` is required, so always pass one explicitly.
   Use `outlook_carper-jat` (alias `advengsys-william`, William@advengsys.com). The other is
@@ -195,8 +202,18 @@ Composio's Outlook connection has write scope and is verified working. Notes for
 AES person sends matches. A test search returned 23 false positives out of 25 hits. Filter on
 the sender domain `@kukla.co.at` instead.
 
-Known Kukla contacts: `lenzeder@` (Patrik), `zopf@` (Jakob), `humer@`, `gruber@` (Karin),
-`fuertbauer@` (Petra), `habring@` (Norbert) — all `@kukla.co.at`.
+Known Kukla contacts, all `@kukla.co.at`. **Use these names; never infer a first name from an
+address.** A morning brief run on 2026-08-11 rendered `zopf@` as "Sabrina Zopf", which is wrong,
+and a wrong first name on a real contact is worse than no first name at all. If an address is not
+on this list, use the surname alone or the address itself.
+
+| Address | Name | Address | Name |
+|---|---|---|---|
+| `lenzeder@` | Patrik Lenzeder | `zopf@` | Jakob Zopf |
+| `humer@` | Nico Humer | `gruber@` | Karin Gruber |
+| `fuertbauer@` | Petra Fuertbauer | `habring@` | Norbert Habring |
+| `avdibegovic@` | Armin Avdibegovic | `m.leitner@` | Michael Leitner |
+| `meingast@` | surname only, first name unconfirmed | | |
 
 **HubSpot data-quality gap.** As of 2026-08-01 there are 151 deals, but the five most recent
 all sit in stage `appointmentscheduled` with no `amount` and no `closedate` populated. The CRM

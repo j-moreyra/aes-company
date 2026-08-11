@@ -508,3 +508,34 @@ the signal to pick one home for skills rather than keep reconciling.
 **Owner:** William.
 
 ---
+## 2026-08-11 — Routines are documented in the repo, because nothing else can see them
+
+**Decision:** keep a live inventory of every cloud Routine at `references/routines/README.md`,
+plus a per-Routine prompt mirror alongside it.
+
+**Why:** a Routine leaves no trace in the file tree. Nothing tells a reader one exists, when it
+fires, what connectors it holds, or that its configuration has drifted from what its own prompt
+assumes. Both problems open on 2026-08-11 were invisible from the prompt text and only surfaced by
+reading live state with `list_triggers`:
+
+- **Weekly HubSpot Follow-ups has no Slack connector**, and its Step 8 posts the run summary as a
+  Slack DM. It will draft five follow-ups correctly and then fail silently at the last step.
+- **Morning AES brief runs 05:30 daily**, not 06:00 weekdays as intended.
+
+**The rule that generalizes:** a Routine's connector list is standing capability, not a statement
+of intent. An included connector can be used for writes without asking, whatever the prompt says.
+Audit the list, not the wording.
+
+**Also settled today.** Shari Saxon-Black does not need the NG Savannah delivery dates; Eric Li was
+the right and only recipient. And the GP Ft. Dodge reply to Heidi was sent 4 August but was a
+**holding message** promising more once Kukla returned from the Austrian shutdown. That week is
+now, so the real answer is due and is recorded as an open item.
+
+**A caution worth carrying.** I twice reported something missing that was not: the Brazil transcript
+folder, and this Ft. Dodge email. Both were search failures, wrong query rather than absent data.
+Before writing "not found" into a context file, vary the query. Search content, not filenames.
+Search the person, not just the domain.
+
+**Owner:** William.
+
+---
