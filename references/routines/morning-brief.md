@@ -28,7 +28,7 @@ separate OAuth grant with write scope. Verified 2026-08-10.
 in by hand at [claude.ai/code/routines](https://claude.ai/code/routines); the Routine was created
 via `http_api`, so `update_trigger` refuses agent edits to it.
 
-Five changes, again from reading a delivered brief:
+Seven changes, again from reading a delivered brief:
 
 1. **The headline is gone.** The skill opens with a serif editorial line summarising the day. The
    brief now opens on the day-date line and goes straight into the first section.
@@ -42,14 +42,29 @@ Five changes, again from reading a delivered brief:
    check on the titles before sending.
 4. **No item appears in two sections.** Items were showing up under Needs attention and again
    further down. The prompt now sets an explicit precedence — Needs attention, then Kukla, then
-   clients, then flagged — and each item lands in the first section it qualifies for and nowhere
+   clients, then upcoming — and each item lands in the first section it qualifies for and nowhere
    else. Resolved is exclusive of all four.
 5. **Resolved has a five-day window.** Anything older simply stops appearing. It does not move to
    another section.
+6. **The flagged mail section is gone.** A flag that is a live wait on Kukla or a client now goes
+   in that section, where the rest of that thread already is. A flag that is a reminder for later
+   goes in Upcoming. Flags are still read as a source on every run, and the prompt says so
+   explicitly, because with no section of their own a flag that lands nowhere is a flag William
+   stops seeing.
+7. **A new Upcoming section**, immediately before Resolved. It holds what has not come due yet, so
+   nothing in it should read as a chase, and items carry a due date or days-until rather than an
+   age. Four things feed it: quote follow-ups, watchlist nudge dates, reminder flags, and dated
+   items in `active-projects.md`.
 
 Points 3 and 4 are both the same underlying failure: the sections were being built independently,
 each scanning the whole mailbox, with nothing reconciling the results. Merging by project and
 fixing a precedence order are the two halves of that fix.
+
+**The 14-day quote rule is the useful part of point 7.** A quote with no reply is the single most
+common thing in the mailbox and it was previously either invisible or, once it aged, a chase.
+Under 14 days it now sits in Upcoming carrying the date the follow-up is due; on that day it
+becomes a Needs attention item. That is the one threshold in the prompt that came from William
+directly rather than being inferred.
 
 ---
 
@@ -208,8 +223,29 @@ section; do not add one.
      open item whether or not the last email in the thread is mine. Check
      `active-projects.md` for these, not just the mailbox.
 
-  5. FLAGGED MAIL. My Outlook flags are my task list. There is no separate
-     task database.
+  5. UPCOMING. Things that are NOT open yet but are coming due. This is the
+     section for work I have not been dropped by, so nothing here should
+     read as a chase. Give each one the date it becomes due, or the number
+     of days until it does, not an age in days. Include:
+
+       - QUOTE FOLLOW-UPS. A quote I sent that has had no reply and is less
+         than 14 days old. A quote is not stale before then and I do not
+         want it chased. Show it here with the date the follow-up is due,
+         which is 14 days after I sent it. On that day it stops being
+         Upcoming and becomes a Needs attention item.
+       - WATCHLIST ENTRIES I OWN whose "Nudge after" date is still in the
+         future but falls within the next 7 days. Once the date has passed
+         it belongs in Needs attention instead, per STEP 1b.
+       - FLAGGED MAIL THAT IS NOT A LIVE WAIT. A flag I set as a reminder
+         for later, rather than something I am waiting on somebody for.
+       - ANYTHING IN `active-projects.md` with a due date in the next 7
+         days that has not come due yet.
+
+     Look at every Outlook flag when building this. There is no flagged
+     mail section any more and no separate task database, so a flag that
+     never lands in one of the sections is a flag I stop seeing. A flag
+     that IS a live wait on Kukla or on a client goes in that section, not
+     here. A flag that is something for me to do later goes here.
 
   6. RESOLVED. Last, always. Nothing after it. Only include something that
      was resolved WITHIN THE LAST FIVE DAYS. Anything older drops off the
@@ -226,15 +262,17 @@ read back the item titles and check no project appears twice.
            DWC-7B and confirm the shipping date. Neither answered."
     BAD:  a "DWC-7B addition" item and a separate "shipping date" item.
 
-NO ITEM APPEARS TWICE. Each open item belongs to exactly ONE section in
-the whole brief. When something qualifies for more than one, use the first
+NO ITEM APPEARS TWICE. Each item belongs to exactly ONE section in the
+whole brief. When something qualifies for more than one, use the first
 section it qualifies for in this order, and leave it out of the others:
 
-    Needs attention  >  Waiting on Kukla  >  Waiting on clients  >  Flagged
+    Needs attention  >  Waiting on Kukla  >  Waiting on clients  >  Upcoming
 
 An item in Needs attention is not repeated under Waiting on Kukla further
-down, even though it is also a Kukla wait. Resolved is exclusive of all of
-them: if it is resolved it is not open, so it appears only in Resolved.
+down, even though it is also a Kukla wait. Upcoming is last because
+anything already open belongs in one of the three sections above it;
+Upcoming holds only what has not come due. Resolved is exclusive of all
+four: if it is resolved it is not open, so it appears only in Resolved.
 
 CHAINS. Most client replies I owe are blocked on a Kukla answer. When a
 client item cannot move until Kukla responds, do NOT list it as a client
@@ -250,7 +288,9 @@ consequence. Only list a client item on its own when nothing upstream blocks
 it.
 
 HOW TO WRITE EACH ITEM. Short and factual. A bold title of ten words or
-fewer with the age appended, then ONE sentence:
+fewer with the age appended, then ONE sentence. In Upcoming the title
+carries the due date or the days until it, never an age, because nothing
+there is late:
 
     what William did or needs, then who it is pending on.
 

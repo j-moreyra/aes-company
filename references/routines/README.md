@@ -69,12 +69,13 @@ repo is attached and the reason the `morning` skill was committed to `.claude/sk
 can only use skills committed to the repository it clones.
 
 **The mirror is ahead of the deployed prompt again.** A third revision was written on 2026-08-11
-and is waiting to be pasted into the Routine by hand. It carries five changes from a second round
+and is waiting to be pasted into the Routine by hand. It carries seven changes from a second round
 of feedback: the headline is dropped, the three time-block acts are replaced by the real calendar
 entries for today and the next two days, multiple items on one project merge into a single entry,
-no item may appear in two sections, and Resolved keeps only the last five days. Until it is
-pasted, the live Routine keeps producing the headline and the acts, and will keep duplicating
-items across sections.
+no item may appear in two sections, Resolved keeps only the last five days, the flagged mail
+section is dissolved into the sections its items belong to, and a new Upcoming section before
+Resolved holds what has not come due yet. Until it is pasted, the live Routine keeps producing the
+headline and the acts, and will keep duplicating items across sections.
 
 **Editing it takes a human.** Created via `http_api`, so `update_trigger` refuses agent edits, the
 same as the HubSpot Routine. Every change goes through the UI.
