@@ -539,3 +539,31 @@ Search the person, not just the domain.
 **Owner:** William.
 
 ---
+
+## 2026-10-04 — Website copy rules and content scope
+
+**Decision:** Fixed rules for anything published on advengsys.com, set by Joaquin while
+reviewing the first resource page:
+
+1. **AES does not install.** Never use "install/installation" for AES's role. Say "plant
+   layout", "coordination with your site team". About, Services and the RFQ field were corrected.
+2. **Delivery is DAP, to site.** Don't offer client-arranged pickup on the site.
+3. **AES sets the adjustment range** from the customer's capacity range. Don't ask for it.
+4. **Don't publish** the Kukla material-testing claim or the commissioning-cable anecdote.
+5. **No general explainers.** Buyers are experienced plant engineers; "belt scale vs. weigh
+   feeder" or "Profibus vs. Profinet" content adds nothing. A resource earns its place only if
+   it is AES-specific (how AES works, what AES needs from the client). The two planned explainer
+   pages were dropped.
+6. **Never source site content from `1. Kukla/01. Projects/`** (client POs, pricing, contacts).
+   Kukla job numbers count too: the OP-G panel photo was skipped because the screen shows FN 11616.
+
+**Why:** the site was overclaiming scope (installation) and promising content that didn't
+exist. Rules 1–4 match how AES actually sells; 5 matches who buys.
+
+**Also decided:** the site repo stays in the SharePoint library. Builds run from a copy
+outside OneDrive so `node_modules` (~500 MB) never syncs. Work goes directly on `main`; no
+force-pushes.
+
+**Owner:** Joaquin.
+
+---

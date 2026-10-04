@@ -14,6 +14,11 @@
 3. **Redesign the AES website and take ownership away from the consultants who built it.**
    Partly blocked by missing testimonials and case studies. Those are content, not design —
    collect them in parallel. Working files are in the synced library under `AES Website/`.
+   **Status 2026-10-04:** ownership is in-house. The site is a custom Next.js build Joaquin and
+   Claude now maintain directly (`8. AES Website/aes-site`, repo `j-moreyra/aes-site`, live at
+   https://aes-advengsys.netlify.app). A design & content pass shipped that day. What remains is
+   content AES has to supply (testimonials, case studies, confirmed spec figures) plus attaching
+   `advengsys.com`. Full state: `aes-site/HANDOFF.md`.
 
 4. **Centralize all files and folders so Claude can run day-to-day operations.**
    Effectively resolved. OneDrive with "always keep on this device" means the AIOS reads files

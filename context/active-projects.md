@@ -232,6 +232,28 @@ with Patrik — that verification email is still in Drafts.
 Separately, Panel Rey order 330.07132026 covers two level probes; William decided Jul 31 to
 keep it separate from this one.
 
+## AES website — priority #3
+
+Live at https://aes-advengsys.netlify.app (custom domain `advengsys.com` not attached yet).
+Repo `j-moreyra/aes-site`, working copy in `8. AES Website/aes-site`. Source of truth for its
+state is `aes-site/HANDOFF.md`; this is the business-side summary.
+
+**Shipped 2026-10-04 (Joaquin + Claude):** unified visual design, copy cleanup, a real photo
+for Electronics & Controls (from `1. Kukla/04. Product Pictures/DWC-7`), and the first resource
+page, "Specs needed for solution design", built from Kukla's intake questionnaires. It lists the
+material, capacity, layout and controls data AES needs, and links into the quote form.
+
+**Corrected on the site:** it implied AES installs equipment (About page, a service
+description, an RFQ field label). All three fixed in EN/ES/PT. See the copy rules in the
+decisions log.
+
+**Open:**
+- Joaquin to review the ES/PT text of the resource page.
+- Form email notifications still not set up in Netlify. Leads are stored, not emailed.
+- Spec figures on the product pages (incl. ±0.125%) still unconfirmed by AES.
+- Testimonials / case studies still missing. `1. Kukla/Reference Lists/` (25 install lists) could
+  support a "where Kukla is installed" section, but it names clients, so William must OK it.
+
 ## Future opportunity
 
 **John Mahnke, Gold Bond Building Products** — asked Jul 20 for high budgetary numbers for
