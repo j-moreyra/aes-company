@@ -7,7 +7,7 @@ freshness.
 | # | Domain | Tool | Mechanism | Auth | Last checked |
 |---|---|---|---|---|---|
 | 1 | Revenue / Financials | CFO/CEO-owned accounting system (unnamed) | out of scope | — | — |
-| 2 | Customer interactions | Outlook — **read** via claude.ai Microsoft 365 connector, **write** via Composio | `mcp` | OAuth | 2026-08-04 |
+| 2 | Customer interactions | Outlook — **read** via claude.ai Microsoft 365 connector, **write** via Composio | `mcp` | OAuth | 2026-08-10 |
 | 3 | Calendar | Outlook Calendar, via claude.ai Microsoft 365 connector | `mcp` | OAuth | 2026-08-01 |
 | 4 | Communication | Microsoft Teams, via claude.ai Microsoft 365 connector | `mcp` | OAuth | 2026-08-01 |
 | 5 | Project / task tracking | HubSpot, via claude.ai HubSpot connector | `mcp` | OAuth | 2026-08-01 |
@@ -182,25 +182,16 @@ it is **not a blocker for anything**, because Composio already sends. Do not rep
 un-writable on the strength of an M365 403 alone; check Composio first.
 
 Composio's Outlook connection has write scope and is verified working. Connection state confirmed
-2026-08-10: `outlook` toolkit **ACTIVE**, `OUTLOOK_SEND_EMAIL` available. Notes for using it:
+2026-08-10: `outlook` toolkit **ACTIVE**, `OUTLOOK_SEND_EMAIL` available. Always pass account
+`outlook_carper-jat` explicitly — a second, non-AES mailbox hangs off the same connection.
 
-- Two accounts are connected and `account_selection` is required, so always pass one explicitly.
-  Use `outlook_carper-jat` (alias `advengsys-william`, William@advengsys.com). The other is
-  `outlook_clunk-quirl` (Joaquin@digitaldawnconsulting.com) and is not the AES mailbox.
-- Reply drafts take two steps. `OUTLOOK_CREATE_DRAFT_REPLY` first, which builds the quoted
-  thread and reply headers correctly, then `OUTLOOK_UPDATE_EMAIL` to splice the reply body in
-  after the opening `<body>` tag. Writing the body wholesale destroys the quoted original.
-- Attachments: `OUTLOOK_ADD_MAIL_ATTACHMENT` under 3 MB (accepts a local file path directly),
-  `OUTLOOK_CREATE_ATTACHMENT_UPLOAD_SESSION` with chunked PUTs above it.
-- Draft ids appear to rotate once the draft is opened and edited in the Outlook UI. An
-  attachment call returned `ErrorItemNotFound` on an id that had fetched the message
-  successfully a minute earlier. Re-resolve the id before operating on a draft William has
-  touched, and prefer attaching files while building the draft rather than afterward.
+**Full detail is now in `references/outlook-api.md`** — accounts, the two-step reply-draft
+procedure, attachment thresholds, draft-id rotation, the Kukla search trap and contact list.
+Read that before writing any mail-handling skill.
 
-**Outlook search gotcha.** Do NOT text-search for "Kukla". The AES email signature reads
-"Exclusive representatives of Kukla Waagenfabrik GmbH for the Americas", so every message any
-AES person sends matches. A test search returned 23 false positives out of 25 hits. Filter on
-the sender domain `@kukla.co.at` instead.
+**HubSpot detail is in `references/hubspot-api.md`.** The headline: AES renamed the pipeline
+stages but kept HubSpot's internal values, so `contractsent` means "Development" and
+`appointmentscheduled` means "Discovery" — reasoning from the internal name gets it wrong.
 
 Known Kukla contacts, all `@kukla.co.at`. **Use these names; never infer a first name from an
 address.** A morning brief run on 2026-08-11 rendered `zopf@` as "Sabrina Zopf", which is wrong,
@@ -215,10 +206,28 @@ on this list, use the surname alone or the address itself.
 | `avdibegovic@` | Armin Avdibegovic | `m.leitner@` | Michael Leitner |
 | `meingast@` | surname only, first name unconfirmed | | |
 
-**HubSpot data-quality gap.** As of 2026-08-01 there are 151 deals, but the five most recent
-all sit in stage `appointmentscheduled` with no `amount` and no `closedate` populated. The CRM
-currently cannot answer pipeline value or conversion rate. Worth fixing before the lead-gen
-workflow depends on those fields to prove it works.
+**HubSpot data-quality gap — remeasured 2026-08-09.** 150 deals. 117 (78%) sit in Discovery
+and only four have ever reached a terminal stage (2 Delivered, 2 Closed Lost) since January
+2024, though AES has demonstrably delivered more than two projects in that window. `amount` is
+populated on 11 of 150 (7%); `closedate` on 131 (87%). So deals are created and then not
+stage-advanced. Neither pipeline value nor conversion rate is computable. An earlier version of
+this note said `closedate` was also empty — that was wrong.
+
+A second pipeline, **Lead Gen** (`76343440`), exists and is completely empty, with HubSpot's
+default stage names untouched. It is the obvious destination for priority #1 and is still a
+blank slate.
+
+**The lead-gen workflow needs a success metric the CRM can actually answer.** Today it cannot
+answer "did outreach produce revenue". Decide the metric before building.
+
+**Apollo.io needs re-authorization.** As of 2026-08-09 its token is expired — a live call
+returned `requires re-authorization (token expired)`, not a stale session banner. Until it is
+reconnected in claude.ai connector settings, Apollo is unreachable and no reference guide can
+be written for it. This is priority-#1 infrastructure, so it is the first thing to fix.
+
+**HubSpot SQL is scope-blocked.** `query_crm_data` returns `insufficient_scope` — the connector
+needs re-authorizing with the **"Query portal data"** option checked. Until then all counts go
+through `search_crm_objects` one filter at a time. Details in `references/hubspot-api.md`.
 
 **Also connected, worth knowing about.** The claude.ai account carries other connectors,
 including **Apollo.io** — a B2B prospecting database directly relevant to the automated lead

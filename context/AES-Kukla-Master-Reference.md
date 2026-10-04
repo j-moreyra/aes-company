@@ -4,8 +4,12 @@
 Covers both companies, the people, the product line, the customer base, the sales
 process, and the systems of record.*
 
-**Last updated:** July 12, 2026
+**Last updated:** August 15, 2026
 **Maintained by:** Joaquin Moreyra
+**Changelog:** 2026-08-15 — merged in the SharePoint library taxonomy (§10), the customers
+that exist as project folders but not in the HubSpot list (§7), an expanded Kukla contact
+roster (§4), current-generation electronics (§5), CS revision conventions (§9), and a new
+tooling & automation section (§11); 2026-08-15b — full company-code table (§10).
 **How to use:** Drop this in the project folder as standing context. Anything marked
 **⚑ VERIFY** is my best read and should be confirmed by Joaquin or Bill.
 
@@ -64,7 +68,7 @@ from requirement gathering through start-up.
 | | |
 |---|---|
 | **Legal name** | KUKLA Waagenfabrik GmbH & Co KG ("KUKLA Weighing Technology") |
-| **Founded** | **1933**, by Leopold Kukla ⚑ VERIFY — Kukla's own site says 1933; some directories say 1928, and an older AES marketing draft said 1923. Use 1933. |
+| **Founded** | **1933**, by Leopold Kukla ⚑ VERIFY — Kukla's own site says 1933; some directories say 1928, and an older AES marketing draft said 1923. Use 1933. **A fourth figure is now live in front of customers:** the Spanish client proposal `AES-640.46361` states **"fundada en 1935"**. Fix the quote templates. |
 | **HQ** | Stefan-Fadinger-Str. 1–11, A-4840 Vöcklabruck, Upper Austria |
 | **Phone** | +43 7672 26 666-0 |
 | **Email / web** | office@kukla.co.at · kukla.co.at |
@@ -99,7 +103,9 @@ from requirement gathering through start-up.
 | Person | Role | Contact | Notes |
 |---|---|---|---|
 | **Joaquin Moreyra** | Managing Director, AES | — | Also on Lennar's HR Process Excellence team and building Digital Dawn Consulting |
-| **William "Bill" Moreyra** | Senior AES principal; the named contact on quotes and client outreach | william@advengsys.com | Uses Legacy Outlook for Mac (Exchange). Owner of the HubSpot portal. |
+| **William "Bill" Moreyra** | Senior AES principal; the named contact on quotes and client outreach | william@advengsys.com | Uses Legacy Outlook for Mac (Exchange). Owner of the HubSpot portal. Signs quotes "Director General \| Desarrollo de Negocios y Tecnología". |
+| **Lisa Moreyra** | Operations / admin; CC'd on most Kukla inquiries | lisa@advengsys.com | |
+| — | Shared mailbox | AES@advengsys.com | |
 
 ⚑ **VERIFY:** Titles between Joaquin and Bill — a past record described Bill as Managing
 Director, while the profile on file lists Joaquin. Fix this line once and it's settled.
@@ -107,9 +113,17 @@ Director, while the profile on file lists Joaquin. Fix this line once and it's s
 ### Kukla (Austria)
 | Person | Role | Contact |
 |---|---|---|
-| **Michael Leitner** | Kukla team; family name matches the ownership family | m.leitner@kukla.co.at |
-| **Norbert** | Kukla team | — |
-| **Nico Humer** | Mechanical engineering contact (NG Savannah fiberglass feeder) | — |
+| **Michael Leitner** | Sales; also HR. Primary quoting contact. Family name matches the ownership family | m.leitner@kukla.co.at |
+| **Armin Avdibegovic** | Sales / technical — sizing and application questions | avdibegovic@kukla.co.at |
+| **Andreas Leitner** | Sales management; chases quote status | a.leitner@kukla.co.at |
+| **Nico Humer** | Mechanical engineering — drawings, 3D step files, project plans | humer@kukla.co.at |
+| **Roman Wilfinger** | Technical sales (Technischer Vertrieb) | wilfinger@kukla.co.at |
+| **Norbert Habring** | Field service / commissioning (did the 2025 Volcán commissioning) | habring@kukla.co.at |
+| **Petra Fürtbauer** | Dispatch & service — shipping details, invoicing | fuertbauer@kukla.co.at |
+| **Lenzeder** | Quotations (spares / revised offers) | lenzeder@kukla.co.at |
+| **Meingast** | Production / drawing approvals | meingast@kukla.co.at |
+| **Haslinger** | Dispatch | haslinger@kukla.co.at |
+| **Zopf** | Quotations (spares) | zopf@kukla.co.at |
 
 > **Communication rule for the Austrian team (Norbert, Michael Leitner):**
 > always write in **simple English with short sentences**.
@@ -152,7 +166,10 @@ Everything below is manufactured by Kukla and sold by AES in the Americas.
 - **Rotary vane feeders** — incl. forced-broaching versions; dose stucco gypsum, raw meal, fly ash
 - **Flat gate valves, needle gate valves, shell gate valves** — hand wheel, electric, pneumatic, or hydraulic actuation
 - **Double flap valves** — process separation against pressure, steam, temperature
-- **Weighing & dosing electronics** — **DWC-7 / DWC-7C** controller, **OP-G** operator panel
+- **Weighing & dosing electronics** — **DWC-7 / DWC-7C** controller, **OP-G** operator panel.
+  **Current generation on new quotes is the DWC-8 controller with the OP-K panel** (4.3" touchscreen,
+  IP65 front, parameterised over VNC/Ethernet, CE/UL/EAC/UKCA/HazLoc/ATEX Zone 22). DWC-7 units
+  still appear in upgrade projects (e.g. `HOL - DWC-7 Upgrade`, `SOB - DWC6 spare`).
 
 ### Model nomenclature seen in real quotes
 - `E-K-DBW-H-400` — Small Weigh Feeder, closed design (the "400" is the trailing model size)
@@ -160,7 +177,14 @@ Everything below is manufactured by Kukla and sold by AES in the Americas.
 - `ASG-800` — Discharging Device
 - `DWC-7C` — dosing/weighing electronics; `OP-G` — operator panel
 - `X2X-Link` cable — Kukla's screened special cable (quoted per metre, e.g. 50 m)
-- Fieldbus options: **Profinet IO**, Ethernet/IP
+- `EBW-P-540` — built-in scale for an **apron / pan conveyor** (the 540 is the pan width in mm)
+- `EBW-M-C2-650` — **multiple-roller belt scale**
+- `EBW-P-M` — built-in scale for apron conveyors (datasheet designation)
+- `E-DBW-A-I-800`, `ZS-…` — weigh feeder / rotary valve pairings seen on Volcán kettle feeders
+- `DWC-8` — current dosing/weighing electronics; `OP-K` — current operator panel
+- Fieldbus options: **Profibus DP**, **Profinet IO**, Ethernet/IP, Modbus TCP, DeviceNet, OPC-UA, Aprol.
+  Kukla supplies `.gsd` / `.gsdml` files. **They do not provide PCS7/CEMAT faceplates** — the customer
+  programs those themselves (confirmed by Kukla, Feb 2026).
 
 ### Equipment types that map to AES quote templates
 `Fiberglass feeder` · `LIW feeder` · `Apron weigh feeder (Apron WF)` · `Stucco feeder` · `Clinker scale`
@@ -216,6 +240,28 @@ Calidra · Quikrete
 **Channel / OEM partners**
 Gyptech (gypsum-plant OEM — note: it's typically the *end client*, e.g. Durlock, who must
 request Kukla equipment; AES has successfully run that scope directly, independent of Gyptech)
+
+### Also on file as SharePoint project folders
+
+These have live or historical project folders but are **not all** in the HubSpot follow-up
+list above — check both before assuming a customer is new.
+
+**Cement** — SOBOCE (Bolivia) · Cementos Sur / Cemento Sur (Puno, Peru) · COBOCE (Bolivia) ·
+Cementos Yura (Peru) · Tehachapi (UNACEM, CA) · Ash Grove Cement · Grupo Cbb (Antofagasta &
+Teno, Chile) · Supremo Cimentos · Empresa/Cia brands under the Brazil group
+
+**Gypsum** — Saint-Gobain (CertainTeed · **Volcán**, Santiago CHI · Plaka MX) ·
+ETEX (Durlock AR · Gyplac CO · Romeral CL · Brazil/Petrolina · Eternit PE) · PABCO (Las Vegas NV) ·
+TOPTEC · Trevo
+
+**Mining & raw materials** — Atlas Sand (Austin TX) · Southern Peru Copper (Tacna) ·
+Reflex SA de CV · Zemer International · Cidelco Minerals
+
+**Third-party spares vendors** — Refacciones Universales · Resisa · EQUIPSA ·
+Access Industrial Technology (AIT) · Materials Hardware · RayTech Ingeniería
+
+> **Volcán and SOBOCE are among the most active accounts in the library** yet neither appears
+> in the §7 segment lists above. ⚑ VERIFY the HubSpot follow-up list isn't missing them.
 
 ### Full contact roster (from the HubSpot task export)
 
@@ -570,6 +616,19 @@ cable ~180, packaging ~210, freight ~220, start-up ~230), plus delivery time and
 4. **Naming rules — apply in BOTH tables** (cost table ~rows 7–15 and final quote table ~rows 22–30):
    - **Weigh feeder** → append the trailing model number: `WEIGH FEEDER, Type E-K-DBW-H-400`
    - **Shipping** → append the destination: `Shipping estimate: DAP - Texas`
+5. **Final-quote-table mechanics** (the client-facing block, ~rows 22–31):
+   - Client unit prices are `MROUND(<marked-up price>, 5)` — rounded to the nearest **$5**.
+   - Scale lines commonly carry a **+$1,000 travel adder** folded into the unit price, with the
+     rationale noted in the columns to the right.
+   - The scenario columns are driven by **commission divisors** in row 5: `L5 = 0.7`,
+     `O5 = 0.75`, `R5 = 0.8`. Sale price = USD cost ÷ divisor. `H5` holds the **EUR→USD factor**
+     (1.23 as of Aug 2026).
+   - **Always recalculate before reading** (`soffice --headless --convert-to xlsx`) — openpyxl
+     returns formulas, not values.
+6. **Revisions use letters.** `-a` is the first issue, then `-b`, `-c`, `-d` (e.g.
+   `AES-180.10693-d`). A revision is a **new tab in the same CS workbook**, named
+   `<code>.<deal#>-<rev>` — do not create a second workbook — plus a new `.docx` whose
+   cover-page quote number matches its filename. Keep the prior tab intact so the two can be diffed.
 
 ### Step 3 — The client quote (Word proposal)
 *(Automated by the `aes-quote-generator` skill.)*
@@ -590,7 +649,10 @@ cable ~180, packaging ~210, freight ~220, start-up ~230), plus delivery time and
 
 ### Commercial terms commonly used
 - **Incoterms:** DAP <city, state> (most common) · EXW · FOB Dock, Holland MI (Ensign)
-- **Payment:** 40% with PO / 60% NET 30
+- **Payment:** 40% with PO / 60% NET 30 (US/Ensign deals) · **30% with order / 70% before
+  dispatch** is Kukla's own standard and is mirrored on most LatAm quotes — check the deal
+- **Validity:** Kukla quotes 90 days; the AES Spanish template quotes 60 days
+- **Warranty:** Kukla 24 months from delivery, expendables excluded
 - **Lead time:** typically 16–18 weeks (Kukla) · 7–8 weeks after approval drawing (Ensign)
 - **Ensign reseller discount:** 15% below list
 
@@ -606,15 +668,242 @@ cable ~180, packaging ~210, freight ~220, start-up ~230), plus delivery time and
 | **`aes-quotes` folder** | `Company Ref Table.xlsx` (company → AES ID) · `Quote Templates/` (CS_*.xlsx and `<Equipment> <lang>.docx`) · `Outputs/<project name>/` |
 | **Outlook / Exchange** | Client email. Bill runs **Legacy Outlook for Mac** — note the known Microsoft bug in **v16.110** that strips quoted HTML reply bodies; the fix is rolling back to **v16.109.3**. |
 
+### SharePoint library layout
+
+Site: `advengsys.sharepoint.com/sites/AdvancedEngineeringSystems` · library root
+`Shared Documents/General/`.
+
+```
+General/
+├── 1. Kukla/
+│   ├── 01. Projects/          ← all deals (taxonomy below)
+│   ├── 03. Quote Templates/   ← client-quote .docx by equipment + language
+│   ├── 06. Data Sheets/  12. Application Notes/  16. Process Maps/
+│   ├── 13. Rates & Commercial Terms/   ← day rates, commercial boilerplate
+│   ├── 10. ROI & Business Case Tools/  11. Interactive Viewers & Demos/
+│   ├── 04/05/07/08/09  (pictures, brochures, logos, marketing, MFG diagrams)
+│   ├── 14. Third-Party Equipment/  15. Material Testing/
+│   └── Instructions Guides & Manuals/  Reference Lists/  Sample Drawings/  Recordings/  Sales/
+├── 2. Kukla Videos/  3. Kukla Images/  4. Kukla Presentations/
+├── 5. MultiExport/  6. Conferences & Events/
+├── Qubiqa/            ← separate principal, own project tree
+├── Sales & Marketing/ ← incl. Lead Lists/Cement Plants List - Americas.xlsx
+└── AES Website/  AES Legal/  NDAs/  Lisa's Folder/
+```
+
+**Project path:** `1. Kukla/01. Projects/<segment>/<NN. Customer>/[<N. Plant>/]<N. CODE - Project>/`
+Segments: `01. Gypsum` · `02. Cement` · `03. Mining & Raw Materials` · `04. Third-party Vendors`.
+
+Depth is **not uniform** — multi-plant customers insert a plant level
+(`05. National Gypsum/3. Rotan TX/…`), single-site or spares-heavy ones go straight to project
+folders (`01. SOBOCE/5. SOB - WF Spares/`). Follow whatever the customer folder already does.
+
+Project folders carry a short **customer code prefix**: `CSUR` Cementos Sur · `VOL` Volcán ·
+`SOB` SOBOCE · `UNA` UNACEM · `NG` National Gypsum · `GP` Georgia-Pacific · `PAB` PABCO ·
+`PET` Petrolina · `TREV` Trevo · `CAL` CalPortland · `TEH` Tehachapi · `COB` COBOCE ·
+`HOL` Holcim · `REF` Reflex · `ZEM` Zemer · `CID` Cidelco · `RAY` RayTech · `RES` Resisa ·
+`EQI` EQUIPSA · `AIT` · `MAT`/`VEND` materials hardware.
+
+> **Rule: a project folder is self-contained.** The source Kukla quotation PDF plus everything
+> derived from it lives together, so a deal can be audited later without digging through email.
+> File the amendment you actually quoted from (`Quotation260162-01.pdf`), not just the original.
+
 ### Reference number formats
 - **AES quote no.** (Airtable): `USA-24.232/A29Mr` — country-year.sequence/code
 - **CS file:** `CS_260.32593.xlsx` — `CS_<AES company ID>.<HubSpot deal # last 5>`
 - **Client quote:** `AES-260.32593-a.docx`
-- **Kukla offer no.:** e.g. `260297/02`
+- **Kukla offer no.:** e.g. `260297/02`; amendments arrive as `Quotation<N>-01.pdf`
+- **Revision letters:** `-a` first issue, then `-b`, `-c`, `-d` — on both the CS tab and the .docx
+- **Company codes:** see the full table below — never infer one from a filename.
+
+### Company codes (AES IDs)
+
+**Canonical source:** `Company Ref Table.xlsx` in the local `aes-quotes` folder (sheet
+`Companies`). Codes are assigned in **increments of 10** in rough alphabetical-then-chronological
+order — new companies get the next free number. The **AES ID is the `<company code>` half of every
+CS and quote filename** (`CS_640.46361.xlsx` → Cementos Sur).
+
+Pulled wholesale 56 companies, 2026-08-15:
+
+| AES ID | Company | Country / region | Level | Parent |
+|---|---|---|---|---|
+| **100** | Ahlstrom | Finland | Parent Company | — |
+| **110** | American Gypsum | United States | Parent Company | — |
+| **120** | Arch Resources | United States | Parent Company | — |
+| **130** | Atlas Sand | United States | Parent Company | — |
+| **140** | Cabot Gypsum Company | Canada | Parent Company | — |
+| **150** | CEMEX S.A.B. de C.V. | Mexico | Parent Company | — |
+| **160** | CERTAINTEED | United States | Subsidiary/Plant | Saint Gobain |
+| **170** | Durlock | Argentina | Subsidiary/Plant | ETEX |
+| **180** | El Volcan | Chile | Parent Company | — |
+| **190** | Eternit Perú | Peru | Subsidiary/Plant | ETEX |
+| **200** | ETEX | Belgium | Parent Company | — |
+| **210** | Georgia Pacific | United States | Parent Company | — |
+| **220** | Gyplac S.A. | Colombia - Cartagena | Subsidiary/Plant | ETEX |
+| **230** | Gypsita | Brazil - Santa Cruz | Subsidiary/Plant | ETEX |
+| **240** | J.D. Irving | Canada | Parent Company | — |
+| **250** | Martin Marietta | United States | Parent Company | — |
+| **260** | National Gypsum | United States | Parent Company | — |
+| **270** | New West Gypsum Recycling | Canada | Parent Company | — |
+| **280** | PABCO Gypsum | United States | Parent Company | — |
+| **290** | Panel Rey | Mexico | Parent Company | — |
+| **300** | Petrolina | Brazil - Petrolina | Subsidiary/Plant | ETEX |
+| **310** | Pratt Industries | United States | Parent Company | — |
+| **320** | Primient | United States | Parent Company | — |
+| **330** | Rio Tinto | United Kingdom | Parent Company | — |
+| **340** | Romeral | Chile | Subsidiary/Plant | ETEX |
+| **350** | Siniat | Brazil | Subsidiary/Plant | ETEX |
+| **350** | The Mosaic Company | United States | Parent Company | — |
+| **360** | USG | United States | Parent Company | — |
+| **380** | Holcim | Mexico | Parent Company | — |
+| **390** | SOBOCE | Bolivia | Parent Company | — |
+| **400** | Third-party Reseller |  | Parent Company | — |
+| **410** | Calportland Cement | United States | Parent Company | — |
+| **420** | Volcan Peru | Peru | Subsidiary/Plant | Saint Gobain |
+| **430** | Loma Negra | Argentina | Parent Company | — |
+| **440** | UNACEM (Cementos San Juan) | Chile | Parent Company | — |
+| **450** | Zemer International | United States | Parent Company | — |
+| **460** | Argos Cement | United States | Parent Company | — |
+| **470** | COBOCE | Bolivia | Parent Company | — |
+| **480** | Cidelco Minerals |  | Parent Company | — |
+| **490** | Intercement | Brazil | Parent Company | — |
+| **500** | Tehachapi | United States | Subsidiary/Plant | UNACEM |
+| **510** | Amrize | United States | Parent Company | — |
+| **520** | Votorantim | Brazil | Parent Company | — |
+| **530** | Cementos San Marcos | Colombia | Parent Company | — |
+| **540** | Cimento Itambé | Brazil | Parent Company | — |
+| **550** | Quikrete | United States | Parent Company | — |
+| **560** | Cimento Tupi | Brazil | Parent Company | — |
+| **570** | Cimento Nacional | Brazil | Parent Company | — |
+| **580** | CSN | Brazil | Parent Company | — |
+| **590** | Apodi | Brazil | Parent Company | — |
+| **600** | CBB | Chile | Parent Company | — |
+| **610** | Trevo | Brazil | Parent Company | — |
+| **620** | Reflex SA de CV | El Salvador | Parent Company | — |
+| **630** | RESISA | Mexico | Parent Company | — |
+| **640** | Cementos Sur | Peru | Parent Company | — |
+| **650** | RayTech | Colombia | Parent Company | — |
+
+### Project-folder abbreviations
+
+Sheet `Abbreviations` — these are the short prefixes on SharePoint project folders
+(`1. CSUR - Apron and belt scale`). Several abbreviations intentionally cover multiple legal
+entities of the same group.
+
+| Abbr. | Maps to |
+|---|---|
+| `AIT` | Access Industrial Technology |
+| `AMZ` | Amrize · Amrize Building Materials |
+| `APOD` | Cimento Apodi |
+| `ARG` | Argos USA |
+| `ATS` | Atlas Sand |
+| `CAL` | Calportland |
+| `CBB` | Cbb |
+| `CEM` | CEMEX S.A.B. de C.V. |
+| `CID` | Cidelco Minerals LLC |
+| `CIMN` | Cimento Nacional |
+| `COB` | COBOCE |
+| `CSN` | CSN |
+| `CSUR` | Calcesur |
+| `CTD` | CERTAINTEED |
+| `DUR` | Durlock |
+| `EQI` | Access Industrial Technology |
+| `ETN` | Eternit Peru |
+| `ETX` | ETEX |
+| `GP` | Georgia Pacific |
+| `GYP` | Gyplac S.A. |
+| `HOL` | Holcim · Holcim Argentina · Holcim El Salvador · Holcim México · Master Control SA de CV |
+| `INTC` | InterCement Brasil |
+| `ITA` | Cia de Cimento Itambé |
+| `LOM` | Loma Negra |
+| `MAT` | MATERIALS HARDWARE & SUPPLY CO., INC. |
+| `NG` | National Gypsum |
+| `PAB` | Pabco Gypsum |
+| `PET` | Petrolina |
+| `PR` | Panel Rey |
+| `QKR` | Quikrete |
+| `RAY` | RAYTECH INGENIERIA |
+| `REF` | Reflex Centroamérica |
+| `RES` | RESISA INTERNATIONAL |
+| `ROM` | Romeral |
+| `SAN` | Cementos San Marcos |
+| `SOB` | Soboce |
+| `SPC` | Southern Peru Copper |
+| `STC` | Gypsita |
+| `TEH` | Tehachapi Cement |
+| `TREV` | Trevo Drywall |
+| `TUP` | Cimento Tupi |
+| `UNA` | UNACEM |
+| `USG` | USG |
+| `VOL` | El Volcan · Saint-Gobain - Volcan Peru |
+| `VOT` | Votorantim Cimentos |
+| `ZEM` | Zemer International |
+
+> **⚑ Data-quality flags in the ref table (found 2026-08-15 — fix at the source):**
+> - **`350` is assigned twice** — *Siniat* (Brazil, ETEX) and *The Mosaic Company* (US). One is wrong.
+> - **`370` is missing** — the sequence jumps 360 → 380.
+> - **`CSUR` maps to "Calcesur"** in the abbreviations sheet, but AES ID **640 is "Cementos Sur"**.
+>   The SharePoint folder uses `CSUR` for Cementos Sur. Confirm whether Calcesur is a separate
+>   entity or a stale name.
+> - **`EQI` maps to "Access Industrial Technology"**, which is already `AIT`. `EQI` is used on
+>   SharePoint for **EQUIPSA** — almost certainly the intended mapping.
+> - Several names are **mojibake** in the source (`Holcim M√©xico`, `Cia de Cimento Itamb√©`,
+>   `Reflex Centroam√©rica`) — UTF-8 read as Latin-1. Repaired above; fix the .xlsx.
 
 ---
 
-## 11. Glossary
+## 11. Tooling & automation notes
+
+*Verified 2026-08-15 while running a full Cementos Sur revision end to end. These are the
+things that cost hours if you don't know them.*
+
+### Automation skills
+
+`cs-generator` → `aes-quote-generator` → `order-docs` · `spares-quote-generator`.
+Read the relevant `SKILL.md` before producing any of those artifacts — they carry more
+operational detail than this file.
+
+### Microsoft Graph writes are blocked
+
+`Files.ReadWrite.All` and `Mail.Send` are **not admin-consented** on the AES tenant. Graph
+**reads** work fine; every **write** — upload, copy, create calendar event, send mail — returns
+**403 accessDenied**. Getting these consented would remove most of the friction below and is
+the single highest-value IT fix available.
+
+### SharePoint writes — the working path
+
+- Composio's `SHARE_POINT_UPLOAD_FILE` / `UPLOAD_FROM_URL` **ignore the destination path**.
+  Whatever `site_name` and `folder_relative_url` you pass, the file lands in the **root site's**
+  `Shared Documents`.
+- **Workaround:** upload to the root site, then move it with the SPO copy-job API —
+  `POST https://advengsys.sharepoint.com/_api/site/CreateCopyJobs` with
+  `{"exportObjectUris":[<source>], "destinationUri":<dest folder>, "options":{"IsMoveMode":true,"NameConflictBehavior":1}}`
+- **`NameConflictBehavior: 1` = replace** (preserves the target's version history).
+  **`2` = rename** — that's what silently creates `CS_640.463611.xlsx`-style duplicates.
+- `proxy_execute` **cannot send binary bodies** (UTF-8 decode error), so REST `Files/add` is out.
+  It *does* accept **absolute** URLs, which is how you reach a specific site's REST API.
+
+### Document editing
+
+- **.docx:** strings are split across runs, so a naive `w:t` replace silently misses. Use the
+  run-level-plus-paragraph-merge approach in `aes-quote-generator/scripts/edit_docx.py`, and
+  check the reported hit counts — a MISS means the search string was wrong.
+  To add a table row, `deepcopy` an existing row and `addnext` it, then rewrite its cells —
+  that preserves borders and fonts. `row.cells` collapses merged cells, so for tables with
+  vertical merges work on `tr.findall(qn('w:tc'))` directly.
+- **.xlsx:** `openpyxl.copy_worksheet` duplicates a tab cleanly but does **not** carry images;
+  the AES CS template keeps images only on the document tabs, so the pricing tabs are safe.
+
+### Email
+
+- `OUTLOOK_CREATE_DRAFT_REPLY`'s `comment` field is injected straight into the HTML body —
+  pass `<p>` / `<ol>` markup, **not** `\n`, or the whole message renders as one paragraph.
+- Threads with LatAm clients run in Spanish (Portuguese for Brazil); **all Kukla correspondence
+  is in English.**
+
+---
+
+## 12. Glossary
 
 | Term | Meaning |
 |---|---|
@@ -638,12 +927,24 @@ cable ~180, packaging ~210, freight ~220, start-up ~230), plus delivery time and
 
 ---
 
-## 12. Open items / to verify
+## 13. Open items / to verify
 
 - [ ] **Titles:** confirm Managing Director vs. principal between Joaquin and Bill (§4)
 - [ ] **Kukla founding year:** 1933 per Kukla's own site — retire the "1923" figure that appears
       in older AES marketing copy (§3)
 - [ ] **GP Savannah:** PO + Kukla field engineer availability for the mid-August outage window (§8)
 - [ ] **NG Savannah:** PO landing after the mid-June approval (§8)
-- [ ] Full Kukla contact list (only Michael Leitner, Norbert, and Nico Humer are on file)
+- [x] ~~Full Kukla contact list~~ — expanded to 11 named contacts 2026-08-15 (§4)
+- [ ] **Kukla founding year, third time:** the live Spanish proposal says **1935**, this file says
+      1933, older marketing said 1923. Pick one and fix the quote templates (§3)
+- [ ] **Volcán and SOBOCE missing from the §7 segment lists** despite being among the most active
+      accounts — reconcile against HubSpot
+- [x] ~~Company codes: pull the full map from `Company Ref Table.xlsx`~~ — done 2026-08-15,
+      all 56 in §10
+- [ ] **Ref table data quality:** duplicate AES ID `350`, missing `370`, `CSUR`→Calcesur vs
+      Cementos Sur, `EQI`→AIT instead of EQUIPSA, and mojibake in three names (§10)
+- [ ] **Get `Files.ReadWrite.All` + `Mail.Send` admin-consented** on the M365 tenant — removes
+      most of the §11 workarounds
+- [ ] **Cementos Sur:** Incoterms still quoted CFR Callao though the client asked for DAP Caracoto,
+      Puno; Kukla has not addressed the inland leg (§8)
 - [ ] Kukla's official RAL paint colors for the 3D product renders
